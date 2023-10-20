@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1200.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="main.trivia_game.PlayController">
+  <padding>
+    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+  </padding>
+   <Label alignment="CENTER" contentDisplay="TOP" prefHeight="153.0" prefWidth="755.0" text="Trivia" textAlignment="CENTER">
+      <font>
+         <Font name="Century Gothic Bold" size="96.0" />
+      </font>
+   </Label>
+
+  <Label fx:id="welcomeText" />
+  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onHelloButtonClick" text="PLAY">
+      <VBox.margin>
+         <Insets top="170.0" />
+      </VBox.margin>
+      <padding>
+         <Insets bottom="100.0" left="150.0" right="150.0" top="100.0" />
+      </padding>
+      <font>
+         <Font name="Century Gothic Bold" size="57.0" />
+      </font></Button>
+</VBox>
