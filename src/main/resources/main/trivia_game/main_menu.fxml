@@ -3,36 +3,14 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="800.0" prefWidth="1200.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.trivia_game.PlayController">
-    <!-- stylesheets="main_menu.css"  -->
-    <Label alignment="CENTER" contentDisplay="TOP" prefHeight="150.0" prefWidth="1200.0" styleClass="background-label" text="Trivia" textAlignment="CENTER">
-      <font>
-         <Font name="Century Gothic Bold" size="96.0" />
-      </font>
-      <VBox.margin>
-         <Insets />
-      </VBox.margin>
-      <padding>
-         <Insets bottom="20.0" top="20.0" />
-      </padding>
-   </Label>
-
-  <!--<Label fx:id="welcomeText" /> -->
-  <Button alignment="CENTER" contentDisplay="CENTER" onAction="#onHelloButtonClick" text="PLAY" styleClass="custom-button">
+<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.trivia_game.PlayController">
+    <Label styleClass="background-label" text="Trivia" />
+  <Label fx:id="welcomeText" />
+  <Button onAction="#onPlayButtonClick" text="PLAY" styleClass="custom-button">
       <VBox.margin>
          <Insets top="170.0" />
       </VBox.margin>
-      <padding>
-         <Insets bottom="100.0" left="150.0" right="150.0" top="100.0" />
-      </padding>
-      <font>
-         <Font name="Century Gothic Bold" size="57.0" />
-      </font></Button>
-   <effect>
-      <Blend />
-   </effect>
+  </Button>
 </VBox>
