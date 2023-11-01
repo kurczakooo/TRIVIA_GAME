@@ -1,0 +1,9 @@
+.background-label {
+    -fx-background-color: #3498db;
+}
+
+/* CSS for Button */
+.custom-button {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-size: 57px;
+}
