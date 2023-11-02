@@ -6,11 +6,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.trivia_game.PlayController">
-    <Label styleClass="background-label" text="Trivia" />
-  <Label fx:id="welcomeText" />
+    <Label styleClass="background-label" text="TRIVIA" />
   <Button onAction="#onPlayButtonClick" text="PLAY" styleClass="custom-button">
       <VBox.margin>
-         <Insets top="170.0" />
+         <Insets top="200.0" />
       </VBox.margin>
   </Button>
 </VBox>

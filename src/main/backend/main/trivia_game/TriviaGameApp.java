@@ -25,6 +25,10 @@ public class TriviaGameApp extends Application {
             primaryStage.setTitle("TRIVIA GAME");
             primaryStage.setScene(scene);
             primaryStage.show();
+
+            PlayController playController = loader.getController();
+            playController.setPrimaryStage(primaryStage);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
