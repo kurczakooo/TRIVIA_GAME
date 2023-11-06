@@ -12,4 +12,5 @@
          <Insets top="200.0" />
       </VBox.margin>
   </Button>
+    <Label styleClass="background-label" text="TRIVIA" />
 </VBox>

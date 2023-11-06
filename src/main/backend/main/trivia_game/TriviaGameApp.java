@@ -22,7 +22,7 @@ public class TriviaGameApp extends Application {
             scene.getStylesheets().add(getClass().getResource("main_menu.css").toExternalForm());
 
             primaryStage.setResizable(false);
-            primaryStage.setTitle("AMongus");
+            primaryStage.setTitle("TRIVIA GAME");
             primaryStage.setScene(scene);
             primaryStage.show();
 
