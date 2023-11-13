@@ -13,7 +13,7 @@
         <VBox.margin>
             <Insets top="200.0" />
         </VBox.margin>
-        <Button text="ANIMALS" styleClass="choice-button"/>
-        <Button text="SPORTS" styleClass="choice-button"/>
+        <Button onAction="#ChoiceHandler" text="ANIMALS" styleClass="choice-button"/>
+        <Button onAction="#ChoiceHandler" text="SPORTS" styleClass="choice-button"/>
     </HBox>
 </VBox>
