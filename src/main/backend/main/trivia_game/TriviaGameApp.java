@@ -12,7 +12,7 @@ import java.sql.Connection;
 public class TriviaGameApp extends Application {
     public static void main(String[] args) {
         launch(args);
-        DataBaseHandler dbHandler = new DataBaseHandler();
+        //DataBaseHandler dbHandler = new DataBaseHandler();
     }
     @Override
     public void start(Stage primaryStage) {
