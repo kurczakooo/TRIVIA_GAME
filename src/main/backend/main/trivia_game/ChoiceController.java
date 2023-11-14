@@ -45,6 +45,7 @@ public class ChoiceController {
             questionController.setPrimaryStage(primaryStage);
 
             questionController.GetDataFromDB();
+            questionController.RandomizeAnswers();
 
         } catch (IOException e){
             e.printStackTrace();

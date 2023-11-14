@@ -25,14 +25,19 @@
 .answers-grid{
     -fx-hgap: 20;
     -fx-vgap: 20;
-    -fx-alignment: center;
+    -fx-padding: 200 0 0 0;
+    -fx-alignment: bottom-center;
 }
 
 .answer-button {
     -fx-border-color: #04316D;
     -fx-border-width: 5;
     -fx-font-family: "Century Gothic Bold";
-    -fx-font-size: 36px;
-    -fx-padding: 66 100 66 100;
+    -fx-font-weight: bold;
+    -fx-font-size: 38px;
+    /*-fx-padding: 33 200 33 200;*/
+    -fx-pref-width: 50%;
+    -fx-min-width: 500;
+    -fx-min-height: 150;
     -fx-text-alignment: center;
 }
