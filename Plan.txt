@@ -1,0 +1,35 @@
+jak wejdziemy do gry to pierwszy gracz sie losuje i wybiera kategorie dla siebie
+pytanie z wybranej kategori losuje sie i gracz odpowiada
+po odpowiedzi dwie opcje:
+
+for(wykonuje sie 10 razy, kazdy gracz ma po 5 pytan)
+    if(zle odpowiedzial):
+        gracz 1 dostaje 0 $,
+        teraz dwie kategorie dla gracza 2, i gracz 2 sam sobie wybiera kategorie,
+        gracz 2 odpowiada na pytanie
+
+    if(dobrze odpowiedzial):
+        gracz 1 dostaje $ z przelicznika*,
+        teraz dwie kategorie dla gracza 2, ale gracz 1 wybiera mu kategorie,
+        gracz 2 odpowiada na pytanie
+
+na kazda odpowiedz jest 30 sekund. Po 10 turach, porownujemy ile $ maja gracze, wygrywa ten co ma wiecej.
+
+*przelicznik w stylu "KAHOOT":
+    $ są przyznawane na podstawie szybkości udzielenia odpowiedzi, sposób obliczania:
+
+    Podziel czas odpowiedzi przez timer.
+    (Na przykład gracz odpowiedział 2 sekundy po uruchomieniu 30-sekundowego timera. 2 podzielone przez 30 wynosi 0,0667.)
+    Podziel tę wartość przez 2. Na przykład 0,0667 dzielone przez 2 wynosi 0,0333.
+    Odejmij tę wartość od 1. Na przykład 1 minus 0,0333 wynosi 0,9667.
+    Pomnóż przez tę wartość możliwą do uzyskania liczbę punktów. Na przykład 1000 punktów pomnożone przez 0,9667 wynosi 966,7.
+    Zaokrąglij do najbliższej liczby całkowitej. Na przykład 966,7 to 967 punktów.
+    Dla kreatorów matematycznych można przedstawić to w następujący sposób:
+
+    ⌊ ( 1 - (( {response time} / {question timer} ) / 2 )) {points possible} ⌉
+
+    Przyklad jest max 1000$ za pytanie i timer 30 sekund, gracz odpowiedzial po 5 sekundach:
+
+    (1 - ( (5/30) /2 )) * 1000 = (1 - ( 0,1667 /2 )) * 1000 = (1 - 0,083 ) * 1000 = 0,917 * 1000 = 917
+
+    czyli gracz dostaje 917$, jesli wyjdzie po przecinku to zaokraglamy do najblizszej calkowitej.

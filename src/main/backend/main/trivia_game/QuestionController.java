@@ -31,7 +31,7 @@ public class QuestionController {
     public void GetDataFromDB(){
         //dzwonisz do bazy danych i pobierasz pytanie i odpowiedzi, tam zawsze pierwsza odpowiedz bedzie poprawna,
         //wiec tutaj pytania jak sie pobiera to beda musialy sie losowac ,tylko do wyswietlania.
-        this.question.setText("Kim jest Baxton?");
+        this.question.setText("Kim jest Baxton?Kim jest Baxton?Kim jest Baxton?Kim jest Baxton?Kim jest Baxton?"); //max 80 znakow
         this.answers.add("Youtuberem");
         this.answers.add("Pilkarzem");
         this.answers.add("Ktos taki nie istnieje"); //odpowiedz moze miec max 26 znakow bo inaczej sie zdeformuje przycisk !!!!!!!!!!!!!!!!!!!!!!!!!!
