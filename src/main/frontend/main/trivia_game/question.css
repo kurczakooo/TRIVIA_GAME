@@ -22,11 +22,10 @@
     -fx-font-size: 48px;
     -fx-wrap-text: true;
     -fx-text-alignment: center;
-    -fx-background-color: green;
+    -fx-padding: 0 0 150 0;
 }
 
 .answers-grid{
-    -fx-background-color: red;
     -fx-hgap: 20;
     -fx-vgap: 20;
     -fx-alignment: bottom-center;
