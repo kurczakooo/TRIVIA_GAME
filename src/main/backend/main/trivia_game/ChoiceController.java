@@ -9,6 +9,16 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Statement;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
 
 public class ChoiceController {
 
@@ -43,6 +53,47 @@ public class ChoiceController {
 
             QuestionController questionController = loader.getController();
             questionController.setPrimaryStage(primaryStage);
+
+
+
+            //test bazy daynch
+            try {
+                // Nawiązanie połączenia z bazą danych
+                Connection connection = DriverManager.getConnection("jdbc:sqlite:database");
+
+                // Tworzenie obiektu Statement do wysyłania zapytań SQL
+                Statement statement = connection.createStatement();
+
+                // Przykładowe zapytanie SELECT
+                String query = "SELECT * FROM pytania;";
+                ResultSet resultSet = statement.executeQuery(query);
+
+                // Przetwarzanie wyników zapytania
+                while (resultSet.next()) {
+                    // Pobieranie danych z kolumn
+                    int pytanieID = resultSet.getInt("PytanieID");
+                    String trescPytania = resultSet.getString("TrescPytania");
+                    String odpowiedzPoprawna = resultSet.getString("OdpowiedzPoprawna");
+                    String odpowiedz2 = resultSet.getString("Odpowiedz2");
+                    String odpowiedz3 = resultSet.getString("Odpowiedz3");
+                    String odpowiedz4 = resultSet.getString("Odpowiedz4");
+
+                    // Przetwarzanie danych lub wyświetlanie ich
+                    System.out.println("ID: " + pytanieID);
+                    System.out.println("Treść pytania: " + trescPytania);
+                    System.out.println("Odpowiedź poprawna: " + odpowiedzPoprawna);
+                    System.out.println("Odpowiedź 2: " + odpowiedz2);
+                    System.out.println("Odpowiedź 3: " + odpowiedz3);
+                    System.out.println("Odpowiedź 4: " + odpowiedz4);
+                }
+                // Zamykanie zasobów
+                resultSet.close();
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
 
             questionController.GetDataFromDB();
             questionController.RandomizeAnswers();

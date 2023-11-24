@@ -39,8 +39,8 @@ public class QuestionController {
 
         this.right_answer = this.answers.get(0);
 
-        System.out.println(question);
-        System.out.println(answers);
+        //System.out.println(question);
+        //System.out.println(answers);
     }
 
     public void RandomizeAnswers(){

@@ -1,4 +1,4 @@
-package main.trivia_game;
+/*package main.trivia_game;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,4 +36,4 @@ public class DataBaseHandler {
     }
 
 
-}
+}*/
