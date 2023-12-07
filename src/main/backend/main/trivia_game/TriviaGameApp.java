@@ -16,8 +16,8 @@ public class TriviaGameApp extends Application {
 
         // Connecting with database
         Connection dbConnection = DataBaseHandler.connect();
-        DataBaseHandler.insertToDb(2,"Czemu jeszcz esse?", "el primo",
-                "Ser", "Clash royale", "Xddd");
+        //DataBaseHandler.insertToDb(2,"Czemu jeszcz esse?", "el primo",
+        //        "Ser", "Clash royale", "Xddd");
     }
     @Override
     public void start(Stage primaryStage) {

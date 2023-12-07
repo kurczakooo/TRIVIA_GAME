@@ -17,7 +17,7 @@ public class DataBaseHandler {
             connection = DriverManager.getConnection("jdbc:sqlite:database");
 
         } catch (ClassNotFoundException | SQLException e) {
-            System.out.println(e+ "");
+            System.out.println(e + "");
         }
 
         if(connection != null)
