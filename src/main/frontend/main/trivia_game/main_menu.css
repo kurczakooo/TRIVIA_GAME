@@ -16,7 +16,23 @@
     -fx-pref-width: 1200;
 }
 
-.custom-button {
+.menu-hbox{
+    -fx-padding: 200 0 0 0;
+}
+
+.nick-label {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 48px;
+}
+
+.text-field {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-size: 36px;
+    -fx-font-weight: Bold;
+}
+
+.play-button {
     -fx-border-color: #04316D;
     -fx-border-width: 5;
     -fx-font-family: "Century Gothic Bold";

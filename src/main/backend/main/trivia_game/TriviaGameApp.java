@@ -11,6 +11,8 @@ import java.sql.Connection;
 import java.util.Objects;
 
 public class TriviaGameApp extends Application {
+
+    boolean CzyGraczDrugiPolaczony;
     public static void main(String[] args) {
         launch(args);
 
