@@ -23,6 +23,7 @@
     -fx-wrap-text: true;
     -fx-text-alignment: center;
     -fx-padding: 0 0 150 0;
+    -fx-wrap-text: true;
 }
 
 .answers-grid{
@@ -42,4 +43,5 @@
     -fx-min-width: 500;
     -fx-min-height: 150;
     -fx-text-alignment: center;
+    -fx-wrap-text: true;
 }

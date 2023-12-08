@@ -65,26 +65,28 @@ public class ChoiceController {
                 Statement statement = connection.createStatement();
 
                 // Przykładowe zapytanie SELECT
-                String query = "SELECT * FROM pytania;";
+                String query = "SELECT * FROM Pytania ORDER BY RANDOM() LIMIT 1;";
                 ResultSet resultSet = statement.executeQuery(query);
 
                 // Przetwarzanie wyników zapytania
                 while (resultSet.next()) {
                     // Pobieranie danych z kolumn
-                    int pytanieID = resultSet.getInt("PytanieID");
+                    int pytanieID = resultSet.getInt("IDpytania");
                     String trescPytania = resultSet.getString("TrescPytania");
                     String odpowiedzPoprawna = resultSet.getString("OdpowiedzPoprawna");
                     String odpowiedz2 = resultSet.getString("Odpowiedz2");
                     String odpowiedz3 = resultSet.getString("Odpowiedz3");
                     String odpowiedz4 = resultSet.getString("Odpowiedz4");
 
+                    questionController.GetDataFromDB(trescPytania, odpowiedzPoprawna, odpowiedz2, odpowiedz3, odpowiedz4);
+
                     // Przetwarzanie danych lub wyświetlanie ich
-                    System.out.println("ID: " + pytanieID);
-                    System.out.println("Treść pytania: " + trescPytania);
-                    System.out.println("Odpowiedź poprawna: " + odpowiedzPoprawna);
-                    System.out.println("Odpowiedź 2: " + odpowiedz2);
-                    System.out.println("Odpowiedź 3: " + odpowiedz3);
-                    System.out.println("Odpowiedź 4: " + odpowiedz4);
+                    //System.out.println("ID: " + pytanieID);
+                    //System.out.println("Treść pytania: " + trescPytania);
+                    //System.out.println("Odpowiedź poprawna: " + odpowiedzPoprawna);
+                    //System.out.println("Odpowiedź 2: " + odpowiedz2);
+                    ///System.out.println("Odpowiedź 3: " + odpowiedz3);
+                    //System.out.println("Odpowiedź 4: " + odpowiedz4);
                 }
                 // Zamykanie zasobów
                 resultSet.close();
@@ -95,7 +97,6 @@ public class ChoiceController {
             }
 
 
-            questionController.GetDataFromDB();
             questionController.RandomizeAnswers();
 
         } catch (IOException e){
