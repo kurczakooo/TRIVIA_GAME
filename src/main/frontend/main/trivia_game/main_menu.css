@@ -4,6 +4,11 @@
     -fx-alignment: top-center;
 }
 
+.items-vbox {
+    -fx-alignment: center;
+    -fx-spacing: 50;
+}
+
 .background-label {
     -fx-background-color: #04316D;
     -fx-font-family: "Century Gothic Bold";
@@ -16,20 +21,11 @@
     -fx-pref-width: 1200;
 }
 
-.menu-hbox{
-    -fx-padding: 200 0 0 0;
-}
-
-.nick-label {
-    -fx-font-family: "Century Gothic Bold";
-    -fx-font-weight: Bold;
-    -fx-font-size: 48px;
-}
-
 .text-field {
     -fx-font-family: "Century Gothic Bold";
     -fx-font-size: 36px;
     -fx-font-weight: Bold;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
 }
 
 .play-button {
@@ -39,4 +35,13 @@
     -fx-font-size: 57px;
     -fx-padding: 100 150 100 150;
     -fx-text-alignment: center;
+}
+
+.waiting-label {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 48px;
+    -fx-wrap-text: true;
+    -fx-text-alignment: center;
+    -fx-padding: 0 0 150 0;
 }
