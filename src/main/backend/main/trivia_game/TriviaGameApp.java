@@ -35,7 +35,16 @@ public class TriviaGameApp extends Application {
             PlayController playController = loader.getController();
             playController.setPrimaryStage(primaryStage);
 
-            playController.CzyGraczDrugiPolaczony = true;
+
+            PauseTransition delay = new PauseTransition(Duration.seconds(3));  //symulacja czekania na 2 gracza
+            delay.setOnFinished(e->{
+                playController.CzyGraczDrugiPolaczony = true;
+                System.out.println(playController.CzyGraczDrugiPolaczony);
+                playController.setWaitingText();
+            });
+            playController.CzyGraczDrugiPolaczony = false;
+            System.out.println(playController.CzyGraczDrugiPolaczony);
+            delay.play();
             playController.setWaitingText();
 
 
