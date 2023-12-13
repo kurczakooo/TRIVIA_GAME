@@ -40,6 +40,8 @@ public class DataBaseHandler {
     */
 
     // Wstawianie do bazy danych
+    //Object relational mapping - hibernate !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  CRUD zalatwiamy jeszcze roznymi metodami dla kazdej tabeli
+    //robimy klase
     public static void insertToDb(int PytanieID,String TrescPytania, String OdpowiedzPoprawna, String Odpowiedz2,String Odpowiedz3, String Odpowiedz4){
         Connection con = DataBaseHandler.connect();
 
