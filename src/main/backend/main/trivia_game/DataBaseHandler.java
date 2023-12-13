@@ -1,10 +1,10 @@
 package main.trivia_game;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+
 public class DataBaseHandler {
 
+    // Wywalic to i dodac cos ze zlicza ile jest aktulnie rows w tabeli, na podstawie tego dodaje
     public static int liczbaPytan = 2;
     public static Connection connect(){
         Connection connection = null;
@@ -39,6 +39,7 @@ public class DataBaseHandler {
     }
     */
 
+    // Wstawianie do bazy danych
     public static void insertToDb(int PytanieID,String TrescPytania, String OdpowiedzPoprawna, String Odpowiedz2,String Odpowiedz3, String Odpowiedz4){
         Connection con = DataBaseHandler.connect();
 
@@ -63,4 +64,100 @@ public class DataBaseHandler {
             System.out.println(e+"");
         }
     }
+
+
+    /*public static ArrayList<String> readAllData(String tableName){
+        Connection con = DataBaseHandler.connect();
+        PreparedStatement ps = null;
+
+        ResultSet rs = null;
+
+        try {
+            String sql = "SELECT * FROM " + tableName;
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while(rs.next()){
+                String
+            }
+        }catch(SQLException e){
+            System.out.println(e.toString());
+        } finally {
+            try{
+                rs.close();
+                ps.close();
+                con.close();
+            }catch (SQLException e)
+                System.out.println(e.toString);
+        }
+
+
+    }
+        */
+        /*public static String readSpecificDataRow(String tableName){
+            Connection con  = DataBaseHandler.connect();
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            try{
+                String sql = "SELECT NazwKategori from KategoriePytan where IDkategori =?";
+                ps = con.prepareSatement(sql);
+                ps.setString(1, "1");
+                rs = ps.executeQuery();
+
+                String nazwaKategori = rs.getString(1);
+                Systen.out.printl(nazwaKategori);
+
+            }catch(SQLException e){
+                System.out.println(e.toString());
+            }finally {
+                // Zamykamy polaczenia
+                try {
+                    ps.close();
+                    rs.close();
+                    con.close();
+                } catch (SQLException e) {
+                    System.out.println(e.toString());
+                }
+
+            }
+
+            return  "";
+        }*/
+
+
+    /* Pobieramy pierwsza kolumne z tabeli
+     public static String readFirstColumnValue(String tableName, String firstColumnName) {
+        Connection con  = DataBaseHandler.connect();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        String firstColumnValue = null;
+
+        try {
+            String sql = "SELECT * FROM " + tableName + " WHERE " +firstColumnName+ " = ?";
+            ps = con.prepareStatement(sql);
+            // ps.setString(1, "1");
+            rs = ps.executeQuery();
+
+            ResultSetMetaData metaData = rs.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            if (rs.next()) {
+                // Jeśli są wyniki, pobierz wartość pierwszej kolumny
+                firstColumnValue = rs.getString(firstColumnName);
+            }
+        } catch (SQLException e) {
+            System.out.println(e.toString());
+        } finally {
+            // Zamykamy połączenia
+            try {
+                if (ps != null) ps.close();
+                if (rs != null) rs.close();
+                if (con != null) con.close();
+            } catch (SQLException e) {
+                System.out.println(e.toString());
+            }
+        }
+
+        return firstColumnValue;
+    }*/
 }

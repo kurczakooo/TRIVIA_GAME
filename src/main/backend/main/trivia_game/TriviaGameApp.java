@@ -60,5 +60,8 @@ public class TriviaGameApp extends Application {
         Connection dbConnection = DataBaseHandler.connect();
         //DataBaseHandler.insertToDb(2,"Czemu jeszcz esse?", "el primo",
         //        "Ser", "Clash royale", "Xddd");
+
+      //  String col1 = DataBaseHandler.readFirstColumnValue("Pytania", "IDpytania");
+        //  System.out.println(col1);
     }
 }
