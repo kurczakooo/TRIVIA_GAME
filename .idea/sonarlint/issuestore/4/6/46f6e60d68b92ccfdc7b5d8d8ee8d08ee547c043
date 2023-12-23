@@ -1,9 +1,9 @@
 
-@	java:S106*"+Replace this use of System.out by a logger.(ó™ó
-@	java:S106."+Replace this use of System.out by a logger.(ó™ó
+@	java:S106)"+Replace this use of System.out by a logger.(ó™ó
+@	java:S106-"+Replace this use of System.out by a logger.(ó™ó
 [
-java:S1854<"@Remove this useless assignment to local variable "dbConnection".(ê¥£­ùÿÿÿÿ
+java:S1854;"@Remove this useless assignment to local variable "dbConnection".(ê¥£­ùÿÿÿÿ
 L
-java:S1481<"1Remove this unused "dbConnection" local variable.(ê¥£­ùÿÿÿÿ
-V	java:S125>"<This block of commented-out lines of code should be removed.(´º”Ãÿÿÿÿÿ
-Q	java:S125@"<This block of commented-out lines of code should be removed.(Ê§¯š
+java:S1481;"1Remove this unused "dbConnection" local variable.(ê¥£­ùÿÿÿÿ
+V	java:S125="<This block of commented-out lines of code should be removed.(´º”Ãÿÿÿÿÿ
+Q	java:S125?"<This block of commented-out lines of code should be removed.(Ê§¯š

@@ -1,8 +1,0 @@
-
-‚	java:S116"aRename this field "CzyGraczDrugiPolaczony" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìŠªÿÿÿÿÿ8ÆÑ“ìÈ1
-q	java:S116"URename this field "PlayButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦–Æ´8ÆÑ“ìÈ1
-u
-java:S1450"SRemove the "nick" field and declare it as a local variable in the relevant methods.(ÕŞãÿÿÿÿÿ8ÇÑ“ìÈ1
-X	java:S125$"<This block of commented-out lines of code should be removed.(¹½8¬”ìÈ1
-T
-java:S1172."2Remove this unused method parameter "actionEvent".(×ÕÑ°ûÿÿÿÿ8ÌÑ“ìÈ1

@@ -1,0 +1,10 @@
+
+~
+java:S1104"bMake CzyGraczDrugiPolaczony a static final constant or non-public and provide accessors if needed.(ë‚†8ö≤À¨…1
+u	java:S116"aRename this field "CzyGraczDrugiPolaczony" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ë‚†
+j	java:S116"URename this field "PlayButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶ñ∆¥
+u
+java:S1450"SRemove the "nick" field and declare it as a local variable in the relevant methods.(’ﬁ„èˇˇˇˇˇ8Ω≤À¨…1
+Q	java:S125$"<This block of commented-out lines of code should be removed.(ùêπΩ
+M
+java:S1172."2Remove this unused method parameter "actionEvent".(◊’—∞˚ˇˇˇˇ

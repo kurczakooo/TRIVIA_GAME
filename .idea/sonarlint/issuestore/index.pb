@@ -1,16 +1,4 @@
 
-f
-6src/main/backend/main/trivia_game/DataBaseHandler.java,0\d\0dbe8a63b0d4b0aed6b61ceda4b9b67fe21ce2ab
-g
-7src/main/backend/main/trivia_game/ChoiceController.java,7\c\7cf86405b414e6bfc7669293da8115d2eaf1c8ea
-e
-5src/main/backend/main/trivia_game/PlayController.java,5\f\5f97913d7d93ef1bbcb0834f115833f479e96d22
-d
-4src/main/backend/main/trivia_game/TriviaGameApp.java,9\3\9344b545137061a54c0838624a945c3fe64e714e
-Q
-!src/main/backend/module-info.java,1\7\17330efeab5c8611cb27f6ad6d49e0a054af6dda
-n
->src/main/frontend_handlers/main/trivia_game/TriviaGameApp.java,c\2\c2f9cd66277efcdeb054d9be909b09c7beb723fb
 [
 +src/main/frontend_handlers/module-info.java,b\1\b1b9833d1e2aaa67b3ae06241cb2a367aaa165b4
 b
@@ -23,3 +11,17 @@ c
 3src/main/frontend_handlers/main/PlayController.java,b\c\bc32f85d5f3516fa64e0d15a39689d93775cdebd
 g
 7src/main/frontend_handlers/main/QuestionController.java,c\f\cfc0a3b1f13b92db9316db8fe844c702d8bfb416
+n
+>src/main/frontend_handlers/frontend_package/TriviaGameApp.java,4\a\4ac469115be4431426b1a1360275df20898ca7e1
+^
+.src/main/backend/database/DataBaseHandler.java,3\2\32c3118c167a289a51afe43275645cc73514d4ae
+o
+?src/main/frontend_handlers/frontend_package/PlayController.java,1\6\166b86438eae07c7b2549f0b7ad09591eec8fb41
+Z
+*src/main/backend/server/TriviaGameApp.java,d\4\d46285ed8311d2673aafc38c68c87a26099ba4a7
+S
+#src/main/backend/server/server.java,a\0\a0df2c3cba1a3267c0f2ed18c2fe8ef81ea8c4bc
+S
+#src/main/backend/server/Server.java,6\0\60e7ba1c9dba3f3b8345e239b5f1364e49df1fd9
+R
+"src/main/backend/server/Gracz.java,3\9\39b9a0b8fc5cce9b898847f6e70216ab29853bba

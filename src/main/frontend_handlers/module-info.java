@@ -5,6 +5,10 @@ module main {
     requires org.xerial.sqlitejdbc;
 
 
-    opens main to javafx.fxml;
-    exports main;
+    opens frontend_package to javafx.fxml;
+    exports frontend_package;
+    exports server;
+    opens server to javafx.fxml;
+    exports database;
+    opens database to javafx.fxml;
 }
