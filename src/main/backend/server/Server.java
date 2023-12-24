@@ -1,5 +1,5 @@
 package server;
-
+//https://www.youtube.com/watch?v=gLfuZrrfKes
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -12,30 +12,30 @@ public class Server {
 
     private ServerSocket serverSocket;
 
-    private List<Gracz> players = new ArrayList<>();
-
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-//https://www.youtube.com/watch?v=gLfuZrrfKes              = 5:02
     public void setServer(){
         try {
             while (!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
                 System.out.println("nowy gracz polaczony");
+                ClientHandler handler = new ClientHandler(socket);
+
+                Thread t1 = new Thread(handler);
+                t1.start();
             }
+
         }
         catch (IOException e){
-            e.printStackTrace();
+            closeServer();
         }
     }
 
-    public void sendMessageToPlayers(Socket playerSocket){
+    public void closeServer(){
         try {
-            String message = "Example message";
-            PrintWriter output = new PrintWriter(playerSocket.getOutputStream(), true);
-            output.println(message);
-            System.out.println("Wyslano wiadomosc do graczy");
+            if(serverSocket != null)
+                serverSocket.close();
         }
         catch (IOException e){
             e.printStackTrace();

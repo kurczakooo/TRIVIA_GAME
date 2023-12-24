@@ -209,7 +209,7 @@ public class PytaniaHandler {
         // setPytanie("test", "a", "b", "c", "d", 6);
 
             System.out.println("Pytan jest: " + getMaxId());
-            // deletePytanie(21);
+            //deletePytanie(23);
 
         // deletePytanie(21);
     }

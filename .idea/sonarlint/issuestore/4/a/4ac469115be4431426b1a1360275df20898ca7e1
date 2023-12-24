@@ -1,16 +1,12 @@
 
-G	java:S106*"+Replace this use of System.out by a logger.(ó™ó8ó÷Ş±É1
-]	java:S125."<This block of commented-out lines of code should be removed.(£Ş…‡şÿÿÿÿ8ô÷Ş±É1
-X	java:S125;"<This block of commented-out lines of code should be removed.(¼ŠËØ8ÀÃ„²É1
-X	java:S125B"<This block of commented-out lines of code should be removed.(øá–ã8Ğõú±É1
-X	java:S125M"<This block of commented-out lines of code should be removed.(şãÜ•8ö÷Ş±É1
+G	java:S106+"+Replace this use of System.out by a logger.(ó™ó8ûÚÒÚÉ1
+]	java:S125/"<This block of commented-out lines of code should be removed.(£Ş…‡şÿÿÿÿ8üÚÒÚÉ1
+X	java:S125D"<This block of commented-out lines of code should be removed.(şãÜ•8şÚÒÚÉ1
 W
-java:S1128"5Remove this unused import 'database.DataBaseHandler'.(˜ô¡Šùÿÿÿÿ8ö÷Ş±É1
+java:S1128"5Remove this unused import 'database.DataBaseHandler'.(˜ô¡Šùÿÿÿÿ8ÿÚÒÚÉ1
 q
-java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(œî³ú8ö÷Ş±É1
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(œî³ú8ÿÚÒÚÉ1
 F
-java:S1128")Remove this unused import 'server.Gracz'.(ş¾ÜÌ8ÁÃ„²É1
-L
-java:S1128"*Remove this unused import 'server.Server'.(Ö²È¶úÿÿÿÿ8ÁÃ„²É1
+java:S1128")Remove this unused import 'server.Gracz'.(ş¾ÜÌ8ÿÚÒÚÉ1
 M
-java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8ö÷Ş±É1
+java:S1128"0Remove this unused import 'java.sql.Connection'.(¥ËôÖ8ÿÚÒÚÉ1

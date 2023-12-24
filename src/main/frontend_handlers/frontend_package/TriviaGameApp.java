@@ -13,6 +13,7 @@ import server.Gracz;
 import server.Server;
 
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.sql.Connection;
 import java.util.Objects;
 
@@ -53,22 +54,12 @@ public class TriviaGameApp extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         launch(args);
 
-        //Server server = new Server();
-        //Gracz gracz = new Gracz("localhost", 4999);
-        //server.sendMessageToPlayers(gracz.socket);
-       // try {
-            //gracz.socket.connect(server.socket.getLocalSocketAddress());
-            //gracz.readMessage(gracz.socket);
-
-            //server.socket.close();
-            ///gracz.socket.close();
-       // }
-       // catch (IOException e){
-       //     e.printStackTrace();
-       // }
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server = new Server(serverSocket);
+        server.setServer();
 
     }
 }

@@ -1,9 +1,2 @@
 
-\
-java:S1854":Remove this useless assignment to local variable "socket".(Ìßàÿÿÿÿÿ8˜ƒˆ²É1
-M
-java:S1481"+Remove this unused "socket" local variable.(Ìßàÿÿÿÿÿ8™ƒˆ²É1
-G	java:S106"+Replace this use of System.out by a logger.(ñ½ª‚8¿ñ†²É1
-G	java:S106&"+Replace this use of System.out by a logger.(†ãß³8‰‚‰²É1
-M
-java:S1068"+Remove this unused "players" private field.(Õ¿ßšûÿÿÿÿ8Áñ†²É1
+G	java:S106"+Replace this use of System.out by a logger.(ñ½ª‚8ßêÉÚÉ1
