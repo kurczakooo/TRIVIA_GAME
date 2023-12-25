@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 
-<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.PlayController">
+<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.MenuScreen">
     <Label styleClass="background-label" text="TRIVIA" />
     <VBox styleClass="items-vbox">
         <TextField styleClass="text-field" promptText="Wpisz nick..." fx:id="nickbox"/>
-        <Button onAction="#onPlayButtonClick" text="PLAY" styleClass="play-button" fx:id="PlayButton"/>
-        <Label styleClass="waiting-label" fx:id="waiting" text="$waiting"/>
+        <Button onAction="#onHostButtonClick" text="HOST" styleClass="menu-button"/>
+        <Button onAction="#onJoinButtonClick" text="JOIN" styleClass="menu-button"/>
     </VBox>
 </VBox>

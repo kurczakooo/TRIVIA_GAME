@@ -33,9 +33,9 @@ public class ChoiceController {
     @FXML
     public void setChoiceText() {
         if(this.IsLastQuestionRight)
-            this.choiceText.setText("Choose a category for your yourself:");
+            this.choiceText.setText("Wybierz kategorie pytania dla siebie:");
         else
-            this.choiceText.setText("Choose a category for your opponent:");
+            this.choiceText.setText("Wybierz kategorie pytania dla przeciwnika:");
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){
@@ -44,7 +44,7 @@ public class ChoiceController {
             Parent root = loader.load();
 
             Scene choiceScene = new Scene(root, 1200, 800);
-            choiceScene.getStylesheets().add(getClass().getResource("question.css").toExternalForm());
+            choiceScene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
             primaryStage.setResizable(false);
             primaryStage.setTitle("TRIVIA GAME");
             primaryStage.setScene(choiceScene);
