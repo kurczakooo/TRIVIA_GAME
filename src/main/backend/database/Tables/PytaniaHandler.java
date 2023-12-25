@@ -9,7 +9,8 @@ import java.sql.SQLException;
 
 
 public class PytaniaHandler {
-    public static Connection connection = DataBaseHandler.connect();
+
+    private static Connection connection = DataBaseHandler.connect();
 
     public static String getTresc(int idPytania){
 
@@ -140,16 +141,17 @@ public class PytaniaHandler {
     }
 
 
-    public static void setPytanie(String tresc, String odpPoprawna, String odp2, String odp3, String odp4, int idKategorii) {
-        String sqlInsert = "INSERT INTO Pytania (Tresc, OdpPoprawna, odp2, Odp3, odp4, IDkategori) VALUES (?, ?, ?, ?, ?, ?)";
+    public static void setPytanie(int IDpytania,String tresc, String odpPoprawna, String odp2, String odp3, String odp4, int idKategorii) {
+        String sqlInsert = "INSERT INTO Pytania (IDpytania,Tresc, OdpPoprawna, odp2, Odp3, odp4, IDkategori) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert)) {
-            preparedStatement.setString(1, tresc);
-            preparedStatement.setString(2, odpPoprawna);
-            preparedStatement.setString(3, odp2);
-            preparedStatement.setString(4, odp3);
-            preparedStatement.setString(5, odp4);
-            preparedStatement.setInt(6, idKategorii);
+            preparedStatement.setString(1, String.valueOf(IDpytania));
+            preparedStatement.setString(2, tresc);
+            preparedStatement.setString(3, odpPoprawna);
+            preparedStatement.setString(4, odp2);
+            preparedStatement.setString(5, odp3);
+            preparedStatement.setString(6, odp4);
+            preparedStatement.setInt(7, idKategorii);
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -197,20 +199,18 @@ public class PytaniaHandler {
     }
 
     public static void main(String[] args) {
-        String test1 = PytaniaHandler.getIdKategori(8);
+      /*  String test1 = PytaniaHandler.getIdKategori(8);
         String test2 = PytaniaHandler.getOdpPoprawna(1);
 
         System.out.println(test1);
         System.out.println(test2);
 
         Integer max = PytaniaHandler.getMaxId();
-        System.out.println(max);
 
-        // setPytanie("test", "a", "b", "c", "d", 6);
 
-            System.out.println("Pytan jest: " + getMaxId());
-            //deletePytanie(23);
-
-        // deletePytanie(21);
+          System.out.println("GetMaxId: " + getMaxId());
+          setPytanie(getMaxId() +1, "a", "b", "c", "d", "e", 16);
+          deletePytanie(getMaxId());
+*/
     }
 }
