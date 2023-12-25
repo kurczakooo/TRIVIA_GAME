@@ -10,7 +10,7 @@ import java.sql.SQLException;
 
 public class PytaniaHandler {
 
-    private static Connection connection = DataBaseHandler.connect();
+    private static final Connection connection = DataBaseHandler.connect();
 
     public static String getTresc(int idPytania){
 
@@ -145,7 +145,7 @@ public class PytaniaHandler {
         String sqlInsert = "INSERT INTO Pytania (IDpytania,Tresc, OdpPoprawna, odp2, Odp3, odp4, IDkategori) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert)) {
-            preparedStatement.setString(1, String.valueOf(IDpytania));
+            preparedStatement.setInt(1, IDpytania);
             preparedStatement.setString(2, tresc);
             preparedStatement.setString(3, odpPoprawna);
             preparedStatement.setString(4, odp2);
@@ -164,6 +164,33 @@ public class PytaniaHandler {
             e.printStackTrace();
         }
     }
+
+
+    // Przeciazona bez podawania ID
+    public static void setPytanie(String tresc, String odpPoprawna, String odp2, String odp3, String odp4, int idKategorii) {
+        String sqlInsert = "INSERT INTO Pytania (IDpytania, Tresc, OdpPoprawna, odp2, Odp3, odp4, IDkategori) VALUES ( ?,?, ?, ?, ?, ?, ?)";
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlInsert)) {
+            preparedStatement.setInt(1, getMaxId()+1);
+            preparedStatement.setString(2, tresc);
+            preparedStatement.setString(3, odpPoprawna);
+            preparedStatement.setString(4, odp2);
+            preparedStatement.setString(5, odp3);
+            preparedStatement.setString(6, odp4);
+            preparedStatement.setInt(7, idKategorii);
+
+            int affectedRows = preparedStatement.executeUpdate();
+
+            if (affectedRows > 0) {
+                System.out.println("Pytanie dodane pomyślnie!");
+            } else {
+                System.out.println("Błąd podczas dodawania pytania.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void deletePytanie(int idPytania) {
         String sqlDelete = "DELETE FROM Pytania WHERE IDpytania = ?";
@@ -209,8 +236,10 @@ public class PytaniaHandler {
 
 
           System.out.println("GetMaxId: " + getMaxId());
-          setPytanie(getMaxId() +1, "a", "b", "c", "d", "e", 16);
+          setPytanie("a", "b", "c", "d", "e", 16);
+          setPytanie(2137,"a", "b", "c", "d", "e", 16);
           deletePytanie(getMaxId());
 */
+
     }
 }

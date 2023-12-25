@@ -40,7 +40,7 @@ public class KategoriePytanHandler {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
 
-            preparedStatement.setString(1, NazwaKategori);
+            preparedStatement.setString(1, NazwaKategori.toUpperCase()); // All sa duzymi literami wiec why not
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -58,6 +58,6 @@ public class KategoriePytanHandler {
 
     public static void main(String[] args) {
          // System.out.println(getNazwaKategori(1));
-         // System.out.println(getIDkategori("    HISTORIA   ")); // Musi być ze spacjami, bo tak sie tabela nazywa xd
+          System.out.println(getIDkategori("    historia   ")); // Musi być ze spacjami, bo tak sie tabela nazywa xd
     }
 }
