@@ -8,14 +8,16 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Server {
+public class Server implements Runnable{
 
     private ServerSocket serverSocket;
 
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-    public void setServer(){
+    @Override
+    public void run(){
+        System.out.println("Serwer stworzony, czeka na graczy");
         try {
             while (!serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();

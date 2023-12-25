@@ -38,7 +38,7 @@ public class TriviaGameApp extends Application {
 
 
             PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza
-            delay.setOnFinished(e->{
+            delay.setOnFinished(e -> {
                 playController.CzyGraczDrugiPolaczony = true;
                 System.out.println(playController.CzyGraczDrugiPolaczony);
                 playController.setWaitingText();
@@ -55,18 +55,13 @@ public class TriviaGameApp extends Application {
     }
 
     public static void main(String[] args) throws IOException {
-        launch(args);
-
         ServerSocket serverSocket = new ServerSocket(1234);
         Server server = new Server(serverSocket);
-        server.setServer();
+
+        Thread serverThread = new Thread(server);
+        serverThread.start();
+
+        launch(args);
 
     }
 }
-
-
-//Connection dbConnection = DataBaseHandler.connect();
-//DataBaseHandler.insertToDb(2,"Czemu jeszcz esse?", "el primo",
-//        "Ser", "Clash royale", "Xddd");
-//String col1 = DataBaseHandler.readFirstColumnValue("Pytania", "IDpytania");
-//  System.out.println(col1);
