@@ -1,5 +1,6 @@
 package frontend_package;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -31,6 +32,17 @@ public class JoinScreen {
 
         JoinScreen joinScreen = loader.getController();
         joinScreen.setPrimaryStage(primaryStage);
+    }
+
+    public void testowyhandler(ActionEvent actionEvent){
+        try {
+            ChoiceController choiceController = new ChoiceController();
+            choiceController.setPrimaryStage(primaryStage);
+            choiceController.renderChoiceScreen("category_choice.fxml", "Styles.css");
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }
 

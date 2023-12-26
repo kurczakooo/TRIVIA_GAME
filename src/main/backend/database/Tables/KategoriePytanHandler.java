@@ -57,7 +57,7 @@ public class KategoriePytanHandler {
 
 
     public static void main(String[] args) {
-         // System.out.println(getNazwaKategori(1));
+          System.out.println(getNazwaKategori(1));
           System.out.println(getIDkategori("    historia   ")); // Musi być ze spacjami, bo tak sie tabela nazywa xd
     }
 }

@@ -16,6 +16,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Objects;
 
 
 public class ChoiceController {
@@ -36,6 +37,25 @@ public class ChoiceController {
             this.choiceText.setText("Wybierz kategorie pytania dla siebie:");
         else
             this.choiceText.setText("Wybierz kategorie pytania dla przeciwnika:");
+    }
+
+    public void renderChoiceScreen(String fxmlFile, String cssFile) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
+        Parent root = loader.load();
+
+        Scene scene = new Scene(root, 1200, 800);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(cssFile)).toExternalForm());
+
+        primaryStage.setResizable(false);
+        primaryStage.setTitle("TRIVIA GAME");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        ChoiceController choiceController = loader.getController();
+        choiceController.setPrimaryStage(primaryStage);
+
+        choiceController.IsLastQuestionRight = true;
+        choiceController.setChoiceText();
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){

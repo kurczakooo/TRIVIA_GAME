@@ -9,4 +9,5 @@
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.JoinScreen">
     <Label styleClass="background-label" text="TRIVIA" />
     <Label styleClass="waiting-label" text="JESTES NA SCREENIE DOLACZNAIA"/>
+    <Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>
 </VBox>

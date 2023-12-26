@@ -2,10 +2,15 @@ package frontend_package;
 
 import javafx.stage.Stage;
 import javafx.application.Application;
-
+import server.*;
 import java.io.IOException;
+import java.util.Date;
 
 public class TriviaGameApp extends Application {
+
+    public Player hostPlayer;
+    public Player guestPlayer;
+    public Date matchDate;
 
     @Override
     public void start(Stage primaryStage) {

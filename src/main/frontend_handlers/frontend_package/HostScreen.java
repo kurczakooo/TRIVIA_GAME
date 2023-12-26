@@ -8,13 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import server.*;
 import java.io.IOException;
+import java.net.ServerSocket;
 import java.util.Objects;
 
-public class HostScreen {
+public class HostScreen extends TriviaGameApp{
     public boolean CzyGraczDrugiPolaczony;
     @FXML
-    private Label waiting;
+    public Label hostPlayerLabel;
+    @FXML
+    public Label guestPlayerLabel;
     @FXML
     private Stage primaryStage;
 
@@ -22,13 +26,17 @@ public class HostScreen {
         this.primaryStage = primaryStage;
     }
 
-    public void setWaitingText() {
-        if (this.CzyGraczDrugiPolaczony) {
-            this.waiting.setText("Gracz 2 dołączył!");
-            this.waiting.setTextFill(Paint.valueOf("green"));
+    public void setLabels() {
+        hostPlayerLabel = new Label(hostPlayer.nickname);
+        guestPlayerLabel = new Label("GOSC");
+        //hostPlayerLabel.setText(hostPlayer.nickname);
+        if (CzyGraczDrugiPolaczony) {
+            //guestPlayerLabel.setText(guestPlayer.nickname);
+            guestPlayerLabel.setText("GRACZGOSC");
+            guestPlayerLabel.setTextFill(Paint.valueOf("green"));
         }
         else {
-            this.waiting.setText("Oczekiwanie na gracza 2...");
+            guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
     }
 
@@ -59,27 +67,19 @@ public class HostScreen {
         playController.setWaitingText();*/
     }
 
-    public void testowyhandler(ActionEvent actionEvent){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("category_choice.fxml"));
-            Parent root = loader.load();
+    public void startServer() throws IOException {
+        ServerSocket serverSocket = new ServerSocket(1234);
+        Server server = new Server(serverSocket);
+        Thread thread = new Thread(server);
+        thread.start();
 
-            Scene scene = new Scene(root, 1200, 800);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styles.css")).toExternalForm());
-
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("TRIVIA GAME");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-            ChoiceController choiceController = loader.getController();
-            choiceController.setPrimaryStage(primaryStage);
-
-            choiceController.IsLastQuestionRight = true;
-            choiceController.setChoiceText();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+        primaryStage.setOnCloseRequest(e -> server.closeServer()); //jak zamkniesz okno to server sie zamyka i watek razem z nim bo nie ma co robic juz
     }
+
+    public void createHostPlayer(String nickname){
+
+        hostPlayer = new Player(nickname);
+        System.out.println("Stworzono gracza " + hostPlayer.nickname);
+    }
+
 }

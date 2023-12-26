@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import server.Gracz;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -48,6 +50,10 @@ public class MenuScreen {
                 HostScreen hostScreen = new HostScreen();
                 hostScreen.setPrimaryStage(primaryStage);
                 hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+                hostScreen.startServer();
+                hostScreen.createHostPlayer(nickbox.getText());
+                //hostScreen.CzyGraczDrugiPolaczony = true;
+                hostScreen.setLabels();
             } catch (IOException e){
                 e.printStackTrace();
             }

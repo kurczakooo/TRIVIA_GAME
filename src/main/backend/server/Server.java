@@ -36,11 +36,14 @@ public class Server implements Runnable{
 
     public void closeServer(){
         try {
-            if(serverSocket != null)
+            if (serverSocket != null) {
                 serverSocket.close();
+                System.out.println("Zamknieto server");
+            }
         }
         catch (IOException e){
             e.printStackTrace();
+            System.out.println("Blad w zamykaniu servera");
         }
     }
 }
