@@ -1,5 +1,6 @@
 package frontend_package;
 
+import database.DataBaseHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -57,7 +58,8 @@ public class ChoiceController {
             //test bazy daynch
             try {
                 // Nawiązanie połączenia z bazą danych
-                Connection connection = DriverManager.getConnection("jdbc:sqlite:database");
+                Connection connection = DataBaseHandler.connect();
+
 
                 // Tworzenie obiektu Statement do wysyłania zapytań SQL
                 Statement statement = connection.createStatement();

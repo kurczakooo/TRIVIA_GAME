@@ -60,6 +60,15 @@ public class HostScreen {
     }
 
     public void testowyhandler(ActionEvent actionEvent){
+        // Dodać:
+        // Wywolac metode do losowania kategorii i zwrocona mape zapisac w polu
+        // Do przycisków przypisz dwa stringi z mapy - Stringi to wartości
+        // Po kliknięciu przycisku weź klucz z wybranego Stringa i wyowłaj metode losującą pytanie, dając klucz jako argument
+        //
+
+
+
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("category_choice.fxml"));
             Parent root = loader.load();
