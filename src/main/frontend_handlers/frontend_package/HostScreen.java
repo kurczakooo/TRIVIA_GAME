@@ -13,7 +13,7 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Objects;
 
-public class HostScreen extends MenuScreen{
+public class HostScreen extends TriviaGameApp{
     public boolean isGuestConnected;
     @FXML
     public Label hostPlayerLabel;
@@ -27,14 +27,14 @@ public class HostScreen extends MenuScreen{
     }
 
     public void setLabels() {
-        System.out.println(hostPlayer.nickname);
         if (isGuestConnected) {
-            guestPlayerLabel.setText(guestPlayer.nickname);
+            //guestPlayerLabel.setText(guestPlayer.nickname);
         }
         else {
-            hostPlayerLabel.setText("hihi");
+            hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
             guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
+        System.out.println(TriviaGameApp.hostPlayer.nickname);
     }
 
     public void renderHostScreen(String fxmlFile, String cssFile) throws IOException {
@@ -49,7 +49,7 @@ public class HostScreen extends MenuScreen{
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        HostScreen hostScreen = loader.getController();
+        hostScreen = loader.getController();
         hostScreen.setPrimaryStage(primaryStage);
 
         hostScreen.isGuestConnected = false;

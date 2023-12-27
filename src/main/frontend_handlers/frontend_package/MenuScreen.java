@@ -16,14 +16,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 
-public class MenuScreen{
+public class MenuScreen extends TriviaGameApp{
     @FXML
     private TextField nickbox;
-    private String nick;
-    public Server server;
-    public Player hostPlayer;
-    public Player guestPlayer;
-    public Date matchDate;
     @FXML
     private Stage primaryStage;
 
@@ -43,21 +38,20 @@ public class MenuScreen{
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        MenuScreen menuScreen = loader.getController();
+        menuScreen = loader.getController();
         menuScreen.setPrimaryStage(primaryStage);
     }
 
     public void onHostButtonClick(ActionEvent actionEvent) {
-        nick = nickbox.getText();
-        if(nick.isEmpty()){
+        if(nickbox.getText().trim().isEmpty()){
             nickbox.setPromptText("WPISZ NICK!!");
         }
         else{
             try{
-                HostScreen hostScreen = new HostScreen();
+                hostScreen = new HostScreen();
                 hostScreen.setPrimaryStage(primaryStage);
-                hostScreen.hostPlayer = new Player(nickbox.getText());
-                System.out.println(hostScreen.hostPlayer.nickname);
+                hostPlayer = new Player(nickbox.getText());
+                //System.out.println(hostPlayer.nickname);
                 hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
             } catch (IOException e){
                 e.printStackTrace();
@@ -66,8 +60,7 @@ public class MenuScreen{
     }
 
     public void onJoinButtonClick(ActionEvent actionEvent){
-        nick = nickbox.getText();
-        if(nick.isEmpty()){
+        if(nickbox.getText().trim().isEmpty()){
             nickbox.setPromptText("WPISZ NICK!!");
         }
         else{
