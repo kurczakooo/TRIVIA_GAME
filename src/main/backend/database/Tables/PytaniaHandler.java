@@ -57,6 +57,7 @@ public class PytaniaHandler {
    }
 
 
+
     public static String getOdp2(int idPytania){
 
         String sqlQuestion = "SELECT odp2 FROM Pytania WHERE IDpytania = ?";

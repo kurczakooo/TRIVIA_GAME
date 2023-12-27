@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class HistoriaTurTymczasowaHandler {
+public class HisTurTmpHandler {
     private static final Connection connection = DataBaseHandler.connect();
 
     public static Integer getMaxId() {
@@ -44,6 +44,7 @@ public class HistoriaTurTymczasowaHandler {
         System.out.println("Wystapil blad!");
         return null;
     }
+
 
     public static void setWybranaOdpowiedz(int IDtury, String WybranaOdpowiedz, Integer IDgracza, Integer IDpytania){
 
@@ -190,6 +191,23 @@ public class HistoriaTurTymczasowaHandler {
         }
     }
 
+    public static Boolean doesRowExist(String WybranaOdpowiedz){
+        String sqlQuestion = "SELECT COUNT(*) FROM HisTurTmp WHERE WybranaOdpowiedz = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
+            preparedStatement.setString(1, WybranaOdpowiedz);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()) {
+                return resultSet.getInt(1) > 0;
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return Boolean.FALSE;
+    }
 
     public static void main(String[] args) {
      /*
@@ -201,9 +219,16 @@ public class HistoriaTurTymczasowaHandler {
         }
 
         deleteAllRows();
+        setWybranaOdpowiedz("b", 1, 3);
+        System.out.println(doesRowExist("b"));
 
+deleteAllRows();
+        setWybranaOdpowiedz(1, "INFORMATYKA", 1, 1);
+        setWybranaOdpowiedz(2, "MUZYKA", 1, 2);
+        setWybranaOdpowiedz(3, "HISTORIA", 1, 3);
+        setWybranaOdpowiedz(4, "ZWIERZETA", 1, 4);
 */
-
-
     }
+
+
 }
