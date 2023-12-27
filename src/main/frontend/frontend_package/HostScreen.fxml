@@ -9,7 +9,7 @@
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.HostScreen">
     <Label styleClass="background-label" text="TRIVIA" />
     <VBox>
-        <Label styleClass="waiting-label" text="$hostPlayerLabel" fx:id="hostPlayerLabel"/>
-        <Label styleClass="waiting-label" text="$guestPlayerLabel" fx:id="guestPlayerLabel"/>
+        <Label styleClass="waiting-label"  fx:id="hostPlayerLabel" text="$hostPlayerLabel"/>
+        <Label styleClass="waiting-label"  fx:id="guestPlayerLabel" text="$guestPlayerLabel"/>
     </VBox>
 </VBox>

@@ -13,8 +13,8 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.util.Objects;
 
-public class HostScreen extends TriviaGameApp{
-    public boolean CzyGraczDrugiPolaczony;
+public class HostScreen extends MenuScreen{
+    public boolean isGuestConnected;
     @FXML
     public Label hostPlayerLabel;
     @FXML
@@ -27,15 +27,12 @@ public class HostScreen extends TriviaGameApp{
     }
 
     public void setLabels() {
-        hostPlayerLabel = new Label(hostPlayer.nickname);
-        guestPlayerLabel = new Label("GOSC");
-        //hostPlayerLabel.setText(hostPlayer.nickname);
-        if (CzyGraczDrugiPolaczony) {
-            //guestPlayerLabel.setText(guestPlayer.nickname);
-            guestPlayerLabel.setText("GRACZGOSC");
-            guestPlayerLabel.setTextFill(Paint.valueOf("green"));
+        System.out.println(hostPlayer.nickname);
+        if (isGuestConnected) {
+            guestPlayerLabel.setText(guestPlayer.nickname);
         }
         else {
+            hostPlayerLabel.setText("hihi");
             guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
     }
@@ -55,6 +52,9 @@ public class HostScreen extends TriviaGameApp{
         HostScreen hostScreen = loader.getController();
         hostScreen.setPrimaryStage(primaryStage);
 
+        hostScreen.isGuestConnected = false;
+        hostScreen.setLabels();
+
         /*PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza
         delay.setOnFinished(e -> {
             playController.CzyGraczDrugiPolaczony = true;
@@ -69,17 +69,11 @@ public class HostScreen extends TriviaGameApp{
 
     public void startServer() throws IOException {
         ServerSocket serverSocket = new ServerSocket(1234);
-        Server server = new Server(serverSocket);
+        server = new Server(serverSocket);
         Thread thread = new Thread(server);
         thread.start();
 
         primaryStage.setOnCloseRequest(e -> server.closeServer()); //jak zamkniesz okno to server sie zamyka i watek razem z nim bo nie ma co robic juz
-    }
-
-    public void createHostPlayer(String nickname){
-
-        hostPlayer = new Player(nickname);
-        System.out.println("Stworzono gracza " + hostPlayer.nickname);
     }
 
 }

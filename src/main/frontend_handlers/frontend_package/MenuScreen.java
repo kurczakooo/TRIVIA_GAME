@@ -9,14 +9,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import server.Gracz;
+import server.Player;
+import server.Server;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.Objects;
 
-public class MenuScreen {
+public class MenuScreen{
     @FXML
     private TextField nickbox;
     private String nick;
+    public Server server;
+    public Player hostPlayer;
+    public Player guestPlayer;
+    public Date matchDate;
     @FXML
     private Stage primaryStage;
 
@@ -49,11 +56,9 @@ public class MenuScreen {
             try{
                 HostScreen hostScreen = new HostScreen();
                 hostScreen.setPrimaryStage(primaryStage);
+                hostScreen.hostPlayer = new Player(nickbox.getText());
+                System.out.println(hostScreen.hostPlayer.nickname);
                 hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
-                hostScreen.startServer();
-                hostScreen.createHostPlayer(nickbox.getText());
-                //hostScreen.CzyGraczDrugiPolaczony = true;
-                hostScreen.setLabels();
             } catch (IOException e){
                 e.printStackTrace();
             }
