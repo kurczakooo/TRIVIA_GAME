@@ -1,4 +1,4 @@
-/*                                                        MENU SCREEN                       */
+/*                   MENU SCREEN                       */
 .vbox {
     -fx-pref-width: 1200;
     -fx-pref-height: 800;
@@ -39,6 +39,8 @@
     -fx-text-alignment: center;
 }
 
+
+/*                        HOST/JOIN SCREENS                               */
 .waiting-label {
     -fx-font-family: "Century Gothic Bold";
     -fx-font-weight: Bold;
@@ -46,6 +48,27 @@
     -fx-wrap-text: true;
     -fx-text-alignment: center;
     -fx-padding: 0 0 150 0;
+}
+
+.player-info-vbox{
+    -fx-pref-width: 1200;
+    -fx-alignment: top-right;
+}
+
+.nick-label{
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-text-fill: white;
+    -fx-font-size: 36px;
+    -fx-text-alignment: right;
+}
+
+.prize-label{
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-text-fill: yellow;
+    -fx-font-size: 36px;
+    -fx-text-alignment: right;
 }
 
 /*                               CHOICE SCREEN                                       */
@@ -70,7 +93,7 @@
     -fx-text-alignment: center;
 }
 
-/*                                           QUESTION SCREEN                                   */
+/*                           QUESTION SCREEN                        */
 
 .question-label {
     -fx-font-family: "Century Gothic Bold";

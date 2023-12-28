@@ -1,29 +1,40 @@
 package frontend_package;
 
+import database.DataBaseHandler;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import server.*;
 import java.io.IOException;
+import java.net.ServerSocket;
+import java.sql.Connection;
 import java.util.Date;
 
 public class TriviaGameApp extends Application {
-    public Server server;
+    public static Server server;
+    public static DataBaseHandler dataBaseHandler;
     public static Player hostPlayer;
-    public Player guestPlayer;
+    public static Player guestPlayer;
     public static MenuScreen menuScreen;
-    public HostScreen hostScreen;
+    public static HostScreen hostScreen;
+    public static JoinScreen joinScreen;
 
     public Date matchDate;
 
     @Override
     public void start(Stage primaryStage) {
-        test(primaryStage);
+        setMenuScreen(primaryStage);
+
+        if(server != null)
+            primaryStage.setOnCloseRequest(e-> server.closeServer());
     }
 
-    public static void test(Stage primaryStage){
+    public static void main(String[] args) throws IOException {
+        launch(args);
+    }
+
+    public static void setMenuScreen(Stage primaryStage){
         try {
-            //hostPlayer = new Player("debil");
             menuScreen = new MenuScreen();
             menuScreen.setPrimaryStage(primaryStage);
             menuScreen.renderMenu("MenuScreen.fxml", "Styles.css");
@@ -32,7 +43,12 @@ public class TriviaGameApp extends Application {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        launch(args);
+    public static void setServer()throws IOException{
+        ServerSocket serverSocket = new ServerSocket(5000);
+        server = new Server(serverSocket, hostPlayer);
+        System.out.println(serverSocket.getLocalPort());
+        Thread thread = new Thread(server);
+        thread.start();
+        //server.waitForGuest();
     }
 }

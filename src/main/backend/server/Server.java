@@ -11,27 +11,33 @@ import java.util.List;
 public class Server implements Runnable{
 
     private ServerSocket serverSocket;
+    public Player hostPlayer;
+    public Player guestPlayer;
+    private boolean guestConnected = false;
 
-    public Server(ServerSocket serverSocket) {
+    public Server(ServerSocket serverSocket, Player hostPlayer) {
         this.serverSocket = serverSocket;
+        this.hostPlayer = hostPlayer;
     }
-    @Override
-    public void run(){
+
+    public void waitForGuest(){
         System.out.println("Serwer stworzony, czeka na graczy");
         try {
-            while (!serverSocket.isClosed()){
+            while (!guestConnected && !serverSocket.isClosed()){
                 Socket socket = serverSocket.accept();
                 System.out.println("nowy gracz polaczony");
-                ClientHandler handler = new ClientHandler(socket);
-
-                Thread t1 = new Thread(handler);
-                t1.start();
+                guestConnected = true;
             }
 
         }
         catch (IOException e){
             closeServer();
         }
+    }
+
+    @Override
+    public void run(){
+        waitForGuest();
     }
 
     public void closeServer(){

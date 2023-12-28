@@ -14,7 +14,9 @@ import java.util.Objects;
 public class HostScreen {
     public boolean CzyGraczDrugiPolaczony;
     @FXML
-    private Label waiting;
+    private Label hostPlayerLabel;
+    @FXML
+    private Label guestPlayerLabel;
     @FXML
     private Stage primaryStage;
 
@@ -22,13 +24,14 @@ public class HostScreen {
         this.primaryStage = primaryStage;
     }
 
-    public void setWaitingText() {
+    public void setLabels() {
+        hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
         if (this.CzyGraczDrugiPolaczony) {
-            this.waiting.setText("Gracz 2 dołączył!");
-            this.waiting.setTextFill(Paint.valueOf("green"));
+            this.guestPlayerLabel.setText(TriviaGameApp.guestPlayer.nickname);
+            this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
         }
         else {
-            this.waiting.setText("Oczekiwanie na gracza 2...");
+            this.guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
     }
 
@@ -44,8 +47,11 @@ public class HostScreen {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        HostScreen hostScreen = loader.getController();
-        hostScreen.setPrimaryStage(primaryStage);
+        TriviaGameApp.hostScreen = loader.getController();
+        TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
+
+        TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
+        TriviaGameApp.hostScreen.setLabels();
 
         /*PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza
         delay.setOnFinished(e -> {
@@ -64,10 +70,6 @@ public class HostScreen {
         // Wywolac metode do losowania kategorii i zwrocona mape zapisac w polu
         // Do przycisków przypisz dwa stringi z mapy - Stringi to wartości
         // Po kliknięciu przycisku weź klucz z wybranego Stringa i wyowłaj metode losującą pytanie, dając klucz jako argument
-        //
-
-
-
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("category_choice.fxml"));

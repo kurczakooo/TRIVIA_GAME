@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 import server.Gracz;
 import server.Player;
@@ -16,7 +18,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Objects;
 
-public class MenuScreen extends TriviaGameApp{
+public class MenuScreen{
     @FXML
     private TextField nickbox;
     @FXML
@@ -38,8 +40,12 @@ public class MenuScreen extends TriviaGameApp{
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        menuScreen = loader.getController();
-        menuScreen.setPrimaryStage(primaryStage);
+        TriviaGameApp.menuScreen = loader.getController();
+        TriviaGameApp.menuScreen.setPrimaryStage(primaryStage);
+
+        TextFormatter<String> formatter = new TextFormatter<>(change ->
+                change.getControlNewText().length() <= 30 ? change : null);
+        TriviaGameApp.menuScreen.nickbox.setTextFormatter(formatter);
     }
 
     public void onHostButtonClick(ActionEvent actionEvent) {
@@ -48,11 +54,14 @@ public class MenuScreen extends TriviaGameApp{
         }
         else{
             try{
-                hostScreen = new HostScreen();
-                hostScreen.setPrimaryStage(primaryStage);
-                hostPlayer = new Player(nickbox.getText());
-                //System.out.println(hostPlayer.nickname);
-                hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+                TriviaGameApp.hostScreen = new HostScreen();
+                TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
+                //tworzymy gracza ktory hostuje gre
+                TriviaGameApp.hostPlayer = new Player(nickbox.getText());
+                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+
+                TriviaGameApp.setServer();
+
             } catch (IOException e){
                 e.printStackTrace();
             }
@@ -65,9 +74,11 @@ public class MenuScreen extends TriviaGameApp{
         }
         else{
             try{
-                JoinScreen joinScreen = new JoinScreen();
-                joinScreen.setPrimaryStage(primaryStage);
-                joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
+                TriviaGameApp.joinScreen = new JoinScreen();
+                TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
+                TriviaGameApp.guestPlayer = new Player(nickbox.getText());
+                TriviaGameApp.joinScreen.playerNick = new Label(TriviaGameApp.guestPlayer.nickname);
+                TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
             } catch (IOException e){
                 e.printStackTrace();
             }

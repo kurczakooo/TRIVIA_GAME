@@ -5,20 +5,27 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import server.Player;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class JoinScreen {
     @FXML
+    public Label playerNick;
+    @FXML
+    private Label playerPrize;
     private Stage primaryStage;
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
     public void renderJoinScreen(String fxmlFile, String cssFile) throws IOException {
+
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -30,8 +37,8 @@ public class JoinScreen {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        JoinScreen joinScreen = loader.getController();
-        joinScreen.setPrimaryStage(primaryStage);
+        TriviaGameApp.joinScreen = loader.getController();
+        TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
     }
 
     public void testowyhandler(ActionEvent actionEvent){

@@ -76,9 +76,7 @@ public class Gracz {
     }
 
     public static void main(String[] args) throws IOException{
-        Socket socket = new Socket("localhost", 1234);
+        Socket socket = new Socket("localhost", 5000);
         Gracz gracz = new Gracz(socket, "GRACZ1");
-        gracz.listenToServer();
-        gracz.sendMessage();
     }
 }

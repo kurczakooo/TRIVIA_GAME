@@ -6,8 +6,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.TextField?>
 
+<?import javafx.scene.layout.StackPane?>
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.JoinScreen">
-    <Label styleClass="background-label" text="TRIVIA" />
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <VBox styleClass="player-info-vbox">
+            <Label styleClass="nick-label" fx:id="playerNick" text="$playerNick"/>
+            <Label styleClass="prize-label" text="1457$"/>
+        </VBox>
+    </StackPane>
     <Label styleClass="waiting-label" text="JESTES NA SCREENIE DOLACZNAIA"/>
-    <Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>
+    <!--<Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>-->
 </VBox>
