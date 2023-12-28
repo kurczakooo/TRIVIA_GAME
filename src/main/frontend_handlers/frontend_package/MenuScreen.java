@@ -15,6 +15,7 @@ import server.Player;
 import server.Server;
 
 import java.io.IOException;
+import java.net.Socket;
 import java.util.Date;
 import java.util.Objects;
 
@@ -54,13 +55,15 @@ public class MenuScreen{
         }
         else{
             try{
+                //creating a server
+                TriviaGameApp.setServer();
+
                 TriviaGameApp.hostScreen = new HostScreen();
                 TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
-                //tworzymy gracza ktory hostuje gre
-                TriviaGameApp.hostPlayer = new Player(nickbox.getText());
+                //creating a hosting player (still a client)
+                Socket playerSocket = new Socket("localhost", 5000);
+                TriviaGameApp.hostPlayer = new Player(playerSocket, nickbox.getText());
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
-
-                TriviaGameApp.setServer();
 
             } catch (IOException e){
                 e.printStackTrace();
@@ -76,8 +79,9 @@ public class MenuScreen{
             try{
                 TriviaGameApp.joinScreen = new JoinScreen();
                 TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
+                //Socket playerSocket = new Socket("localhost",5000);
+                //TriviaGameApp.guestPlayer = new Player(playerSocket, nickbox.getText());
                 TriviaGameApp.guestPlayer = new Player(nickbox.getText());
-                TriviaGameApp.joinScreen.playerNick = new Label(TriviaGameApp.guestPlayer.nickname);
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
             } catch (IOException e){
                 e.printStackTrace();

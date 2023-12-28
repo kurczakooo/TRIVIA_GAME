@@ -13,7 +13,6 @@ public class Server implements Runnable{
     private ServerSocket serverSocket;
     public Player hostPlayer;
     public Player guestPlayer;
-    private boolean guestConnected = false;
 
     public Server(ServerSocket serverSocket, Player hostPlayer) {
         this.serverSocket = serverSocket;
@@ -23,10 +22,10 @@ public class Server implements Runnable{
     public void waitForGuest(){
         System.out.println("Serwer stworzony, czeka na graczy");
         try {
-            while (!guestConnected && !serverSocket.isClosed()){
+            while (hostPlayer == null && guestPlayer == null){
                 Socket socket = serverSocket.accept();
+
                 System.out.println("nowy gracz polaczony");
-                guestConnected = true;
             }
 
         }

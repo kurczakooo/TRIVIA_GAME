@@ -12,7 +12,7 @@
         <Label styleClass="background-label" text="TRIVIA" />
         <VBox styleClass="player-info-vbox">
             <Label styleClass="nick-label" fx:id="playerNick" text="$playerNick"/>
-            <Label styleClass="prize-label" text="1457$"/>
+            <Label styleClass="prize-label" text="0$"/>
         </VBox>
     </StackPane>
     <Label styleClass="waiting-label" text="JESTES NA SCREENIE DOLACZNAIA"/>

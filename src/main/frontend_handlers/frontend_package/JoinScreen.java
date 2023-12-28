@@ -19,13 +19,16 @@ public class JoinScreen {
     private Label playerPrize;
     private Stage primaryStage;
 
+    public void setPlayerNick(){
+        this.playerNick.setText(TriviaGameApp.guestPlayer.nickname);
+    }
+
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
     public void renderJoinScreen(String fxmlFile, String cssFile) throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -39,6 +42,9 @@ public class JoinScreen {
 
         TriviaGameApp.joinScreen = loader.getController();
         TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
+
+
+        TriviaGameApp.joinScreen.setPlayerNick();
     }
 
     public void testowyhandler(ActionEvent actionEvent){
