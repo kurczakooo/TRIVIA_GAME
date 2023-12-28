@@ -46,9 +46,10 @@ public class HisTurTmpHandler {
     }
 
 
-    public static void setWybranaOdpowiedz(int IDtury, String WybranaOdpowiedz, Integer IDgracza, Integer IDpytania){
+    public static void setWybranaOdpowiedz(Integer IDtury, String WybranaOdpowiedz,
+                                           Integer IDgracza, Integer IDpytania, Integer pytania_IdKategori){
 
-        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?)";
+        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
 
@@ -56,6 +57,7 @@ public class HisTurTmpHandler {
             preparedStatement.setString(2, WybranaOdpowiedz);
             preparedStatement.setInt(3, IDgracza);
             preparedStatement.setInt(4, IDpytania);
+            preparedStatement.setInt(5, pytania_IdKategori);
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -74,9 +76,10 @@ public class HisTurTmpHandler {
 
 
     // Przeciazona metoda, auto IDtury
-    public static void setWybranaOdpowiedz( String WybranaOdpowiedz, Integer IDgracza, Integer IDpytania){
+    public static void setWybranaOdpowiedz( String WybranaOdpowiedz, Integer IDgracza,
+                                            Integer IDpytania, Integer pytania_IdKategori){
 
-        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?)";
+        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
 
@@ -84,6 +87,7 @@ public class HisTurTmpHandler {
             preparedStatement.setString(2, WybranaOdpowiedz);
             preparedStatement.setInt(3, IDgracza);
             preparedStatement.setInt(4, IDpytania);
+            preparedStatement.setInt(5, pytania_IdKategori);
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -211,23 +215,19 @@ public class HisTurTmpHandler {
 
     public static void main(String[] args) {
      /*
-        setWybranaOdpowiedz(131, "a", 2, 2);
-        setWybranaOdpowiedz("b", 1, 3);
-
-        for(int i = 0; i<= getMaxId(); i++){
-            deleteRow(i);
-        }
 
         deleteAllRows();
-        setWybranaOdpowiedz("b", 1, 3);
+
         System.out.println(doesRowExist("b"));
 
 deleteAllRows();
-        setWybranaOdpowiedz(1, "INFORMATYKA", 1, 1);
-        setWybranaOdpowiedz(2, "MUZYKA", 1, 2);
-        setWybranaOdpowiedz(3, "HISTORIA", 1, 3);
-        setWybranaOdpowiedz(4, "ZWIERZETA", 1, 4);
+
+         setWybranaOdpowiedz("INFORMATYKA", 1, 1, 2);
+        setWybranaOdpowiedz("INFORMATYKA", 1, 2, 2);
 */
+
+
+
     }
 
 
