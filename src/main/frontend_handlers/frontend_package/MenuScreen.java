@@ -56,12 +56,12 @@ public class MenuScreen{
         else{
             try{
                 //creating a server
-                TriviaGameApp.setServer();
+                TriviaGameApp.setServerOnPort();
 
                 TriviaGameApp.hostScreen = new HostScreen();
                 TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
                 //creating a hosting player (still a client)
-                Socket playerSocket = new Socket("localhost", 5000);
+                Socket playerSocket = new Socket("localhost", TriviaGameApp.server.serverSocket.getLocalPort());
                 TriviaGameApp.hostPlayer = new Player(playerSocket, nickbox.getText());
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
 
@@ -79,8 +79,10 @@ public class MenuScreen{
             try{
                 TriviaGameApp.joinScreen = new JoinScreen();
                 TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
+                ////////////////////////////////////////////////////////////
+                //TUTAJ bylo od razu laczenmie z gra
+                ///////////////////////////////////////////////////////////
                 //Socket playerSocket = new Socket("localhost",5000);
-                //TriviaGameApp.guestPlayer = new Player(playerSocket, nickbox.getText());
                 TriviaGameApp.guestPlayer = new Player(nickbox.getText());
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
             } catch (IOException e){

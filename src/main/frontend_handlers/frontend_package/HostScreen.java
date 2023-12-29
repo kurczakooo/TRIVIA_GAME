@@ -53,6 +53,8 @@ public class HostScreen {
         TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
         TriviaGameApp.hostScreen.setLabels();
 
+        primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
+
         /*PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza
         delay.setOnFinished(e -> {
             playController.CzyGraczDrugiPolaczony = true;

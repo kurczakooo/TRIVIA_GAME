@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Server implements Runnable{
 
-    private ServerSocket serverSocket;
+    public ServerSocket serverSocket;
     public Player hostPlayer;
     public Player guestPlayer;
 
@@ -24,8 +24,9 @@ public class Server implements Runnable{
         try {
             while (hostPlayer == null && guestPlayer == null){
                 Socket socket = serverSocket.accept();
-
                 System.out.println("nowy gracz polaczony");
+
+
             }
 
         }
@@ -49,6 +50,15 @@ public class Server implements Runnable{
         catch (IOException e){
             e.printStackTrace();
             System.out.println("Blad w zamykaniu servera");
+        }
+    }
+
+    public static boolean isPortAvailable(int port) {
+        try (ServerSocket serverSocket = new ServerSocket(port)) {
+            serverSocket.close();
+            return true;
+        } catch (Exception e) {
+            return false;
         }
     }
 }

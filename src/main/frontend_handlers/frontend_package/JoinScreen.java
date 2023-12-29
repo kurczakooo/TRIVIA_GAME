@@ -43,8 +43,11 @@ public class JoinScreen {
         TriviaGameApp.joinScreen = loader.getController();
         TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
 
-
         TriviaGameApp.joinScreen.setPlayerNick();
+    }
+
+    public void generateServersInfo(){
+
     }
 
     public void testowyhandler(ActionEvent actionEvent){

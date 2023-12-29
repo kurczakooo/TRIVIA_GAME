@@ -1,4 +1,4 @@
-/*                   MENU SCREEN                       */
+/* ///////////////////////////////////////// MENU SCREEN  ///////////////////////////////////////// */
 .vbox {
     -fx-pref-width: 1200;
     -fx-pref-height: 800;
@@ -39,8 +39,42 @@
     -fx-text-alignment: center;
 }
 
+/* ///////////////////////////////////////// SERVER INFO (JOIN SCREEN COMPONENT) ////////////////////////////////////// */
+.server-info-hbox{
+    -fx-pref-width: 1200;
+    -fx-background-color: yellow;
+    -fx-alignment: space;
+}
 
-/*                        HOST/JOIN SCREENS                               */
+.server-info-vbox{
+    -fx-background-color: green;
+    -fx-alignment: center-left;
+}
+
+.server-info-host-label{
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 24px;
+    -fx-text-alignment: center;
+}
+
+.server-info-port-number{
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 12px;
+    -fx-text-alignment: center;
+}
+
+.server-info-join-button{
+    -fx-border-color: #04316D;
+    -fx-border-width: 5;
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-size: 24px;
+    -fx-text-alignment: center;
+}
+
+
+/* ///////////////////////////////////////// HOST/JOIN SCREENS ///////////////////////////////////////// */
 .waiting-label {
     -fx-font-family: "Century Gothic Bold";
     -fx-font-weight: Bold;
@@ -71,7 +105,7 @@
     -fx-text-alignment: right;
 }
 
-/*                               CHOICE SCREEN                                       */
+/*/////////////////////////////////////////CHOICE SCREEN  ///////////////////////////////////////// */
 
 .choice-label {
     -fx-font-family: "Century Gothic Bold";
@@ -93,7 +127,7 @@
     -fx-text-alignment: center;
 }
 
-/*                           QUESTION SCREEN                        */
+/* /////////////////////////////////////////QUESTION SCREEN ///////////////////////////////////////// */
 
 .question-label {
     -fx-font-family: "Century Gothic Bold";
