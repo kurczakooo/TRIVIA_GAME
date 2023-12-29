@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ScrollBar?>
-<?import frontend_package.ServerInfo?>
+<?import frontend_package.components.ServerInfo?>
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.JoinScreen">
     <StackPane>
         <Label styleClass="background-label" text="TRIVIA" />
@@ -19,14 +19,20 @@
         </VBox>
     </StackPane>
     <!--<Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>-->
-    <ScrollPane>
-        <content>
-            <VBox>
-                <ServerInfo/>
-                <ServerInfo/>
-                <ServerInfo/>
-                <ServerInfo/>
-            </VBox>
-        </content>
+    <ScrollPane >
+        <VBox>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+            <ServerInfo/>
+        </VBox>
     </ScrollPane>
 </VBox>

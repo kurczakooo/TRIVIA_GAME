@@ -1,13 +1,11 @@
-package frontend_package;
+package frontend_package.components;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -22,18 +20,21 @@ public class ServerInfo extends HBox{
     public ServerInfo(){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerInfo.fxml"));
         loader.setRoot(this);
-        loader.setController(this);
+        loader.setController(ServerInfo.this);
 
         try {
             loader.load();
         }catch (IOException e){
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
+        getStylesheets().add(Objects.requireNonNull(getClass().getResource("/frontend_package/Styles.css")).toExternalForm());
+
+        initialize();
         /*try {
             Parent root = loader.load();
             Scene scene = new Scene(root, 1200, 200);
             scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styles.css")).toExternalForm());
-            initialize();
         }
         catch (IOException e){
             e.printStackTrace();
@@ -42,8 +43,11 @@ public class ServerInfo extends HBox{
 
     @FXML
     private void initialize(){
+        this.hostNick = new Label();
         this.setHostNick("damian");
+        this.portNumber = new Label();
         this.setPortNumber(5000);
+        this.joinGameButton = new Button();
         this.joinGameButton.setText("Dołącz");
     }
 

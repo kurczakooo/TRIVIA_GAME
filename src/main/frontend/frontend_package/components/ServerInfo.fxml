@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="HBox" styleClass="server-info-hbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox styleClass="server-info-vbox">
+        <Label fx:id="hostNick" styleClass="server-info-host-label" text="Damianek"/>
+        <Label fx:id="portNumber" styleClass="server-info-port-number" text="5000"/>
+    </VBox>
+    <Button fx:id="joinGameButton" styleClass="server-info-join-button" text="Dołącz"/>
+</fx:root>
+
+
+<!--<fx:root type="HBox" styleClass="server-info-hbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox styleClass="server-info-vbox">
+        <Label fx:id="hostNick" styleClass="server-info-host-label"/>
+        <Label fx:id="portNumber" styleClass="server-info-port-number"/>
+    </VBox>
+    <Button fx:id="joinGameButton" styleClass="server-info-join-button"/>
+</fx:root>-->

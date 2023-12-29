@@ -3,6 +3,7 @@
     -fx-pref-width: 1200;
     -fx-pref-height: 800;
     -fx-alignment: top-center;
+    -fx-background-color: white;
 }
 
 .items-vbox {
@@ -26,7 +27,7 @@
     -fx-font-family: "Century Gothic Bold";
     -fx-font-size: 36px;
     -fx-font-weight: Bold;
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, -50%);
+    -fx-prompt-text-fill: #d3d3d3;
 }
 
 .menu-button {
@@ -34,6 +35,7 @@
     -fx-border-width: 5;
     -fx-font-family: "Century Gothic Bold";
     -fx-font-size: 54px;
+    -fx-font-weight: Bold;
     -fx-pref-height: 200;
     -fx-pref-width: 400;
     -fx-text-alignment: center;
@@ -41,27 +43,28 @@
 
 /* ///////////////////////////////////////// SERVER INFO (JOIN SCREEN COMPONENT) ////////////////////////////////////// */
 .server-info-hbox{
-    -fx-pref-width: 1200;
-    -fx-background-color: yellow;
-    -fx-alignment: space;
+    -fx-pref-width: 1150;
+    -fx-alignment: center;
+    -fx-padding: 0 0 50 0;
 }
 
 .server-info-vbox{
-    -fx-background-color: green;
+    -fx-pref-width: 800;
+    -fx-background-color: #d3d3d3;
     -fx-alignment: center-left;
 }
 
 .server-info-host-label{
     -fx-font-family: "Century Gothic Bold";
     -fx-font-weight: Bold;
-    -fx-font-size: 24px;
+    -fx-font-size: 36px;
     -fx-text-alignment: center;
 }
 
 .server-info-port-number{
     -fx-font-family: "Century Gothic Bold";
     -fx-font-weight: Bold;
-    -fx-font-size: 12px;
+    -fx-font-size: 24px;
     -fx-text-alignment: center;
 }
 
@@ -69,7 +72,8 @@
     -fx-border-color: #04316D;
     -fx-border-width: 5;
     -fx-font-family: "Century Gothic Bold";
-    -fx-font-size: 24px;
+    -fx-font-weight: Bold;
+    -fx-font-size: 36px;
     -fx-text-alignment: center;
 }
 

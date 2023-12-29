@@ -11,4 +11,6 @@ module main {
     opens server to javafx.fxml;
     exports database;
     opens database to javafx.fxml;
+    exports frontend_package.components;
+    opens frontend_package.components to javafx.fxml;
 }
