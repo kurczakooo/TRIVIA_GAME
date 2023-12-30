@@ -40,27 +40,4 @@ public class TriviaGameApp extends Application {
         }
     }
 
-    public static void setServerOnPort()throws IOException{
-        int portNumber = 5000;
-        while(portNumber <= 6000){
-            if(Server.isPortAvailable(portNumber)) {
-                createServer(portNumber);
-                break;
-            }
-            else
-                portNumber++;
-
-            if (portNumber == 6000)
-                System.out.println("wszystkie serwery zajete");
-        }
-    }
-
-    public static void createServer(int port) throws IOException{
-        ServerSocket serverSocket = new ServerSocket(port);
-        server = new Server(serverSocket, hostPlayer);
-        System.out.println(serverSocket.getLocalPort());
-        Thread thread = new Thread(server);
-        thread.start();
-    }
-
 }

@@ -5,7 +5,7 @@ import java.io.BufferedWriter;
 import java.net.Socket;
 
 public class Player {
-    private Socket socket;
+    public Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     public String nickname;

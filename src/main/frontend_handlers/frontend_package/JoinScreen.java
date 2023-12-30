@@ -1,5 +1,6 @@
 package frontend_package;
 
+import frontend_package.components.ServerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,21 +9,28 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import server.Player;
+import server.Server;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Objects;
+import java.util.Scanner;
 
 public class JoinScreen {
     @FXML
     public Label playerNick;
     @FXML
     private Label playerPrize;
+    @FXML
+    ArrayList<ServerInfo> serversList;
     private Stage primaryStage;
 
     public void setPlayerNick(){
         this.playerNick.setText(TriviaGameApp.guestPlayer.nickname);
     }
-
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -46,8 +54,25 @@ public class JoinScreen {
         TriviaGameApp.joinScreen.setPlayerNick();
     }
 
-    public void generateServersInfo(){
+    public void generateServersInfo(Socket guestSocket) throws IOException{
+        /*for(int portNumber=5000 ; portNumber<=6000 ; portNumber++){
+            if(Server.isPortAvailable(portNumber)){
+                continue;
+            }
+            if(!Server.isPortAvailable(portNumber)){
+                try {
+                    Socket tmpSocket = new Socket("localhost", portNumber);
 
+                }
+                catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
+        }*/
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(guestSocket.getInputStream()));
+        String buffer = bufferedReader.readLine();
+        System.out.println(buffer);
+        //socket.close();
     }
 
     public void testowyhandler(ActionEvent actionEvent){
