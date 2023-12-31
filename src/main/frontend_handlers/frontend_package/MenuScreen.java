@@ -69,11 +69,7 @@ public class MenuScreen{
                 TriviaGameApp.hostPlayer = new Player(playerSocket, nickbox.getText());
 
                 TriviaGameApp.server.setHostPlayer(TriviaGameApp.hostPlayer);
-                TriviaGameApp.server.shareInfo();
-
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(TriviaGameApp.hostPlayer.socket.getInputStream()));
-                String text = bufferedReader.readLine();
-                System.out.println(text);
+                //TriviaGameApp.server.shareInfo();
 
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
             } catch (IOException e){
@@ -96,11 +92,8 @@ public class MenuScreen{
                 ///////////////////////////////////////////////////////////
                 Socket playerSocket = new Socket("localhost",5000);
                 TriviaGameApp.guestPlayer = new Player(playerSocket, nickbox.getText());
-                System.out.println(TriviaGameApp.guestPlayer.nickname);
-                //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
-                //String buffer = "hihi";//bufferedReader.readLine();
-                //System.out.println(buffer);
-                //TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
+
+                TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
 
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
             } catch (IOException e){

@@ -21,9 +21,11 @@ public class Server implements Runnable{
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
     }
-
     public void setHostPlayer(Player hostPlayer) {
         this.hostPlayer = hostPlayer;
+    }
+    public void setGuestPlayer(Player guestPlayer) {
+        this.guestPlayer = guestPlayer;
     }
 
     private void setBuffers(Socket playerSocket) {
@@ -45,6 +47,8 @@ public class Server implements Runnable{
                 setBuffers(playerSocket);
                 playerCount++;
             }
+            if(playerCount == 2)
+                shareInfo();
         }
         catch (IOException e){
             closeServer();
@@ -74,7 +78,7 @@ public class Server implements Runnable{
             String message = "pokoj gracza: " +
                     hostPlayer.nickname + " port:" +
                     serverSocket.getLocalPort() + "\n";
-            System.out.println("Server sending message: " + message);
+            //System.out.println("Server sending message: " + message);
             bufferedWriter.write(message);
             bufferedWriter.flush();
         }
@@ -125,17 +129,16 @@ public class Server implements Runnable{
 
             Socket socket1 = new Socket("localhost", 5000);
             Player player = new Player(socket1, "debil");
+            server.setHostPlayer(player);
 
             Socket socket2 = new Socket("localhost", 5000);
-            Player player2 = new Player(socket1, "debil");
+            Player player2 = new Player(socket2, "debil");
+            server.setGuestPlayer(player2);
 
-            server.setHostPlayer(player);
             server.shareInfo();
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(socket2.getInputStream()));
-
+            BufferedReader reader = new BufferedReader(new InputStreamReader(player2.socket.getInputStream()));
             String info = reader.readLine();
-
             System.out.println(info);
         }
         catch (IOException e){

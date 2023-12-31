@@ -56,10 +56,6 @@ public class HostScreen {
         TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
         TriviaGameApp.hostScreen.setLabels();
 
-        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(TriviaGameApp.hostPlayer.socket.getInputStream()));
-        //String text = bufferedReader.readLine();
-        //System.out.println(text);
-
         primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
 
         /*PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza

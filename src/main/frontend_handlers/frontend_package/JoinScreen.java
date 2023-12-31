@@ -55,23 +55,26 @@ public class JoinScreen {
     }
 
     public void generateServersInfo(Socket guestSocket) throws IOException{
-        /*for(int portNumber=5000 ; portNumber<=6000 ; portNumber++){
-            if(Server.isPortAvailable(portNumber)){
-                continue;
-            }
-            if(!Server.isPortAvailable(portNumber)){
-                try {
-                    Socket tmpSocket = new Socket("localhost", portNumber);
-
-                }
-                catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        }*/
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(guestSocket.getInputStream()));
+        //for(int portNumber=5000 ; portNumber<=6000 ; portNumber++){
+            //if(Server.isPortAvailable(portNumber)){
+            //    continue;
+            //}
+            //if(!Server.isPortAvailable(5000)){
+               // try {
+        //Socket tmpSocket = new Socket("localhost", 5000);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(TriviaGameApp.guestPlayer.socket.getInputStream()));
         String buffer = bufferedReader.readLine();
         System.out.println(buffer);
+               // }
+               // catch (IOException e){
+               //     e.printStackTrace();
+               // }
+           // }
+            //else System.out.println("blad");
+       // }
+        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(guestSocket.getInputStream()));
+        //String buffer = bufferedReader.readLine();
+        //System.out.println(buffer);
         //socket.close();
     }
 
