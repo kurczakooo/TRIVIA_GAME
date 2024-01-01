@@ -98,7 +98,7 @@ public class Server implements Runnable{
 
     public static void setServerOnPort()throws IOException{
         int portNumber = 5000;
-        while(portNumber <= 6000){
+        while(portNumber <= 5020){
             if(Server.isPortAvailable(portNumber)) {
                 createServer(portNumber);
                 break;
@@ -106,7 +106,7 @@ public class Server implements Runnable{
             else
                 portNumber++;
 
-            if (portNumber == 6000)
+            if (portNumber == 5020)
                 System.out.println("wszystkie serwery zajete");
         }
     }

@@ -19,18 +19,8 @@
         </VBox>
     </StackPane>
     <!--<Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>-->
-    <ScrollPane >
-        <VBox>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
-            <ServerInfo/>
+    <ScrollPane fitToWidth="true" fitToHeight="true">
+        <VBox fx:id="containerForServersList">
             <ServerInfo/>
             <ServerInfo/>
         </VBox>

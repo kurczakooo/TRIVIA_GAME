@@ -90,8 +90,8 @@ public class MenuScreen{
                 ////////////////////////////////////////////////////////////
                 //TUTAJ bylo od razu laczenmie z gra
                 ///////////////////////////////////////////////////////////
-                Socket playerSocket = new Socket("localhost",5000);
-                TriviaGameApp.guestPlayer = new Player(playerSocket, nickbox.getText());
+                //Socket playerSocket = new Socket("localhost",5000);
+                TriviaGameApp.guestPlayer = new Player(nickbox.getText());
 
                 TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
 

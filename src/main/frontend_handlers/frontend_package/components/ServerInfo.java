@@ -18,6 +18,7 @@ public class ServerInfo extends HBox{
     private Button joinGameButton;
 
     public ServerInfo(){
+        initialize("debil", 6969);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerInfo.fxml"));
         loader.setRoot(this);
         loader.setController(ServerInfo.this);
@@ -29,24 +30,29 @@ public class ServerInfo extends HBox{
         }
 
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/frontend_package/Styles.css")).toExternalForm());
+    }
 
-        initialize();
-        /*try {
-            Parent root = loader.load();
-            Scene scene = new Scene(root, 1200, 200);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styles.css")).toExternalForm());
+    public ServerInfo(String hostNick, int portNumber){
+        initialize(hostNick, portNumber);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerInfo.fxml"));
+        loader.setRoot(this);
+        loader.setController(ServerInfo.this);
+
+        try {
+            loader.load();
+        }catch (IOException e){
+            throw new RuntimeException(e);
         }
-        catch (IOException e){
-            e.printStackTrace();
-        }*/
+
+        getStylesheets().add(Objects.requireNonNull(getClass().getResource("/frontend_package/Styles.css")).toExternalForm());
     }
 
     @FXML
-    private void initialize(){
+    private void initialize(String hostNick, int portNumber){
         this.hostNick = new Label();
-        this.setHostNick("damian");
+        this.setHostNick(hostNick);
         this.portNumber = new Label();
-        this.setPortNumber(5000);
+        this.setPortNumber(portNumber);
         this.joinGameButton = new Button();
         this.joinGameButton.setText("Dołącz");
     }

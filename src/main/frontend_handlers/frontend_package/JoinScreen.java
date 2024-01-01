@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import server.Player;
 import server.Server;
@@ -24,6 +25,8 @@ public class JoinScreen {
     public Label playerNick;
     @FXML
     private Label playerPrize;
+    @FXML
+    private VBox containerForServersList;
     @FXML
     ArrayList<ServerInfo> serversList;
     private Stage primaryStage;
@@ -55,27 +58,21 @@ public class JoinScreen {
     }
 
     public void generateServersInfo(Socket guestSocket) throws IOException{
-        //for(int portNumber=5000 ; portNumber<=6000 ; portNumber++){
-            //if(Server.isPortAvailable(portNumber)){
-            //    continue;
-            //}
-            //if(!Server.isPortAvailable(5000)){
-               // try {
-        //Socket tmpSocket = new Socket("localhost", 5000);
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(TriviaGameApp.guestPlayer.socket.getInputStream()));
-        String buffer = bufferedReader.readLine();
-        System.out.println(buffer);
-               // }
-               // catch (IOException e){
-               //     e.printStackTrace();
-               // }
-           // }
-            //else System.out.println("blad");
-       // }
-        //BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(guestSocket.getInputStream()));
-        //String buffer = bufferedReader.readLine();
-        //System.out.println(buffer);
-        //socket.close();
+        serversList = new ArrayList<>();
+        containerForServersList = new VBox();
+        for(int portNumber=5000 ; portNumber<=5020 ; portNumber++){
+            if(!Server.isPortAvailable(portNumber)){
+                Socket tmpSocket = new Socket("localhost", portNumber);
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(tmpSocket.getInputStream()));
+                String buffer = bufferedReader.readLine();
+                //System.out.println(buffer);
+                serversList.add(new ServerInfo(buffer, 1000));
+                tmpSocket.close();
+           }
+            //else System.out.println("nie ma servera na tym porcie");
+        }
+        containerForServersList.getChildren().addAll(serversList);
+        System.out.println(containerForServersList.getChildren().size());
     }
 
     public void testowyhandler(ActionEvent actionEvent){
