@@ -1,5 +1,6 @@
 package frontend_package.components;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -11,29 +12,18 @@ import java.util.Objects;
 
 public class ServerInfo extends HBox{
     @FXML
-    private Label hostNick;
+    public Label hostNick;
     @FXML
-    private Label portNumber;
+    public Label portNumber;
     @FXML
     private Button joinGameButton;
 
-    public ServerInfo(){
-        initialize("debil", 6969);
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerInfo.fxml"));
-        loader.setRoot(this);
-        loader.setController(ServerInfo.this);
-
-        try {
-            loader.load();
-        }catch (IOException e){
-            throw new RuntimeException(e);
-        }
-
-        getStylesheets().add(Objects.requireNonNull(getClass().getResource("/frontend_package/Styles.css")).toExternalForm());
+    public interface joinButtonHandler{
+        void handleButtonClick(ActionEvent actionEvent);
     }
 
-    public ServerInfo(String hostNick, int portNumber){
-        initialize(hostNick, portNumber);
+    public ServerInfo(String hostNick, int portNumber, joinButtonHandler joinButtonHandler){
+        super();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ServerInfo.fxml"));
         loader.setRoot(this);
         loader.setController(ServerInfo.this);
@@ -45,16 +35,20 @@ public class ServerInfo extends HBox{
         }
 
         getStylesheets().add(Objects.requireNonNull(getClass().getResource("/frontend_package/Styles.css")).toExternalForm());
+        initialize(hostNick, portNumber, joinButtonHandler);
     }
 
     @FXML
-    private void initialize(String hostNick, int portNumber){
-        this.hostNick = new Label();
+    private void initialize(String hostNick, int portNumber, joinButtonHandler clickHandler){
+        //this.hostNick = new Label();
         this.setHostNick(hostNick);
-        this.portNumber = new Label();
+        //this.portNumber = new Label();
         this.setPortNumber(portNumber);
-        this.joinGameButton = new Button();
+        //this.joinGameButton = new Button();
         this.joinGameButton.setText("Dołącz");
+        this.joinGameButton.setOnAction(event ->{
+            clickHandler.handleButtonClick(event);
+        });
     }
 
     public void setHostNick(String hostNick) {

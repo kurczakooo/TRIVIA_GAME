@@ -93,7 +93,7 @@ public class MenuScreen{
                 //Socket playerSocket = new Socket("localhost",5000);
                 TriviaGameApp.guestPlayer = new Player(nickbox.getText());
 
-                TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
+                //TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
 
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
             } catch (IOException e){

@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
-
 <?import javafx.scene.layout.StackPane?>
+
+
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.ScrollBar?>
-<?import frontend_package.components.ServerInfo?>
+<?import javafx.scene.control.Button?>
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.JoinScreen">
     <StackPane>
         <Label styleClass="background-label" text="TRIVIA" />
@@ -19,10 +16,9 @@
         </VBox>
     </StackPane>
     <!--<Button onAction="#testowyhandler" text="testowy" styleClass="menu-button"/>-->
-    <ScrollPane fitToWidth="true" fitToHeight="true">
-        <VBox fx:id="containerForServersList">
-            <ServerInfo/>
-            <ServerInfo/>
-        </VBox>
+    <!--<Button onAction="#refresh" text="refresh" styleClass="menu-button"/>-->
+    <ScrollPane>
+        <VBox fx:id="containerForServersList" spacing="10"/>
     </ScrollPane>
+
 </VBox>

@@ -20,6 +20,7 @@ public class Server implements Runnable{
 
     public Server(ServerSocket serverSocket) {
         this.serverSocket = serverSocket;
+        this.playerCount = 0;
     }
     public void setHostPlayer(Player hostPlayer) {
         this.hostPlayer = hostPlayer;
@@ -47,8 +48,7 @@ public class Server implements Runnable{
                 setBuffers(playerSocket);
                 playerCount++;
             }
-            if(playerCount == 2)
-                shareInfo();
+            shareInfo();
         }
         catch (IOException e){
             closeServer();
@@ -75,10 +75,8 @@ public class Server implements Runnable{
 
     public void shareInfo() {
         try {
-            String message = "pokoj gracza: " +
-                    hostPlayer.nickname + " port:" +
+            String message = hostPlayer.nickname + "`" +
                     serverSocket.getLocalPort() + "\n";
-            //System.out.println("Server sending message: " + message);
             bufferedWriter.write(message);
             bufferedWriter.flush();
         }

@@ -11,5 +11,5 @@
         <Label fx:id="hostNick" styleClass="server-info-host-label" text="$hostNick"/>
         <Label fx:id="portNumber" styleClass="server-info-port-number" text="$portNumber"/>
     </VBox>
-    <Button fx:id="joinGameButton" styleClass="server-info-join-button" text="Dołącz"/>
+    <Button fx:id="joinGameButton" styleClass="server-info-join-button" text="$joinGameButton"/>
 </fx:root>
