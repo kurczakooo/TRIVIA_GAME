@@ -58,7 +58,7 @@ public class MenuScreen{
         }
         else{
             try{
-                //creating a  on first empty port between 5k and 6k
+                //creating a  on first empty port between 5000 and 5020
                 Server.setServerOnPort();
 
                 TriviaGameApp.hostScreen = new HostScreen();

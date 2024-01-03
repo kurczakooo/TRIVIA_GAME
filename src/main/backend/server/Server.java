@@ -2,6 +2,7 @@ package server;
 //https://www.youtube.com/watch?v=gLfuZrrfKes
 
 import frontend_package.TriviaGameApp;
+import javafx.application.Platform;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -14,6 +15,8 @@ public class Server implements Runnable{
     public ServerSocket serverSocket;
     public BufferedReader bufferedReader;
     public BufferedWriter bufferedWriter;
+    public ObjectInputStream objectInputStream;
+    public ObjectOutputStream objectOutputStream;
     public Player hostPlayer;
     public Player guestPlayer;
     public int playerCount;
@@ -33,8 +36,17 @@ public class Server implements Runnable{
         try {
             this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
             this.bufferedReader = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
-
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void setObjectStreams(Socket playerSocket){
+        try {
+            this.objectInputStream = new ObjectInputStream(playerSocket.getInputStream());
+            this.objectOutputStream = new ObjectOutputStream(playerSocket.getOutputStream());
+        }
+        catch (IOException e){
             e.printStackTrace();
         }
     }
@@ -42,13 +54,24 @@ public class Server implements Runnable{
     public void waitForGuest(){
         System.out.println("Serwer stworzony, czeka na graczy");
         try {
-            while (playerCount != 2){
+            while (playerCount != 3){
                 Socket playerSocket = serverSocket.accept();
                 System.out.println("nowy gracz polaczony");
-                setBuffers(playerSocket);
                 playerCount++;
+                setBuffers(playerSocket);
+                if(playerCount == 2)
+                    shareInfo();
+                if(playerCount == 3){
+                    String guestnick = this.bufferedReader.readLine();
+                    this.guestPlayer = new Player(guestnick, serverSocket.getLocalPort());
+                    Platform.runLater(() ->{
+                        TriviaGameApp.guestPlayer = this.guestPlayer;
+                        TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = true;
+                        TriviaGameApp.hostScreen.setLabelsWithServers(this.hostPlayer.nickname, this.guestPlayer.nickname);
+                    });
+                    setObjectStreams(playerSocket);
+                }
             }
-            shareInfo();
         }
         catch (IOException e){
             closeServer();

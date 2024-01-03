@@ -28,7 +28,7 @@ public class HostScreen {
     }
 
     public void setLabels() {
-        hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
+        this.hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
         if (this.CzyGraczDrugiPolaczony) {
             this.guestPlayerLabel.setText(TriviaGameApp.guestPlayer.nickname);
             this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
@@ -36,6 +36,12 @@ public class HostScreen {
         else {
             this.guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
+    }
+
+    public void setLabelsWithServers(String hostname, String guestname){
+        this.hostPlayerLabel.setText(hostname);
+        this.guestPlayerLabel.setText(guestname);
+        this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
     }
 
     public void renderHostScreen(String fxmlFile, String cssFile) throws IOException {
@@ -53,21 +59,10 @@ public class HostScreen {
         TriviaGameApp.hostScreen = loader.getController();
         TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
 
-        TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
+        //TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
         TriviaGameApp.hostScreen.setLabels();
 
         primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
-
-        /*PauseTransition delay = new PauseTransition(Duration.seconds(1));  //symulacja czekania na 2 gracza
-        delay.setOnFinished(e -> {
-            playController.CzyGraczDrugiPolaczony = true;
-            System.out.println(playController.CzyGraczDrugiPolaczony);
-            playController.setWaitingText();
-        });
-        playController.CzyGraczDrugiPolaczony = false;
-        System.out.println(playController.CzyGraczDrugiPolaczony);
-        delay.play();
-        playController.setWaitingText();*/
     }
 
     public void testowyhandler(ActionEvent actionEvent){

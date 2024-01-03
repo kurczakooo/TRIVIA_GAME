@@ -16,9 +16,7 @@ import javafx.stage.Stage;
 import server.Player;
 import server.Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Objects;
@@ -82,10 +80,23 @@ public class JoinScreen {
         if(actionEvent.getSource() instanceof Button){
             Button clickedButton = (Button) actionEvent.getSource();
             ServerInfo serverInfo = (ServerInfo) clickedButton.getParent();
-
             try{
                 Socket socket = new Socket("localhost", Integer.parseInt(serverInfo.portNumber.getText()));
                 TriviaGameApp.guestPlayer.setSocket(socket);
+
+                TriviaGameApp.guestPlayer.bufferedWriter = new BufferedWriter(new OutputStreamWriter(
+                        TriviaGameApp.guestPlayer.socket.getOutputStream()
+                ));
+                TriviaGameApp.guestPlayer.bufferedWriter.write(TriviaGameApp.guestPlayer.nickname + "\n");
+                TriviaGameApp.guestPlayer.bufferedWriter.flush();
+
+                TriviaGameApp.hostPlayer = new Player(serverInfo.hostNick.getText(), 5000);
+                TriviaGameApp.hostScreen = new HostScreen();
+                TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
+                //trzeba zrobi w serverze objectinputbuffer, i przeslac mu obiekt goscia. tutaj tylko odczyttaj
+                //nick hosta zeby go wysweitlic
+                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+                TriviaGameApp.hostScreen.setLabelsWithServers(serverInfo.hostNick.getText(), TriviaGameApp.guestPlayer.nickname);
             }
             catch (IOException e){
                 e.printStackTrace();

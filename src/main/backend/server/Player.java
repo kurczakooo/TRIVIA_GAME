@@ -2,18 +2,26 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.Serializable;
 import java.net.Socket;
 
-public class Player {
+public class Player implements Serializable {
+    public int portNumber;
     public Socket socket;
-    private BufferedReader bufferedReader;
-    private BufferedWriter bufferedWriter;
+    public BufferedReader bufferedReader;
+    public BufferedWriter bufferedWriter;
     public String nickname;
     public int FastestAnswer;
     public int Prize;
 
     public Player(){
         System.out.println("stowrzona gracza " + nickname);
+    }
+
+    public Player(String nickname, int portNumber) {
+        System.out.println("stowrzona gracza " + nickname);
+        this.nickname = nickname;
+        this.portNumber = portNumber;
     }
 
     public Player(String nickname) {
