@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
 <?import frontend_package.HostScreen?>
+<?import javafx.scene.layout.StackPane?>
+<?import frontend_package.components.PlayerInfo?>
 
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.HostScreen">
-    <Label styleClass="background-label" text="TRIVIA" />
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <PlayerInfo fx:id="playerInfo"/>
+    </StackPane>
     <VBox>
         <Label styleClass="waiting-label"  fx:id="hostPlayerLabel" text="$hostPlayerLabel"/>
         <Label styleClass="waiting-label"  fx:id="guestPlayerLabel" text="$guestPlayerLabel"/>

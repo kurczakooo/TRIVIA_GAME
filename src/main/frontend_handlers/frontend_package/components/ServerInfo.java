@@ -40,11 +40,8 @@ public class ServerInfo extends HBox{
 
     @FXML
     private void initialize(String hostNick, int portNumber, joinButtonHandler clickHandler){
-        //this.hostNick = new Label();
         this.setHostNick(hostNick);
-        //this.portNumber = new Label();
         this.setPortNumber(portNumber);
-        //this.joinGameButton = new Button();
         this.joinGameButton.setText("Dołącz");
         this.joinGameButton.setOnAction(event ->{
             clickHandler.handleButtonClick(event);

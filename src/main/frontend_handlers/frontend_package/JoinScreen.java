@@ -1,5 +1,6 @@
 package frontend_package;
 
+import frontend_package.components.PlayerInfo;
 import frontend_package.components.ServerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,16 +25,10 @@ import java.util.Scanner;
 
 public class JoinScreen {
     @FXML
-    public Label playerNick;
-    @FXML
-    private Label playerPrize;
+    public PlayerInfo playerInfo;
     @FXML
     public VBox containerForServersList;
     private Stage primaryStage;
-
-    public void setPlayerNick(){
-        this.playerNick.setText(TriviaGameApp.guestPlayer.nickname);
-    }
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -54,7 +49,9 @@ public class JoinScreen {
         TriviaGameApp.joinScreen = loader.getController();
         TriviaGameApp.joinScreen.setPrimaryStage(primaryStage);
 
-        TriviaGameApp.joinScreen.setPlayerNick();
+        TriviaGameApp.joinScreen.playerInfo.setPlayerNick(TriviaGameApp.guestPlayer.nickname);
+        TriviaGameApp.joinScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
+
         TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
         //System.out.println(TriviaGameApp.joinScreen.containerForServersList.getChildren());
     }
@@ -97,6 +94,7 @@ public class JoinScreen {
                 //nick hosta zeby go wysweitlic
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
                 TriviaGameApp.hostScreen.setLabelsWithServers(serverInfo.hostNick.getText(), TriviaGameApp.guestPlayer.nickname);
+                TriviaGameApp.hostScreen.setPlayerInfoGuest();
             }
             catch (IOException e){
                 e.printStackTrace();

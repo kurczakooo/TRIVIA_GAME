@@ -1,5 +1,6 @@
 package frontend_package;
 
+import frontend_package.components.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,6 +17,8 @@ import java.util.Objects;
 
 public class HostScreen {
     public boolean CzyGraczDrugiPolaczony;
+    @FXML
+    public PlayerInfo playerInfo;
     @FXML
     private Label hostPlayerLabel;
     @FXML
@@ -63,6 +66,16 @@ public class HostScreen {
         TriviaGameApp.hostScreen.setLabels();
 
         primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
+    }
+
+    public void setPlayerInfoHost(){
+        TriviaGameApp.hostScreen.playerInfo.setPlayerNick(TriviaGameApp.hostPlayer.nickname);
+        TriviaGameApp.hostScreen.playerInfo.setPrize(TriviaGameApp.hostPlayer.Prize);
+    }
+
+    public void setPlayerInfoGuest(){
+        TriviaGameApp.hostScreen.playerInfo.setPlayerNick(TriviaGameApp.guestPlayer.nickname);
+        TriviaGameApp.hostScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
     }
 
     public void testowyhandler(ActionEvent actionEvent){
