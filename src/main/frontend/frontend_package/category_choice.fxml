@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
-<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.ChoiceController">
+<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.CategoryChoiceScreen">
     <Label styleClass="background-label" text="TRIVIA"/>
     <Label styleClass="choice-label" fx:id="choiceText" text="$choiceText"/>
     <HBox styleClass="hbox">

@@ -8,10 +8,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import server.Player;
@@ -19,9 +15,7 @@ import server.Server;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class JoinScreen {
     @FXML
@@ -102,6 +96,14 @@ public class JoinScreen {
         }
     }
 
+    public void closeGuestSocket(){
+        try {
+            TriviaGameApp.guestPlayer.socket.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
     public void refresh(ActionEvent actionEvent){
     //KIEDYS WROCIC DO TEGO!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         try {
@@ -114,7 +116,7 @@ public class JoinScreen {
 
     public void testowyhandler(ActionEvent actionEvent){
         try {
-            ChoiceController choiceController = new ChoiceController();
+            CategoryChoiceScreen choiceController = new CategoryChoiceScreen();
             choiceController.setPrimaryStage(primaryStage);
             choiceController.renderChoiceScreen("category_choice.fxml", "Styles.css");
         }

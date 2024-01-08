@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class QuestionController {
-
     @FXML
     private Stage PrimaryStage;
     @FXML
@@ -22,9 +21,9 @@ public class QuestionController {
     private Button button3;
     @FXML
     private Button button4;
+
     public ArrayList<String> answers;
     private String right_answer;
-
     private String question;
 
     public QuestionController(){this.answers = new ArrayList<>();}

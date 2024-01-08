@@ -68,6 +68,7 @@ public class Server implements Runnable{
                         TriviaGameApp.guestPlayer = this.guestPlayer;
                         TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = true;
                         TriviaGameApp.hostScreen.setLabelsWithServers(this.hostPlayer.nickname, this.guestPlayer.nickname);
+                        TriviaGameApp.hostScreen.startGameWhenPlayersConnect();
                     });
                     setObjectStreams(playerSocket);
                 }

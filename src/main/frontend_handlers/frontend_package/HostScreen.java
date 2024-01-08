@@ -7,12 +7,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Objects;
 
 public class HostScreen {
@@ -23,6 +22,10 @@ public class HostScreen {
     private Label hostPlayerLabel;
     @FXML
     private Label guestPlayerLabel;
+    @FXML
+    public ToggleButton hostButton;
+    @FXML
+    public ToggleButton guestButton;
     @FXML
     private Stage primaryStage;
 
@@ -45,6 +48,8 @@ public class HostScreen {
         this.hostPlayerLabel.setText(hostname);
         this.guestPlayerLabel.setText(guestname);
         this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
+        this.hostPlayerLabel.setTextFill(Paint.valueOf("green"));
+
     }
 
     public void renderHostScreen(String fxmlFile, String cssFile) throws IOException {
@@ -64,8 +69,10 @@ public class HostScreen {
 
         //TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = false;
         TriviaGameApp.hostScreen.setLabels();
+        TriviaGameApp.hostScreen.hostButton.setSelected(true);
+        TriviaGameApp.hostScreen.hostButton.setDisable(true);
 
-        primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
+       // primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
     }
 
     public void setPlayerInfoHost(){
@@ -78,29 +85,13 @@ public class HostScreen {
         TriviaGameApp.hostScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
     }
 
-    public void testowyhandler(ActionEvent actionEvent){
-        // Dodać:
-        // Wywolac metode do losowania kategorii i zwrocona mape zapisac w polu
-        // Do przycisków przypisz dwa stringi z mapy - Stringi to wartości
-        // Po kliknięciu przycisku weź klucz z wybranego Stringa i wyowłaj metode losującą pytanie, dając klucz jako argument
+    public void startGameWhenPlayersConnect(){
+        if(guestButton.isSelected())
+            guestButton.setDisable(true);
 
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("category_choice.fxml"));
-            Parent root = loader.load();
-
-            Scene scene = new Scene(root, 1200, 800);
-            scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Styles.css")).toExternalForm());
-
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("TRIVIA GAME");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-            ChoiceController choiceController = loader.getController();
-            choiceController.setPrimaryStage(primaryStage);
-
-            choiceController.IsLastQuestionRight = true;
-            choiceController.setChoiceText();
+            TriviaGameApp.guestPlayer.bufferedWriter.write("ok\n");
+            TriviaGameApp.guestPlayer.bufferedWriter.flush();
         }
         catch (IOException e){
             e.printStackTrace();

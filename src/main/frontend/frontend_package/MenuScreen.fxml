@@ -10,7 +10,7 @@
     <Label styleClass="background-label" text="TRIVIA" />
     <VBox styleClass="items-vbox">
         <TextField styleClass="text-field" promptText="Wpisz nick..." fx:id="nickbox"/>
-        <Button onAction="#onHostButtonClick" text="HOST" styleClass="menu-button"/>
-        <Button onAction="#onJoinButtonClick" text="JOIN" styleClass="menu-button"/>
+        <Button onAction="#onHostButtonClick" text="HOSTUJ" styleClass="menu-button"/>
+        <Button onAction="#onJoinButtonClick" text="DOŁĄCZ" styleClass="menu-button"/>
     </VBox>
 </VBox>

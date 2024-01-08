@@ -14,13 +14,12 @@ import java.sql.Statement;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 
 
-public class ChoiceController {
+public class CategoryChoiceScreen {
 
     @FXML
     private Stage primaryStage;
@@ -52,11 +51,11 @@ public class ChoiceController {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        ChoiceController choiceController = loader.getController();
-        choiceController.setPrimaryStage(primaryStage);
+        CategoryChoiceScreen categoryChoiceScreen = loader.getController();
+        categoryChoiceScreen.setPrimaryStage(primaryStage);
 
-        choiceController.IsLastQuestionRight = true;
-        choiceController.setChoiceText();
+        categoryChoiceScreen.IsLastQuestionRight = true;
+        categoryChoiceScreen.setChoiceText();
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){

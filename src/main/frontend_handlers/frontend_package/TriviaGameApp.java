@@ -39,5 +39,4 @@ public class TriviaGameApp extends Application {
             e.printStackTrace();
         }
     }
-
 }
