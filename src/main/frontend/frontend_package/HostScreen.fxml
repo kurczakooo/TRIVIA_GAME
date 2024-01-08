@@ -21,7 +21,7 @@
         <VBox styleClass="grid-host-screen">
             <Label styleClass="waiting-for-player-label" text="GOŚĆ:"/>
             <Label styleClass="waiting-for-player-label"  fx:id="guestPlayerLabel" text="$guestPlayerLabel"/>
-            <ToggleButton fx:id="guestButton" styleClass="toggle-button" text="GOTOWY"/>
+            <ToggleButton onAction="#guestButtonSelect" fx:id="guestButton" styleClass="toggle-button" text="GOTOWY"/>
         </VBox>
     </HBox>
 </VBox>

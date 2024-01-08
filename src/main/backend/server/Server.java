@@ -64,13 +64,11 @@ public class Server implements Runnable{
                 if(playerCount == 3){
                     String guestnick = this.bufferedReader.readLine();
                     this.guestPlayer = new Player(guestnick, serverSocket.getLocalPort());
-                    Platform.runLater(() ->{
-                        TriviaGameApp.guestPlayer = this.guestPlayer;
-                        TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony = true;
-                        TriviaGameApp.hostScreen.setLabelsWithServers(this.hostPlayer.nickname, this.guestPlayer.nickname);
-                        TriviaGameApp.hostScreen.startGameWhenPlayersConnect();
-                    });
-                    setObjectStreams(playerSocket);
+                    ScreensManagerForServer.setHostScreenLabels(this.guestPlayer, this.hostPlayer.nickname, this.guestPlayer.nickname);
+                    //setObjectStreams(playerSocket);
+                    //String msg = bufferedReader.readLine();
+                    //System.out.println(msg);
+                    ScreensManagerForServer.startGame(bufferedReader.readLine());
                 }
             }
         }

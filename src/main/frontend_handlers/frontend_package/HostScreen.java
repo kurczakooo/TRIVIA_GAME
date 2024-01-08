@@ -33,6 +33,10 @@ public class HostScreen {
         this.primaryStage = primaryStage;
     }
 
+    public Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
     public void setLabels() {
         this.hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
         if (this.CzyGraczDrugiPolaczony) {
@@ -85,12 +89,17 @@ public class HostScreen {
         TriviaGameApp.hostScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
     }
 
-    public void startGameWhenPlayersConnect(){
-        if(guestButton.isSelected())
-            guestButton.setDisable(true);
+    public void guestButtonSelect(ActionEvent actionEvent){
+        if(TriviaGameApp.hostScreen.guestButton.isSelected()){
+            TriviaGameApp.hostScreen.guestButton.setDisable(true);
+            TriviaGameApp.hostScreen.startGameSignal();
+        }
 
+    }
+
+    public void startGameSignal(){
         try {
-            TriviaGameApp.guestPlayer.bufferedWriter.write("ok\n");
+            TriviaGameApp.guestPlayer.bufferedWriter.write("start\n");
             TriviaGameApp.guestPlayer.bufferedWriter.flush();
         }
         catch (IOException e){
