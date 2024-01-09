@@ -73,6 +73,7 @@ public class MenuScreen{
 
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
                 TriviaGameApp.hostScreen.setPlayerInfoHost();
+                TriviaGameApp.hostInfo = TriviaGameApp.hostScreen.playerInfo;
                 TriviaGameApp.hostScreen.guestButton.setDisable(true);
             } catch (IOException e){
                 e.printStackTrace();

@@ -66,9 +66,12 @@ public class Server implements Runnable{
                     this.guestPlayer = new Player(guestnick, serverSocket.getLocalPort());
                     ScreensManagerForServer.setHostScreenLabels(this.guestPlayer, this.hostPlayer.nickname, this.guestPlayer.nickname);
                     //setObjectStreams(playerSocket);
-                    //String msg = bufferedReader.readLine();
-                    //System.out.println(msg);
-                    ScreensManagerForServer.startGame(bufferedReader.readLine());
+                    try{
+                        ScreensManagerForServer.startGame(bufferedReader.readLine());
+                    }
+                    catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }
         }

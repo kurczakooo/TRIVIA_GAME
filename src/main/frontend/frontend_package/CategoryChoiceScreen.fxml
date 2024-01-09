@@ -4,16 +4,21 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import frontend_package.components.PlayerInfo?>
+
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.CategoryChoiceScreen">
-    <Label styleClass="background-label" text="TRIVIA"/>
-    <Label styleClass="choice-label" fx:id="choiceText" text="$choiceText"/>
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <PlayerInfo fx:id="playerInfo"/>
+    </StackPane>
+    <Label styleClass="choice-label" fx:id="choiceText"/>
     <HBox styleClass="hbox">
         <VBox.margin>
             <Insets top="200.0" />
         </VBox.margin>
-        <Button onAction="#ChoiceHandler" text="123456789123456" styleClass="choice-button"/>
-        <Button onAction="#ChoiceHandler" text="123456789123456" styleClass="choice-button"/>
+        <Button onAction="#ChoiceHandler" fx:id="categoryButton1" styleClass="choice-button"/>
+        <Button onAction="#ChoiceHandler" fx:id="categoryButton2" styleClass="choice-button"/>
     </HBox>
 </VBox>

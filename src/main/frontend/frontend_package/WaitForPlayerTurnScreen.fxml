@@ -9,5 +9,7 @@
         <Label styleClass="background-label" text="TRIVIA" />
         <PlayerInfo fx:id="playerInfo"/>
     </StackPane>
-    <Label alignment="CENTER" styleClass="waiting-label" text="Poczekaj aż twój przeciwnik odpowie na pytanie"/>
+    <VBox alignment="CENTER">
+        <Label styleClass="waiting-label" text="Poczekaj aż twój przeciwnik odpowie na pytanie"/>
+    </VBox>
 </VBox>

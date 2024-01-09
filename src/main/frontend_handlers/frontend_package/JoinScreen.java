@@ -113,17 +113,6 @@ public class JoinScreen {
             e.printStackTrace();
         }
     }
-
-    public void testowyhandler(ActionEvent actionEvent){
-        try {
-            CategoryChoiceScreen choiceController = new CategoryChoiceScreen();
-            choiceController.setPrimaryStage(primaryStage);
-            choiceController.renderChoiceScreen("category_choice.fxml", "Styles.css");
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 }
 
 

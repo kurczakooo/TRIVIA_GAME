@@ -1,6 +1,7 @@
 package frontend_package;
 
 import frontend_package.components.PlayerInfo;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import server.ScreensManagerForServer;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -93,6 +96,9 @@ public class HostScreen {
         if(TriviaGameApp.hostScreen.guestButton.isSelected()){
             TriviaGameApp.hostScreen.guestButton.setDisable(true);
             TriviaGameApp.hostScreen.startGameSignal();
+            PauseTransition pauseTransition = new PauseTransition(Duration.seconds(1.0));
+            pauseTransition.setOnFinished(e -> TriviaGameApp.hostScreen.setCategoryChoiceScreen());
+            pauseTransition.play();
         }
 
     }
@@ -101,6 +107,17 @@ public class HostScreen {
         try {
             TriviaGameApp.guestPlayer.bufferedWriter.write("start\n");
             TriviaGameApp.guestPlayer.bufferedWriter.flush();
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setCategoryChoiceScreen(){
+        try {
+            TriviaGameApp.categoryChoiceScreen = new CategoryChoiceScreen();
+            TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.hostScreen.getPrimaryStage());
+            TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", false, true);
         }
         catch (IOException e){
             e.printStackTrace();

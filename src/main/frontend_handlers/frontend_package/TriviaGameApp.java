@@ -1,6 +1,7 @@
 package frontend_package;
 
 import database.DataBaseHandler;
+import frontend_package.components.PlayerInfo;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.application.Application;
@@ -15,10 +16,13 @@ public class TriviaGameApp extends Application {
     public static DataBaseHandler dataBaseHandler;
     public static Player hostPlayer;
     public static Player guestPlayer;
+    public static PlayerInfo hostInfo;
+    public static PlayerInfo guestInfo;
     public static MenuScreen menuScreen;
     public static HostScreen hostScreen;
     public static JoinScreen joinScreen;
     public static WaitForPlayerTurnScreen waitForPlayerTurnScreen;
+    public static CategoryChoiceScreen categoryChoiceScreen;
 
     public Date matchDate;
 

@@ -35,5 +35,16 @@ public class WaitForPlayerTurnScreen {
 
         TriviaGameApp.waitForPlayerTurnScreen = loader.getController();
         TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(primaryStage);
+        setPlayerInfoHost();
+    }
+
+    public void setPlayerInfoHost(){
+        TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPlayerNick(TriviaGameApp.hostPlayer.nickname);
+        TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPrize(TriviaGameApp.hostPlayer.Prize);
+    }
+
+    public void setPlayerInfoGuest(){
+        TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPlayerNick(TriviaGameApp.guestPlayer.nickname);
+        TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
     }
 }

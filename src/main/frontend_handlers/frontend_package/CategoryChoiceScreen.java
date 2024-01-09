@@ -1,11 +1,14 @@
 package frontend_package;
 
 import database.DataBaseHandler;
+import database.Tables.TablesManagement;
+import frontend_package.components.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -20,11 +23,16 @@ import java.util.Objects;
 
 
 public class CategoryChoiceScreen {
-
+    @FXML
+    public PlayerInfo playerInfo;
     @FXML
     private Stage primaryStage;
     @FXML
     private Label choiceText;
+    @FXML
+    private Button categoryButton1;
+    @FXML
+    private Button categoryButton2;
     public boolean IsLastQuestionRight;
 
     @FXML
@@ -39,7 +47,7 @@ public class CategoryChoiceScreen {
             this.choiceText.setText("Wybierz kategorie pytania dla przeciwnika:");
     }
 
-    public void renderChoiceScreen(String fxmlFile, String cssFile) throws IOException{
+    public void renderChoiceScreen(String fxmlFile, String cssFile, boolean isHost, boolean wasLastQuestionRight) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -51,11 +59,17 @@ public class CategoryChoiceScreen {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-        CategoryChoiceScreen categoryChoiceScreen = loader.getController();
-        categoryChoiceScreen.setPrimaryStage(primaryStage);
+        TriviaGameApp.categoryChoiceScreen = loader.getController();
+        TriviaGameApp.categoryChoiceScreen.setPrimaryStage(primaryStage);
 
-        categoryChoiceScreen.IsLastQuestionRight = true;
-        categoryChoiceScreen.setChoiceText();
+        TriviaGameApp.categoryChoiceScreen.IsLastQuestionRight = wasLastQuestionRight;
+        TriviaGameApp.categoryChoiceScreen.setChoiceText();
+
+        if(isHost)
+            TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
+        else TriviaGameApp.categoryChoiceScreen.setPlayerInfoGuest();
+
+        TriviaGameApp.categoryChoiceScreen.assignCategories();
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){
@@ -119,6 +133,29 @@ public class CategoryChoiceScreen {
             questionController.RandomizeAnswers();
 
         } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void setPlayerInfoHost(){
+        TriviaGameApp.categoryChoiceScreen.playerInfo.setPlayerNick(TriviaGameApp.hostPlayer.nickname);
+        TriviaGameApp.categoryChoiceScreen.playerInfo.setPrize(TriviaGameApp.hostPlayer.Prize);
+    }
+
+    public void setPlayerInfoGuest(){
+        TriviaGameApp.categoryChoiceScreen.playerInfo.setPlayerNick(TriviaGameApp.guestPlayer.nickname);
+        TriviaGameApp.categoryChoiceScreen.playerInfo.setPrize(TriviaGameApp.guestPlayer.Prize);
+    }
+
+    private void assignCategories(){
+        //tymczasowo robie polaczenei z baza tutaj potem bedzu jedno uzywane w TriviaGameApp
+        DataBaseHandler.connect();
+        try {
+            String[] categories = TablesManagement.twoCategoriesFromKategorie();
+            categoryButton1.setText(categories[0]);
+            categoryButton2.setText(categories[1]);
+        }
+        catch (SQLException e){
             e.printStackTrace();
         }
     }
