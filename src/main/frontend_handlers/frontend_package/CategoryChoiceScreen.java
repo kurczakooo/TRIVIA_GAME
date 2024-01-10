@@ -73,68 +73,12 @@ public class CategoryChoiceScreen {
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("question.fxml"));
-            Parent root = loader.load();
+        Button clickedButton = (Button) actionEvent.getSource();
+        String chosenCategory = clickedButton.getText();
 
-            Scene choiceScene = new Scene(root, 1200, 800);
-            choiceScene.getStylesheets().add(getClass().getResource("Styles.css").toExternalForm());
-            primaryStage.setResizable(false);
-            primaryStage.setTitle("TRIVIA GAME");
-            primaryStage.setScene(choiceScene);
-
-            QuestionController questionController = loader.getController();
-            questionController.setPrimaryStage(primaryStage);
-
-
-
-            //test bazy daynch
-            try {
-                // Nawiązanie połączenia z bazą danych
-                Connection connection = DataBaseHandler.connect();
-
-
-                // Tworzenie obiektu Statement do wysyłania zapytań SQL
-                Statement statement = connection.createStatement();
-
-                // Przykładowe zapytanie SELECT
-                String query = "SELECT * FROM Pytania ORDER BY RANDOM() LIMIT 1;";
-                ResultSet resultSet = statement.executeQuery(query);
-
-                // Przetwarzanie wyników zapytania
-                while (resultSet.next()) {
-                    // Pobieranie danych z kolumn
-                    int pytanieID = resultSet.getInt("IDpytania");
-                    String trescPytania = resultSet.getString("tresc");
-                    String odpowiedzPoprawna = resultSet.getString("odpPoprawna");
-                    String odpowiedz2 = resultSet.getString("odp2");
-                    String odpowiedz3 = resultSet.getString("odp3");
-                    String odpowiedz4 = resultSet.getString("odp4");
-
-                    questionController.GetDataFromDB(trescPytania, odpowiedzPoprawna, odpowiedz2, odpowiedz3, odpowiedz4);
-
-                    // Przetwarzanie danych lub wyświetlanie ich
-                    //System.out.println("ID: " + pytanieID);
-                    //System.out.println("Treść pytania: " + trescPytania);
-                    //System.out.println("Odpowiedź poprawna: " + odpowiedzPoprawna);
-                    //System.out.println("Odpowiedź 2: " + odpowiedz2);
-                    ///System.out.println("Odpowiedź 3: " + odpowiedz3);
-                    //System.out.println("Odpowiedź 4: " + odpowiedz4);
-                }
-                // Zamykanie zasobów
-                resultSet.close();
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-
-
-            questionController.RandomizeAnswers();
-
-        } catch (IOException e){
-            e.printStackTrace();
-        }
+        TriviaGameApp.questionScreen = new QuestionScreen();
+        TriviaGameApp.questionScreen.setPrimaryStage(TriviaGameApp.categoryChoiceScreen.primaryStage);
+        TriviaGameApp.questionScreen.renderQuestionScreen("QuestionScreen.fxml", "Styles.css", false, chosenCategory);
     }
 
     public void setPlayerInfoHost(){

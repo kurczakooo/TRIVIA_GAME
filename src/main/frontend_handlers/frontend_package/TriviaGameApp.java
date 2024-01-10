@@ -23,6 +23,7 @@ public class TriviaGameApp extends Application {
     public static JoinScreen joinScreen;
     public static WaitForPlayerTurnScreen waitForPlayerTurnScreen;
     public static CategoryChoiceScreen categoryChoiceScreen;
+    public static QuestionScreen questionScreen;
 
     public Date matchDate;
 

@@ -160,6 +160,16 @@
 
 /* /////////////////////////////////////////QUESTION SCREEN ///////////////////////////////////////// */
 
+.question-screen-counter {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 36px;
+    -fx-text-fill: white;
+    -fx-pref-width: 1200;
+    -fx-pref-height: 200;
+    -fx-alignment: top-left;
+}
+
 .question-label {
     -fx-font-family: "Century Gothic Bold";
     -fx-font-weight: Bold;
