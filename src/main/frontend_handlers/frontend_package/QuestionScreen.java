@@ -10,6 +10,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -168,9 +169,16 @@ public class QuestionScreen {
             @Override
             public void run() {
                 time -= 1;
+                System.out.println(time);
                 if(time == 0){
+                    timer.cancel();
                     Platform.runLater(() -> {
-                        TriviaGameApp.questionScreen.counter.setText("Koniec czasu");
+                        TriviaGameApp.questionScreen.counter.setStyle("-fx-text-fill: #F77B6B");
+                        TriviaGameApp.questionScreen.counter.setText("Koniec czasu!");
+                        TriviaGameApp.questionScreen.button1.setDisable(true);
+                        TriviaGameApp.questionScreen.button2.setDisable(true);
+                        TriviaGameApp.questionScreen.button3.setDisable(true);
+                        TriviaGameApp.questionScreen.button4.setDisable(true);
                     });
                 }
                 else {
