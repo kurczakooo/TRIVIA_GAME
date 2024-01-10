@@ -169,7 +169,6 @@ public class QuestionScreen {
             @Override
             public void run() {
                 time -= 1;
-                System.out.println(time);
                 if(time == 0){
                     timer.cancel();
                     Platform.runLater(() -> {

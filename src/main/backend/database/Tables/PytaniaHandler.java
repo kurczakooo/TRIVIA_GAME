@@ -12,6 +12,25 @@ public class PytaniaHandler {
 
     private static final Connection connection = DataBaseHandler.connect();
 
+   // public static int getIDpytanie(String kategoria){
+        //sql zapytanie: pobierz id kategori z jej nazwy
+        //sql zapytanmie: piebirz randomowe idpytania z kategori ^, upewnij sie ze
+        //takie id nie pojawilo sie w HisTurTmp
+    //    return 0;
+   // }
+
+   // public static void getidpytania(String tresc){
+        
+   // }
+
+   // public static void getIDGracza(String nick){
+
+    //}
+
+    //public static void insertToHisTurTmp(String odpowiedz, int IDpytania, int IDgracz){
+        //insert into historiaturtmp (1, odpoweidz, IDgracza, IDpytania);
+    ///}
+
     public static String getTresc(int idPytania){
 
         String sqlQuestion = "SELECT Tresc FROM Pytania WHERE IDpytania = ?";
