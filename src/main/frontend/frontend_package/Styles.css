@@ -166,8 +166,8 @@
     -fx-font-size: 36px;
     -fx-text-fill: white;
     -fx-pref-width: 1200;
-    -fx-pref-height: 200;
-    -fx-alignment: top-left;
+    -fx-alignment: top-center;
+    -fx-padding: 120 0 0 0;
 }
 
 .question-label {

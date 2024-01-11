@@ -8,6 +8,8 @@ import javafx.application.Platform;
 import javafx.util.Duration;
 
 import java.io.IOException;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ScreensManagerForServer {
 
@@ -23,7 +25,7 @@ public class ScreensManagerForServer {
         if(signal.equals("start")){
             TriviaGameApp.hostScreen.guestButton.setSelected(true);
             PauseTransition pauseTransition = new PauseTransition(Duration.seconds(1.0));
-            pauseTransition.setOnFinished(e -> ScreensManagerForServer.setWaitScreen());
+            pauseTransition.setOnFinished(e -> setWaitScreen());
             pauseTransition.play();
         }
         else throw new Exception("Blad w rozpoczeciu gry");
@@ -35,13 +37,9 @@ public class ScreensManagerForServer {
                 TriviaGameApp.waitForPlayerTurnScreen = new WaitForPlayerTurnScreen();
                 TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(TriviaGameApp.hostScreen.getPrimaryStage());
                 TriviaGameApp.waitForPlayerTurnScreen.renderWaitScreen("WaitForPlayerTurnScreen.fxml", "Styles.css", true);
-                String msg = TriviaGameApp.server.bufferedReader.readLine();
-                if(msg.equals("hostTurn"))
-                    ScreensManagerForServer.hostTurn();
-                else if(msg.equals("guestChoosinCategoryForHost")){
-                    System.out.println("gosc wybiera kategorie dla hosta");
-                }
-                else throw new RuntimeException();
+                TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsWaitForYourTurn();
+
+                waitForEndTurnSignal();
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -49,16 +47,40 @@ public class ScreensManagerForServer {
         });
     }
 
-    private static void hostTurn(){
-        try {
-            TriviaGameApp.categoryChoiceScreen = new CategoryChoiceScreen();
-            TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.waitForPlayerTurnScreen.primaryStage);
-            TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", true, true);
-            TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
-        }
-        catch (IOException e){
-            e.printStackTrace();
-        }
+    private static void waitForEndTurnSignal(){
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    String msg = TriviaGameApp.server.bufferedReader.readLine();
+                    if(msg.equals("hostTurn"))
+                        hostTurn();
+                    else if(msg.equals("guestChoosinCategoryForHost")){
+                        Platform.runLater(() -> {
+                            TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsOpponentChoosinCateogry();
+                        });
+                    }
+                    else throw new RuntimeException();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        timer.schedule(timerTask, 0, 500);
+    }
 
+    private static void hostTurn(){
+        Platform.runLater(() -> {
+            try {
+                TriviaGameApp.categoryChoiceScreen = new CategoryChoiceScreen();
+                TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.waitForPlayerTurnScreen.primaryStage);
+                TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", true, true);
+                TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        });
     }
 }

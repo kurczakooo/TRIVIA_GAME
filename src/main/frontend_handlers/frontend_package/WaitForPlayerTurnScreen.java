@@ -15,6 +15,8 @@ public class WaitForPlayerTurnScreen {
     @FXML
     public PlayerInfo playerInfo;
     @FXML
+    public Label waitText;
+    @FXML
     public Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -39,6 +41,14 @@ public class WaitForPlayerTurnScreen {
         if(isHost)
             TriviaGameApp.waitForPlayerTurnScreen.setPlayerInfoHost();
         else TriviaGameApp.waitForPlayerTurnScreen.setPlayerInfoGuest();
+    }
+
+    public void setWaitTextAsWaitForYourTurn(){
+        TriviaGameApp.waitForPlayerTurnScreen.waitText.setText("Poczekaj aż przeciwnik odpowie na pytanie...");
+    }
+
+    public void setWaitTextAsOpponentChoosinCateogry(){
+        TriviaGameApp.waitForPlayerTurnScreen.waitText.setText("Przeciwnik odpowiedział poprawnie, teraz wybiera kategorie pytania dla ciebie...");
     }
 
     public void setPlayerInfoHost(){

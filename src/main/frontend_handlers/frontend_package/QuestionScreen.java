@@ -181,6 +181,7 @@ public class QuestionScreen {
                 TriviaGameApp.waitForPlayerTurnScreen = new WaitForPlayerTurnScreen();
                 TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
                 TriviaGameApp.waitForPlayerTurnScreen.renderWaitScreen("WaitForPlayerTurnScreen.fxml", "Styles.css", false);
+                TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsWaitForYourTurn();
             }
             catch (IOException e){
                 e.printStackTrace();
