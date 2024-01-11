@@ -213,6 +213,53 @@ public class HisTurTmpHandler {
         return Boolean.FALSE;
     }
 
+    // Zwraca true jesli pytanie o przekazanym ID istnieje, i false jesli nie w HisTurTmp
+    public static Boolean isPytanieInTable(Integer IDPytania) {
+        String sqlQuery = "SELECT COUNT(*) from HisTurTmp WHERE IDpytania = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            preparedStatement.setInt(1,IDPytania);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                    return resultSet.getInt(1) > 0;
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    // Jedna kategoria ma 5 pytan
+    public static Boolean isAnyQuestionLeftInCategory(String kategoria){
+
+        // ID kategorii po jej nazwie
+        Integer IDKategori = KategoriePytanHandler.getIDkategori(kategoria);
+
+        // Zlicza ile jest wierszy w HisTurTmp z Kategoria ktora przekazalismy
+        String sqlQuery = "SELECT COUNT(*) FROM HisTurTmp WHERE pytania_IdKategori = " + IDKategori;
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                int count = resultSet.getInt(1);
+
+                if(count == 5){
+                    System.out.println("\nThere is no questions left in this category\n");
+                    return false;
+                }
+            }
+
+        }catch(SQLException e){
+            throw new RuntimeException();
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
      /*
 
@@ -226,9 +273,14 @@ deleteAllRows();
         setWybranaOdpowiedz("INFORMATYKA", 1, 2, 2);
 */
 
+        // setWybranaOdpowiedz("INFORMATYKA", 1, 1, 2);
 
+       // System.out.println( isPytanieInTable(1));
 
+        System.out.println(isAnyQuestionLeftInCategory("HISTORIA"));
+        System.out.println(isAnyQuestionLeftInCategory("INFORMATYKA"));
     }
+
 
 
 }

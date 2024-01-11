@@ -12,16 +12,14 @@ public class PytaniaHandler {
 
     private static final Connection connection = DataBaseHandler.connect();
 
-   // public static int getIDpytanie(String kategoria){
-        //sql zapytanie: pobierz id kategori z jej nazwy
-        //sql zapytanmie: piebirz randomowe idpytania z kategori ^, upewnij sie ze
-        //takie id nie pojawilo sie w HisTurTmp
-    //    return 0;
-   // }
 
-   // public static void getidpytania(String tresc){
-        
-   // }
+
+
+   /*public static void getidpytania(String tresc){
+        String sqlQuery = "SELECT "
+   }*/
+
+
 
    // public static void getIDGracza(String nick){
 

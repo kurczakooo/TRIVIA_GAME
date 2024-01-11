@@ -2,25 +2,23 @@ package database.Tables;
 
 import database.DataBaseHandler;
 
+import java.net.HttpURLConnection;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Set;
 
 
 public class TablesManagement {
 
 
-// Wywalić do while
-// Niech zwraca mape typu <Int, String> idpytania, trescPytania
+// Zwraca dwie losowe kategorie
     public static String[] twoCategoriesFromKategorie() throws SQLException {
         Connection connection = DataBaseHandler.connect();
         String []answers;
 
         answers = new String[2];
-        String sqlQuestion = "SELECT NazwaKategori FROM KategoriePytan ORDER BY random() LIMIT 2";
+        String sqlQuestion = "SELECT DISTINCT NazwaKategori FROM KategoriePytan ORDER BY random() LIMIT 2";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
 
@@ -43,40 +41,55 @@ public class TablesManagement {
     }
 
 
-    // Nowa metoda losuje pytanie z Pytania po
-    public static String drawQuestion(int IDkategori){
-        // Po IDkategorii wybierz losową treść
-        // Wrzuc do tmp do pola WybranaOdpowiedz pole tresc
+// Zwraca losowe ID pytania z Tabeli Pytania, na podstawie przekazanej nazwy kategori
+    public static Integer getIDpytanieByCategory(String kategoria, Integer IDGracza) throws SQLException {
+        Connection connection = DataBaseHandler.connect();
 
-        // Random tresc from Pytania na podstawie IDkategori
-        String sqlQuestion = "SELECT FROM WHERE IDpytania = IDkategorii";
+        // ID kategorii na podstawie nazwy kategori
+        Integer IDKategori = KategoriePytanHandler.getIDkategori(kategoria);
 
-        return null;
-    }
-    // Czy IF count(*) from HisTurTmp where pytania_IdKategori = 5 then wylosuj jeszcze raz kategorie
-    // If nie ma 5 to:
-    // Wylosowane 2 kategorie,  DONE
-    // Gracz wybiera jedną z dwóch wylosowanych kategorii
+        int i = 0;
+        int drawPytanieID;
+        // Losujemy randomowe ID pytania dopoki nie wylosujemy tego ktorego nie ma w HisTurTmp
+            do{
+                // Wybierz losowe pytanie z Pytania
+                String sqlQuery = "SELECT IDpytania FROM Pytania  WHERE IDkategori = " +IDKategori + " ORDER BY random() LIMIT 1";
 
-    // Napisac metode która losuje pytanie na
-    // podstawie IDkategorii którą ma w argumencie losuje jedno pytanie
+                try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+
+                    ResultSet resultSet = preparedStatement.executeQuery();
+
+                    // Odczytanie wartości z pierwszej kolumny wyniku zapytania
+                    drawPytanieID =  resultSet.getInt(1);
+
+                    // jesli numer (IDPytania) jest > 0, i jesli pytania NIE ma w HisTurTmp to je zworc
+                    if(drawPytanieID > 0 && !HisTurTmpHandler.isPytanieInTable(drawPytanieID)){
+                        connection.close();
+
+                        // Dodajemy wylosowane dane Pytania do HisTurTmp
+                        HisTurTmpHandler. setWybranaOdpowiedz(kategoria, IDGracza, drawPytanieID, IDKategori);
+                        return drawPytanieID;
+                    }
+
+                } catch (SQLException e) {
+                    throw new RuntimeException(e);
+                }
+
+                System.out.println("\nObieg nr: "+ i + "\n" );
+                i++;
 
 
-    // Jesli wybrane IDpytania jest w IDpytania Histurtmp to losuj do
-    // momentu gdzie wybierze jakies IDpytania którego nie ma w histur tmp
-    // Ta nowa metoda zwraca IDpytania
+            }while(HisTurTmpHandler.isPytanieInTable(drawPytanieID) && HisTurTmpHandler.isAnyQuestionLeftInCategory(kategoria));
 
-    // Damian wywołuje tą metode losuje pytanie bierze to ID i wywoluje sb getodp1, odp2.. etc na podstawie zwroconego ID
-    // Daje id tego pytania do histurtmp do pola IDpytania
-    // Gracz klika odpowiedź, tresc do stringa damian daje
-    // na podstawie Stringa damiana w argumencie,  wsadz tego stringa do kolumny wybrana odpowiedz w histurtmp
-    // damian przekaze tez idpytania i wsadz je do pytania_IdKategori
-    // daje all tylko idtury niech sie samo zwieksza
+            return null;
+        }
+
+
     public static void main(String[] args) throws SQLException {
-            String[] test = twoCategoriesFromKategorie();
+           // String[] test = twoCategoriesFromKategorie();
 
-            System.out.println(test[0] + "\n" + test[1]);
+          //  System.out.println(test[0] + "\n" + test[1]);
 
-
+        System.out.println(getIDpytanieByCategory("INFORMATYKA", 1));
     }
 }
