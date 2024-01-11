@@ -15,13 +15,13 @@ public class WaitForPlayerTurnScreen {
     @FXML
     public PlayerInfo playerInfo;
     @FXML
-    private Stage primaryStage;
+    public Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
 
-    public void renderWaitScreen(String fxmlFile, String cssFile) throws IOException{
+    public void renderWaitScreen(String fxmlFile, String cssFile, boolean isHost) throws IOException{
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -35,7 +35,10 @@ public class WaitForPlayerTurnScreen {
 
         TriviaGameApp.waitForPlayerTurnScreen = loader.getController();
         TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(primaryStage);
-        setPlayerInfoHost();
+
+        if(isHost)
+            TriviaGameApp.waitForPlayerTurnScreen.setPlayerInfoHost();
+        else TriviaGameApp.waitForPlayerTurnScreen.setPlayerInfoGuest();
     }
 
     public void setPlayerInfoHost(){
