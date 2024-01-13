@@ -6,7 +6,6 @@ import frontend_package.WaitForPlayerTurnScreen;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import javafx.util.Duration;
-
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -54,14 +53,20 @@ public class ScreensManagerForServer {
             public void run() {
                 try {
                     String msg = TriviaGameApp.server.bufferedReader.readLine();
-                    if(msg.equals("hostTurn"))
+                    if(msg.equals("hostTurn")) {
+                        timer.cancel();
                         hostTurn();
+                    }
                     else if(msg.equals("guestChoosinCategoryForHost")){
+                        timer.cancel();
                         Platform.runLater(() -> {
                             TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsOpponentChoosinCateogry();
                         });
                     }
-                    else throw new RuntimeException();
+                    else{
+                        timer.cancel();
+                        throw new RuntimeException();
+                    }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
