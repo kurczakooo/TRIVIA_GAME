@@ -33,7 +33,7 @@ public class KategoriePytanHandler {
     }
 
 
-    // Nazwy kategorii mają spacje w sobie; kazdy wiersz ma inną xdxxdxdxd
+    // Zwraca ID Kategorii po jej nazwie
     public static Integer getIDkategori(String NazwaKategori){
 
         String sqlQuestion = "SELECT IDkategori FROM KategoriePytan WHERE NazwaKategori = ?";
@@ -58,6 +58,5 @@ public class KategoriePytanHandler {
 
     public static void main(String[] args) {
           System.out.println(getNazwaKategori(1));
-          System.out.println(getIDkategori("    historia   ")); // Musi być ze spacjami, bo tak sie tabela nazywa xd
     }
 }
