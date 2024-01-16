@@ -51,12 +51,13 @@ public class QuestionScreen {
     private Instant answer;
     private Duration answerTime;
     private Timer timer;
+    private boolean isHost;
 
     public QuestionScreen(){this.answers = new ArrayList<>();}
     @FXML
     public void setPrimaryStage(Stage PrimaryStage) {this.primaryStage = PrimaryStage;}
 
-    public void renderQuestionScreen(String fxmlFile, String cssFile, boolean forHost, String chosenCategory){
+    public void renderQuestionScreen(String fxmlFile, String cssFile, boolean isHost, String chosenCategory){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
             Parent root = loader.load();
@@ -73,8 +74,10 @@ public class QuestionScreen {
 
             TriviaGameApp.questionScreen.fetchQuestionDataFromDB();
 
-            if(forHost)
+            if(isHost) {
                 TriviaGameApp.questionScreen.setPlayerInfoHost();
+                TriviaGameApp.questionScreen.isHost = true;
+            }
             else TriviaGameApp.questionScreen.setPlayerInfoGuest();
 
             TriviaGameApp.questionScreen.start = Instant.now();
@@ -148,7 +151,7 @@ public class QuestionScreen {
             adjustVisualsWhenAnswered("#7BB6B2", "Poprawna odpowiedź!");
 
             PauseTransition pauseTransition = new PauseTransition(javafx.util.Duration.seconds(1.0));
-            pauseTransition.setOnFinished(e -> processTheAnswer(true, "TRESC PYTANIA", "TRESC ODPOWIEDZI"));
+            pauseTransition.setOnFinished(e -> processTheAnswer(true, TriviaGameApp.questionScreen.question, selected_answer));
             pauseTransition.play();
         } else {
             clicked.setStyle("-fx-background-color: #F77B6B");
@@ -156,7 +159,7 @@ public class QuestionScreen {
             adjustVisualsWhenAnswered("#F77B6B", "Zła odpowiedź!");
 
             PauseTransition pauseTransition = new PauseTransition(javafx.util.Duration.seconds(1.0));
-            pauseTransition.setOnFinished(e -> processTheAnswer(false, "TRESC PYTANIA", "TRESC ODPOWIEDZI"));
+            pauseTransition.setOnFinished(e -> processTheAnswer(false, TriviaGameApp.questionScreen.question, selected_answer));
             pauseTransition.play();
         }
     }
@@ -164,16 +167,17 @@ public class QuestionScreen {
     private void processTheAnswer(boolean isRight, String questionContent, String answerContent){
         //wywolac metode ktora pobierze id pytania na podstawie tresci
         //wywowal metode ktora doda wiersz do HisTurTmp
-        if(isRight){
+        System.out.println(TriviaGameApp.questionScreen.isHost);
+        if(TriviaGameApp.questionScreen.isHost){
             try {
-                TriviaGameApp.guestPlayer.bufferedWriter.write("guestChoosinCategoryForHost\n");
-                TriviaGameApp.guestPlayer.bufferedWriter.flush();
-            }
-            catch (IOException e){
-                e.printStackTrace();
+                TriviaGameApp.hostPlayer.bufferedWriter.write("guestTurn\n");
+                TriviaGameApp.hostPlayer.bufferedWriter.flush();
+                ScreensManagerForServer.setWaitScreen();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
         }
-        else {
+        else{
             try {
                 TriviaGameApp.guestPlayer.bufferedWriter.write("hostTurn\n");
                 TriviaGameApp.guestPlayer.bufferedWriter.flush();
@@ -182,11 +186,46 @@ public class QuestionScreen {
                 TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
                 TriviaGameApp.waitForPlayerTurnScreen.renderWaitScreen("WaitForPlayerTurnScreen.fxml", "Styles.css", false);
                 TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsWaitForYourTurn();
+                TriviaGameApp.questionScreen.waitForHostEndSignal();
             }
-            catch (IOException e){
+            catch (IOException e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void waitForHostEndSignal(){
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    String msg = TriviaGameApp.guestPlayer.bufferedReader.readLine();
+                    if(msg.equals("guestTurn")){
+                        timer.cancel();
+                        Platform.runLater(() -> {
+                            try {
+                                TriviaGameApp.categoryChoiceScreen = new CategoryChoiceScreen();
+                                TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.waitForPlayerTurnScreen.primaryStage);
+                                TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", false, true);
+                                TriviaGameApp.categoryChoiceScreen.setPlayerInfoGuest();
+                            }
+                            catch (IOException e){
+                                e.printStackTrace();
+                            }
+                        });
+                    }
+                    else{
+                        System.out.println(msg);
+                        timer.cancel();
+                        throw new RuntimeException();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        timer.schedule(timerTask, 0, 500);
     }
 
     private void adjustVisualsWhenAnswered(String color, String text){
@@ -225,6 +264,7 @@ public class QuestionScreen {
                     TriviaGameApp.questionScreen.timer.cancel();
                     Platform.runLater(() -> {
                         adjustVisualsWhenAnswered("#F77B6B", "Koniec czasu!");
+                        TriviaGameApp.questionScreen.processTheAnswer(false, "", "");
                     });
                 }
                 else {

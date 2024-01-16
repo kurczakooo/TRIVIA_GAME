@@ -57,11 +57,15 @@ public class ScreensManagerForServer {
                         timer.cancel();
                         hostTurn();
                     }
-                    else if(msg.equals("guestChoosinCategoryForHost")){
+                    else if(msg.equals("guestTurn")){
                         timer.cancel();
-                        Platform.runLater(() -> {
-                            TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsOpponentChoosinCateogry();
-                        });
+                        try {
+                            TriviaGameApp.server.bufferedWriter.write("guestTurn\n");
+                            TriviaGameApp.server.bufferedWriter.flush();
+                        }
+                        catch (IOException e){
+                            e.printStackTrace();
+                        }
                     }
                     else{
                         timer.cancel();

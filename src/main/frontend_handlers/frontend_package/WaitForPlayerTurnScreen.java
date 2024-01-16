@@ -46,10 +46,6 @@ public class WaitForPlayerTurnScreen {
         TriviaGameApp.waitForPlayerTurnScreen.waitText.setText("Poczekaj aż przeciwnik odpowie na pytanie...");
     }
 
-    public void setWaitTextAsOpponentChoosinCateogry(){
-        TriviaGameApp.waitForPlayerTurnScreen.waitText.setText("Przeciwnik odpowiedział poprawnie, teraz wybiera kategorie pytania dla ciebie...");
-    }
-
     public void setPlayerInfoHost(){
         TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPlayerNick(TriviaGameApp.hostPlayer.nickname);
         TriviaGameApp.waitForPlayerTurnScreen.playerInfo.setPrize(TriviaGameApp.hostPlayer.Prize);
