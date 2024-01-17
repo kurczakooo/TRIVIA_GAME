@@ -1,6 +1,9 @@
 package frontend_package;
 
 import database.DataBaseHandler;
+import database.Tables.KategoriePytanHandler;
+import database.Tables.PytaniaHandler;
+import database.Tables.TablesManagement;
 import frontend_package.components.PlayerInfo;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -72,7 +75,7 @@ public class QuestionScreen {
             TriviaGameApp.questionScreen = loader.getController();
             TriviaGameApp.questionScreen.setPrimaryStage(primaryStage);
 
-            TriviaGameApp.questionScreen.fetchQuestionDataFromDB();
+            TriviaGameApp.questionScreen.fetchQuestionDataFromDB(chosenCategory);
 
             if(isHost) {
                 TriviaGameApp.questionScreen.setPlayerInfoHost();
@@ -88,8 +91,23 @@ public class QuestionScreen {
         }
     }
 
-    private void fetchQuestionDataFromDB(){
-            //test bazy daynch
+    private void fetchQuestionDataFromDB(String choosenCategory){
+        try {
+            int idPytania = TablesManagement.getIDpytanieByCategory(choosenCategory, 0);
+
+            String tresc = PytaniaHandler.getTresc(idPytania);
+            String odpPoprawna = PytaniaHandler.getOdpPoprawna(idPytania);
+            String odp2 = PytaniaHandler.getOdp2(idPytania);
+            String odp3 = PytaniaHandler.getOdp3(idPytania);
+            String odp4 = PytaniaHandler.getOdp4(idPytania);
+
+            TriviaGameApp.questionScreen.MapDataFromDB(tresc, odpPoprawna, odp2, odp3, odp4);
+
+            TriviaGameApp.questionScreen.RandomizeAnswers();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        /*test bazy daynch
             try {
                 Connection connection = DataBaseHandler.connect();
                 Statement statement = connection.createStatement();
@@ -113,7 +131,7 @@ public class QuestionScreen {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-            TriviaGameApp.questionScreen.RandomizeAnswers();
+            TriviaGameApp.questionScreen.RandomizeAnswers();*/
     }
 
     public void MapDataFromDB(String question, String right_answer, String answer2, String answer3, String answer4){
@@ -199,6 +217,7 @@ public class QuestionScreen {
         TimerTask timerTask = new TimerTask() {
             @Override
             public void run() {
+                System.out.println("Czekam na wiadomosc od servera");
                 try {
                     String msg = TriviaGameApp.guestPlayer.bufferedReader.readLine();
                     if(msg.equals("guestTurn")){
@@ -216,7 +235,6 @@ public class QuestionScreen {
                         });
                     }
                     else{
-                        System.out.println(msg);
                         timer.cancel();
                         throw new RuntimeException();
                     }

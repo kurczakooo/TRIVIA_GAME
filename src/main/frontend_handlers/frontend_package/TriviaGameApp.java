@@ -13,7 +13,6 @@ import java.util.Date;
 
 public class TriviaGameApp extends Application {
     public static Server server;
-    public static DataBaseHandler dataBaseHandler;
     public static Player hostPlayer;
     public static Player guestPlayer;
     public static MenuScreen menuScreen;

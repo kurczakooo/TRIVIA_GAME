@@ -15,8 +15,8 @@ public class Server implements Runnable{
     public ServerSocket serverSocket;
     public BufferedReader bufferedReader;
     public BufferedWriter bufferedWriter;
-    public ObjectInputStream objectInputStream;
-    public ObjectOutputStream objectOutputStream;
+    public BufferedWriter bufferedWriterForHost;
+    public BufferedReader bufferedReaderForHost;
     public Player hostPlayer;
     public Player guestPlayer;
     public int playerCount;
@@ -32,22 +32,22 @@ public class Server implements Runnable{
         this.guestPlayer = guestPlayer;
     }
 
-    private void setBuffers(Socket playerSocket) {
-        try {
-            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
-            this.bufferedReader = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void setBuffers(Socket playerSocket, boolean forHost) {
+        if(forHost){
+            try {
+                this.bufferedWriterForHost = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
+                this.bufferedReaderForHost = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    private void setObjectStreams(Socket playerSocket){
-        try {
-            this.objectInputStream = new ObjectInputStream(playerSocket.getInputStream());
-            this.objectOutputStream = new ObjectOutputStream(playerSocket.getOutputStream());
-        }
-        catch (IOException e){
-            e.printStackTrace();
+        else {
+            try {
+                this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(playerSocket.getOutputStream()));
+                this.bufferedReader = new BufferedReader(new InputStreamReader(playerSocket.getInputStream()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -58,14 +58,15 @@ public class Server implements Runnable{
                 Socket playerSocket = serverSocket.accept();
                 System.out.println("nowy gracz polaczony");
                 playerCount++;
-                setBuffers(playerSocket);
+                setBuffers(playerSocket, false);
+                if(playerCount == 1)
+                    setBuffers(playerSocket, true);
                 if(playerCount == 2)
                     shareInfo();
                 if(playerCount == 3){
                     String guestnick = this.bufferedReader.readLine();
                     this.guestPlayer = new Player(guestnick, serverSocket.getLocalPort());
                     ScreensManagerForServer.setHostScreenLabels(this.guestPlayer, this.hostPlayer.nickname, this.guestPlayer.nickname);
-                    //setObjectStreams(playerSocket);
                     try{
                         ScreensManagerForServer.startGame(bufferedReader.readLine());
                     }

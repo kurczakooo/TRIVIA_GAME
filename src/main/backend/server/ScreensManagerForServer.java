@@ -38,7 +38,7 @@ public class ScreensManagerForServer {
                 TriviaGameApp.waitForPlayerTurnScreen.renderWaitScreen("WaitForPlayerTurnScreen.fxml", "Styles.css", true);
                 TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsWaitForYourTurn();
 
-                waitForEndTurnSignal();
+                waitForEndTurnSignalFromGuest();
             }
             catch (IOException e){
                 e.printStackTrace();
@@ -46,7 +46,7 @@ public class ScreensManagerForServer {
         });
     }
 
-    private static void waitForEndTurnSignal(){
+    private static void waitForEndTurnSignalFromGuest(){
         Timer timer = new Timer();
         TimerTask timerTask = new TimerTask() {
             @Override
@@ -57,11 +57,31 @@ public class ScreensManagerForServer {
                         timer.cancel();
                         hostTurn();
                     }
-                    else if(msg.equals("guestTurn")){
+                    else{
+                        timer.cancel();
+                        throw new RuntimeException();
+                    }
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+        timer.schedule(timerTask, 0, 500);
+    }
+
+    private static void waitForEndTurnSignalFromHost(){
+        Timer timer = new Timer();
+        TimerTask timerTask = new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    String msgFromHost = TriviaGameApp.server.bufferedReaderForHost.readLine();
+                    if(msgFromHost.equals("guestTurn")){
                         timer.cancel();
                         try {
                             TriviaGameApp.server.bufferedWriter.write("guestTurn\n");
                             TriviaGameApp.server.bufferedWriter.flush();
+                            System.out.println("wyslano wiadomosc do goscia");
                         }
                         catch (IOException e){
                             e.printStackTrace();
@@ -86,6 +106,7 @@ public class ScreensManagerForServer {
                 TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.waitForPlayerTurnScreen.primaryStage);
                 TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", true, true);
                 TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
+                ScreensManagerForServer.waitForEndTurnSignalFromHost();
             }
             catch (IOException e){
                 e.printStackTrace();
