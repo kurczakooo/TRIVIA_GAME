@@ -12,6 +12,8 @@ import java.util.TimerTask;
 
 public class ScreensManagerForServer {
 
+    public static int roundNumber;
+
     public static void setHostScreenLabels(Player guestPlayer, String hostNick, String guestNick){
         Platform.runLater(() ->{
             TriviaGameApp.guestPlayer = guestPlayer;
@@ -37,6 +39,7 @@ public class ScreensManagerForServer {
                 TriviaGameApp.waitForPlayerTurnScreen.setPrimaryStage(TriviaGameApp.hostScreen.getPrimaryStage());
                 TriviaGameApp.waitForPlayerTurnScreen.renderWaitScreen("WaitForPlayerTurnScreen.fxml", "Styles.css", true);
                 TriviaGameApp.waitForPlayerTurnScreen.setWaitTextAsWaitForYourTurn();
+                ScreensManagerForServer.roundNumber++;
 
                 waitForEndTurnSignalFromGuest();
             }
@@ -87,6 +90,17 @@ public class ScreensManagerForServer {
                             e.printStackTrace();
                         }
                     }
+                    else if(msgFromHost.equals("EndOfGame")){
+                        timer.cancel();
+                        try {
+                            TriviaGameApp.server.bufferedWriter.write("EndOfGame\n");
+                            TriviaGameApp.server.bufferedWriter.flush();
+                            System.out.println("wyslano wiadomosc konczaca gre do goscia");
+                        }
+                        catch (IOException e){
+                            e.printStackTrace();
+                        }
+                    }
                     else{
                         timer.cancel();
                         throw new RuntimeException();
@@ -106,6 +120,11 @@ public class ScreensManagerForServer {
                 TriviaGameApp.categoryChoiceScreen.setPrimaryStage(TriviaGameApp.waitForPlayerTurnScreen.primaryStage);
                 TriviaGameApp.categoryChoiceScreen.renderChoiceScreen("CategoryChoiceScreen.fxml", "Styles.css", true, true);
                 TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
+                ScreensManagerForServer.roundNumber++;
+                if(ScreensManagerForServer.roundNumber == 10) {
+                    TriviaGameApp.server.bufferedWriter.write("guestTurnLast\n");
+                    TriviaGameApp.server.bufferedWriter.flush();
+                }
                 ScreensManagerForServer.waitForEndTurnSignalFromHost();
             }
             catch (IOException e){
