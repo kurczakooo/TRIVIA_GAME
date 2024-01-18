@@ -195,23 +195,6 @@ public class HisTurTmpHandler {
         }
     }
 
-    public static Boolean doesRowExist(String WybranaOdpowiedz){
-        String sqlQuestion = "SELECT COUNT(*) FROM HisTurTmp WHERE WybranaOdpowiedz = ?";
-
-        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
-            preparedStatement.setString(1, WybranaOdpowiedz);
-
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            if(resultSet.next()) {
-                return resultSet.getInt(1) > 0;
-            }
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-
-        return Boolean.FALSE;
-    }
 
     // Zwraca true jesli pytanie o przekazanym ID istnieje, i false jesli nie w HisTurTmp
     public static Boolean isPytanieInTable(Integer IDPytania) {
