@@ -1,6 +1,8 @@
 package server;
 
+import database.Tables.HisTurTmpHandler;
 import frontend_package.CategoryChoiceScreen;
+import frontend_package.EndingScreen;
 import frontend_package.TriviaGameApp;
 import frontend_package.WaitForPlayerTurnScreen;
 import javafx.animation.PauseTransition;
@@ -96,6 +98,14 @@ public class ScreensManagerForServer {
                             TriviaGameApp.server.bufferedWriter.write("EndOfGame\n");
                             TriviaGameApp.server.bufferedWriter.flush();
                             System.out.println("wyslano wiadomosc konczaca gre do goscia");
+
+                            System.out.println("\nKOINIECGRRY HOST SCREEN\n" + TriviaGameApp.hostPlayer.Prize);
+                            HisTurTmpHandler.deleteAllRows();
+                            Platform.runLater(() -> {
+                                TriviaGameApp.endingScreen = new EndingScreen();
+                                TriviaGameApp.endingScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
+                                TriviaGameApp.endingScreen.renderEndingScreen("EndingScreen.fxml", "Styles.css", true);
+                            });
                         }
                         catch (IOException e){
                             e.printStackTrace();

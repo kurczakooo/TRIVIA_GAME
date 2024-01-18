@@ -46,7 +46,7 @@ public class QuestionScreen {
     @FXML
     private Label counter;
     @FXML
-    private Stage primaryStage;
+    public Stage primaryStage;
     public ArrayList<String> answers;
     private String right_answer;
     private String question;
@@ -79,7 +79,7 @@ public class QuestionScreen {
 
             if(isHost) {
                 TriviaGameApp.questionScreen.setPlayerInfoHost();
-                TriviaGameApp.questionScreen.isHost = true;
+               TriviaGameApp.questionScreen.isHost = true;
             }
             else TriviaGameApp.questionScreen.setPlayerInfoGuest();
 
@@ -137,7 +137,7 @@ public class QuestionScreen {
 
         if (selected_answer.equals(TriviaGameApp.questionScreen.right_answer)) {
             clicked.setStyle("-fx-background-color: #7BB6B2");
-            TriviaGameApp.questionScreen.assignPrize(false);
+            TriviaGameApp.questionScreen.assignPrize(TriviaGameApp.questionScreen.isHost);
             TriviaGameApp.questionScreen.timer.cancel();
             adjustVisualsWhenAnswered("#7BB6B2", "Poprawna odpowiedź!");
 
@@ -174,10 +174,6 @@ public class QuestionScreen {
                 if(ScreensManagerForServer.roundNumber == 10){
                     TriviaGameApp.hostPlayer.bufferedWriter.write("EndOfGame\n");
                     TriviaGameApp.hostPlayer.bufferedWriter.flush();
-                    System.out.println("\nKOINIECGRRY HOST SCREEN\n");
-                }
-                else if(ScreensManagerForServer.roundNumber == 11){
-                    System.out.println("zabezpieczenie");
                 }
                 TriviaGameApp.hostPlayer.bufferedWriter.write("guestTurn\n");
                 TriviaGameApp.hostPlayer.bufferedWriter.flush();
@@ -234,10 +230,12 @@ public class QuestionScreen {
                     }
                     else if(msg.equals("EndOfGame")){
                         timer.cancel();
-                        //Platform.runLater(() -> {
-                        //    TriviaGameApp.questionScreen.waitForHostEndSignal();
-                        //});
-                        System.out.println("\nKONIECGRY GOSC SCREEN\n");
+                        Platform.runLater(() -> {
+                            System.out.println("\nKONIECGRY GOSC SCREEN\n" + TriviaGameApp.guestPlayer.Prize);
+                            TriviaGameApp.endingScreen = new EndingScreen();
+                            TriviaGameApp.endingScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
+                            TriviaGameApp.endingScreen.renderEndingScreen("EndingScreen.fxml", "Styles.css", false);
+                        });
                     }
                     else{
                         timer.cancel();
