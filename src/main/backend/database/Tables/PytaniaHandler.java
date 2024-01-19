@@ -13,11 +13,26 @@ public class PytaniaHandler {
     private static final Connection connection = DataBaseHandler.connect();
 
 
+   public static Integer getidpytania(String tresc){
+        String sqlQuery = "SELECT IDpytania FROM Pytania WHERE tresc = ?";
 
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
 
-   /*public static void getidpytania(String tresc){
-        String sqlQuery = "SELECT "
-   }*/
+            preparedStatement.setString(1, tresc);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                System.out.print("ID pytania po kategorii: ");
+                return resultSet.getInt(1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+       System.out.println("\nBlad! Mozliwe ze masz literowke\n");
+       return null;
+   }
 
 
 
@@ -257,7 +272,10 @@ public class PytaniaHandler {
           setPytanie("a", "b", "c", "d", "e", 16);
           setPytanie(2137,"a", "b", "c", "d", "e", 16);
           deletePytanie(getMaxId());
+
 */
 
+        System.out.println(getidpytania("Miś koala należy do rodziny ..."));
+        System.out.println(getidpytania("Miś koala należy do rodziny asf..."));
     }
 }
