@@ -100,7 +100,7 @@ public class ScreensManagerForServer {
                             System.out.println("wyslano wiadomosc konczaca gre do goscia");
 
                             System.out.println("\nKOINIECGRRY HOST SCREEN\n" + TriviaGameApp.hostPlayer.Prize);
-                            HisTurTmpHandler.deleteAllRows();
+                            //HisTurTmpHandler.deleteAllRows();
                             Platform.runLater(() -> {
                                 TriviaGameApp.endingScreen = new EndingScreen();
                                 TriviaGameApp.endingScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);

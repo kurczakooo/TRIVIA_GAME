@@ -1,6 +1,7 @@
 package frontend_package;
 
 import database.DataBaseHandler;
+import database.Tables.HisTurTmpHandler;
 import database.Tables.KategoriePytanHandler;
 import database.Tables.PytaniaHandler;
 import database.Tables.TablesManagement;
@@ -169,6 +170,7 @@ public class QuestionScreen {
     private void processTheAnswer(boolean isRight, String questionContent, String answerContent){
         //wywolac metode ktora pobierze id pytania na podstawie tresci
         //wywowal metode ktora doda wiersz do HisTurTmp
+        //HisTurTmpHandler.setWybranaOdpowiedz();
         if(TriviaGameApp.questionScreen.isHost){
             try {
                 if(ScreensManagerForServer.roundNumber == 10){
