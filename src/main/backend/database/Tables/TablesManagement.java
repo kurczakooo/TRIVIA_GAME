@@ -74,7 +74,7 @@ public class TablesManagement {
 
 
                         // Dodajemy wylosowane dane Pytania do HisTurTmp
-                        HisTurTmpHandler. setWybranaOdpowiedz(kategoria, IDGracza, drawPytanieID, IDKategori);
+                        HisTurTmpHandler. setWybranaOdpowiedz(kategoria, IDGracza, drawPytanieID);
                         return drawPytanieID;
                     }
 
@@ -110,7 +110,7 @@ public class TablesManagement {
              ResultSet resultSet = selectStatement.executeQuery()) {
 
             // Wstawianie danych
-            String insertQuery = "INSERT INTO HisTurFixed (IDtury, WybranaOdpowiedz, IDgracza, IDpytania, pytania_IdKategori) VALUES (?,?,?,?,?)";
+            String insertQuery = "INSERT INTO HisTurFixed (IDtury, WybranaOdpowiedz, IDgracza, IDpytania) VALUES (?,?,?,?)";
 
             try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                 while (resultSet.next()) {
@@ -119,7 +119,6 @@ public class TablesManagement {
                     insertStatement.setString(2, resultSet.getString("WybranaOdpowiedz"));
                     insertStatement.setInt(3, resultSet.getInt("IDgracza"));
                     insertStatement.setInt(4, resultSet.getInt("IDpytania"));
-                    insertStatement.setInt(5, resultSet.getInt("pytania_IdKategori"));
 
                     // Wykonaj zapytanie
                     insertStatement.executeUpdate();
