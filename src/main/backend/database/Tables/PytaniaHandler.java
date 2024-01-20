@@ -35,7 +35,6 @@ public class PytaniaHandler {
    }
 
 
-
    // public static void getIDGracza(String nick){
 
     //}

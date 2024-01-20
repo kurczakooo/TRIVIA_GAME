@@ -34,6 +34,7 @@ public class CategoryChoiceScreen {
     @FXML
     private Button categoryButton2;
     public boolean IsLastQuestionRight;
+    private boolean isHost;
 
     @FXML
     public void setPrimaryStage(Stage primaryStage) {
@@ -62,14 +63,16 @@ public class CategoryChoiceScreen {
         TriviaGameApp.categoryChoiceScreen = loader.getController();
         TriviaGameApp.categoryChoiceScreen.setPrimaryStage(primaryStage);
 
+        TriviaGameApp.categoryChoiceScreen.assignCategories();
+
         TriviaGameApp.categoryChoiceScreen.IsLastQuestionRight = wasLastQuestionRight;
         TriviaGameApp.categoryChoiceScreen.setChoiceText();
 
-        if(isHost)
+        if(isHost) {
             TriviaGameApp.categoryChoiceScreen.setPlayerInfoHost();
+            TriviaGameApp.categoryChoiceScreen.isHost = true;
+        }
         else TriviaGameApp.categoryChoiceScreen.setPlayerInfoGuest();
-
-        TriviaGameApp.categoryChoiceScreen.assignCategories();
     }
 
     public void ChoiceHandler(ActionEvent actionEvent){
@@ -78,7 +81,8 @@ public class CategoryChoiceScreen {
 
         TriviaGameApp.questionScreen = new QuestionScreen();
         TriviaGameApp.questionScreen.setPrimaryStage(TriviaGameApp.categoryChoiceScreen.primaryStage);
-        TriviaGameApp.questionScreen.renderQuestionScreen("QuestionScreen.fxml", "Styles.css", false, chosenCategory);
+        TriviaGameApp.questionScreen.renderQuestionScreen("QuestionScreen.fxml", "Styles.css",
+                TriviaGameApp.categoryChoiceScreen.isHost, chosenCategory);
     }
 
     public void setPlayerInfoHost(){
@@ -92,7 +96,6 @@ public class CategoryChoiceScreen {
     }
 
     private void assignCategories(){
-        //tymczasowo robie polaczenei z baza tutaj potem bedzu jedno uzywane w TriviaGameApp
         DataBaseHandler.connect();
         try {
             String[] categories = TablesManagement.twoCategoriesFromKategorie();

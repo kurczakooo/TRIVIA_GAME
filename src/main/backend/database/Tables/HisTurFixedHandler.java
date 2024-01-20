@@ -45,7 +45,7 @@ public class HisTurFixedHandler {
     }
 
     public static void setWybranaOdpowiedz(Integer IDtury, String WybranaOdpowiedz,
-                                           Integer IDgracza, Integer IDpytania, Integer pytania_IdKategori){
+                                           Integer IDgracza, Integer IDpytania){
 
         String sqlQuestion = "INSERT INTO HisTurFixed VALUES(?, ?, ?, ?, ?)";
 
@@ -55,7 +55,6 @@ public class HisTurFixedHandler {
             preparedStatement.setString(2, WybranaOdpowiedz);
             preparedStatement.setInt(3, IDgracza);
             preparedStatement.setInt(4, IDpytania);
-            preparedStatement.setInt(5, pytania_IdKategori);
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -74,7 +73,6 @@ public class HisTurFixedHandler {
 
     public static void main(String[] args) {
         System.out.println("test");
-        setWybranaOdpowiedz(1,"sasf", 1, 2,3);
         System.out.println(getWybranaOdpowiedz(1));
         System.out.println(getMaxId());
     }

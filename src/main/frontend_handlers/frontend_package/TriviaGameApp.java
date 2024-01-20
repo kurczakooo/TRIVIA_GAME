@@ -13,17 +13,15 @@ import java.util.Date;
 
 public class TriviaGameApp extends Application {
     public static Server server;
-    public static DataBaseHandler dataBaseHandler;
     public static Player hostPlayer;
     public static Player guestPlayer;
-    public static PlayerInfo hostInfo;
-    public static PlayerInfo guestInfo;
     public static MenuScreen menuScreen;
     public static HostScreen hostScreen;
     public static JoinScreen joinScreen;
     public static WaitForPlayerTurnScreen waitForPlayerTurnScreen;
     public static CategoryChoiceScreen categoryChoiceScreen;
     public static QuestionScreen questionScreen;
+    public static EndingScreen endingScreen;
 
     public Date matchDate;
 

@@ -78,6 +78,9 @@ public class JoinScreen {
                 TriviaGameApp.guestPlayer.bufferedWriter = new BufferedWriter(new OutputStreamWriter(
                         TriviaGameApp.guestPlayer.socket.getOutputStream()
                 ));
+                TriviaGameApp.guestPlayer.bufferedReader = new BufferedReader(new InputStreamReader(
+                        TriviaGameApp.guestPlayer.socket.getInputStream()
+                ));
                 TriviaGameApp.guestPlayer.bufferedWriter.write(TriviaGameApp.guestPlayer.nickname + "\n");
                 TriviaGameApp.guestPlayer.bufferedWriter.flush();
 

@@ -166,8 +166,8 @@
     -fx-font-size: 36px;
     -fx-text-fill: white;
     -fx-pref-width: 1200;
-    -fx-pref-height: 200;
-    -fx-alignment: top-left;
+    -fx-alignment: top-center;
+    -fx-padding: 120 0 0 0;
 }
 
 .question-label {
@@ -197,4 +197,31 @@
     -fx-min-height: 150;
     -fx-text-alignment: center;
     -fx-wrap-text: true;
+}
+
+/* /////////////////////////////////////////ENDING SCREEN ///////////////////////////////////////// */
+
+.main-label {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 48px;
+    -fx-text-alignment: center;
+}
+
+.info-label {
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 32px;
+    -fx-text-alignment: center;
+}
+
+.outer-vbox {
+    -fx-padding: 50 300 0 300;
+}
+
+.inner-vbox {
+    -fx-border-width: 5;
+    -fx-border-color: #04316D;
+    -fx-background-color: #d3d3d3;
+    -fx-alignment: center;
 }

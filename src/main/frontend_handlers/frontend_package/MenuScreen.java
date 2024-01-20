@@ -14,9 +14,7 @@ import server.Gracz;
 import server.Player;
 import server.Server;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.Socket;
 import java.util.Date;
 import java.util.Objects;
@@ -67,13 +65,14 @@ public class MenuScreen{
                 //creating a hosting player (still a client)
                 Socket playerSocket = new Socket("localhost", TriviaGameApp.server.serverSocket.getLocalPort());
                 TriviaGameApp.hostPlayer = new Player(playerSocket, nickbox.getText());
+                TriviaGameApp.hostPlayer.bufferedWriter = new BufferedWriter(new OutputStreamWriter(TriviaGameApp.hostPlayer.socket.getOutputStream()));
+                TriviaGameApp.hostPlayer.bufferedReader = new BufferedReader(new InputStreamReader(TriviaGameApp.hostPlayer.socket.getInputStream()));
 
                 TriviaGameApp.server.setHostPlayer(TriviaGameApp.hostPlayer);
                 //TriviaGameApp.server.shareInfo();
 
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
                 TriviaGameApp.hostScreen.setPlayerInfoHost();
-                TriviaGameApp.hostInfo = TriviaGameApp.hostScreen.playerInfo;
                 TriviaGameApp.hostScreen.guestButton.setDisable(true);
             } catch (IOException e){
                 e.printStackTrace();

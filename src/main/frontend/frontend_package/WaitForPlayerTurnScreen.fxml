@@ -10,6 +10,6 @@
         <PlayerInfo fx:id="playerInfo"/>
     </StackPane>
     <VBox alignment="CENTER">
-        <Label styleClass="waiting-label" text="Poczekaj aż twój przeciwnik odpowie na pytanie"/>
+        <Label fx:id="waitText" styleClass="waiting-label"/>
     </VBox>
 </VBox>

@@ -47,7 +47,7 @@ public class HisTurTmpHandler {
 
 
     public static void setWybranaOdpowiedz(Integer IDtury, String WybranaOdpowiedz,
-                                           Integer IDgracza, Integer IDpytania, Integer pytania_IdKategori){
+                                           Integer IDgracza, Integer IDpytania){
 
         String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?, ?)";
 
@@ -57,7 +57,6 @@ public class HisTurTmpHandler {
             preparedStatement.setString(2, WybranaOdpowiedz);
             preparedStatement.setInt(3, IDgracza);
             preparedStatement.setInt(4, IDpytania);
-            preparedStatement.setInt(5, pytania_IdKategori);
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -77,7 +76,7 @@ public class HisTurTmpHandler {
 
     // Przeciazona metoda, auto IDtury
     public static void setWybranaOdpowiedz( String WybranaOdpowiedz, Integer IDgracza,
-                                            Integer IDpytania, Integer pytania_IdKategori){
+                                            Integer IDpytania){
 
         String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?, ?)";
 
@@ -87,7 +86,6 @@ public class HisTurTmpHandler {
             preparedStatement.setString(2, WybranaOdpowiedz);
             preparedStatement.setInt(3, IDgracza);
             preparedStatement.setInt(4, IDpytania);
-            preparedStatement.setInt(5, pytania_IdKategori);
 
             int affectedRows = preparedStatement.executeUpdate();
 
