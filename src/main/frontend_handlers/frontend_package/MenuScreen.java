@@ -1,22 +1,19 @@
 package frontend_package;
 
+import database.Tables.RankingHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
-import server.Gracz;
 import server.Player;
 import server.Server;
 
 import java.io.*;
 import java.net.Socket;
-import java.util.Date;
 import java.util.Objects;
 
 public class MenuScreen{
@@ -74,6 +71,8 @@ public class MenuScreen{
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
                 TriviaGameApp.hostScreen.setPlayerInfoHost();
                 TriviaGameApp.hostScreen.guestButton.setDisable(true);
+
+                RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
             } catch (IOException e){
                 e.printStackTrace();
             }
@@ -98,6 +97,8 @@ public class MenuScreen{
                 //TriviaGameApp.joinScreen.generateServersInfo(TriviaGameApp.guestPlayer.socket);
 
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
+
+                RankingHandler.addPlayerWithoutStats(TriviaGameApp.guestPlayer.nickname);
             } catch (IOException e){
                 e.printStackTrace();
             }

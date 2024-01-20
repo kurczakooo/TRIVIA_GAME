@@ -1,10 +1,7 @@
 package frontend_package;
 
 import database.DataBaseHandler;
-import database.Tables.HisTurTmpHandler;
-import database.Tables.KategoriePytanHandler;
-import database.Tables.PytaniaHandler;
-import database.Tables.TablesManagement;
+import database.Tables.*;
 import frontend_package.components.PlayerInfo;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -170,7 +167,6 @@ public class QuestionScreen {
     private void processTheAnswer(boolean isRight, String questionContent, String answerContent){
         //wywolac metode ktora pobierze id pytania na podstawie tresci
         //wywowal metode ktora doda wiersz do HisTurTmp
-        //HisTurTmpHandler.setWybranaOdpowiedz();
         if(TriviaGameApp.questionScreen.isHost){
             try {
                 if(ScreensManagerForServer.roundNumber == 10){
@@ -183,6 +179,9 @@ public class QuestionScreen {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            int playerID = RankingHandler.getidgracza(TriviaGameApp.hostPlayer.nickname);
+            int questionID = PytaniaHandler.getidpytania(questionContent);
+            HisTurTmpHandler.setWybranaOdpowiedz(answerContent, playerID, questionID);
         }
         else{
             try {
@@ -198,6 +197,9 @@ public class QuestionScreen {
             catch (IOException e) {
                 e.printStackTrace();
             }
+            int playerID = RankingHandler.getidgracza(TriviaGameApp.guestPlayer.nickname);
+            int questionID = PytaniaHandler.getidpytania(questionContent);
+            HisTurTmpHandler.setWybranaOdpowiedz(answerContent, playerID, questionID);
         }
     }
 

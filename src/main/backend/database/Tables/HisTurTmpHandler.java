@@ -75,10 +75,10 @@ public class HisTurTmpHandler {
 
 
     // Przeciazona metoda, auto IDtury
-    public static void setWybranaOdpowiedz( String WybranaOdpowiedz, Integer IDgracza,
+    public static void setWybranaOdpowiedz(String WybranaOdpowiedz, Integer IDgracza,
                                             Integer IDpytania){
 
-        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?, ?)";
+        String sqlQuestion = "INSERT INTO HisTurTmp VALUES(?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
 
@@ -220,7 +220,10 @@ public class HisTurTmpHandler {
         Integer IDKategori = KategoriePytanHandler.getIDkategori(kategoria);
 
         // Zlicza ile jest wierszy w HisTurTmp z Kategoria ktora przekazalismy
-        String sqlQuery = "SELECT COUNT(*) FROM HisTurTmp WHERE pytania_IdKategori = " + IDKategori;
+        String sqlQuery = "SELECT count(Pytania.IDkategori)\n" +
+                "FROM HisTurTmp\n" +
+                "join Pytania on HisTurTmp.IDpytania = Pytania.IDpytania\n" +
+                "WHERE Pytania.IDkategori = " + IDKategori + ";";
 
         try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
 
@@ -258,8 +261,8 @@ deleteAllRows();
 
        // System.out.println( isPytanieInTable(1));
 
-        System.out.println(isAnyQuestionLeftInCategory("HISTORIA"));
-        System.out.println(isAnyQuestionLeftInCategory("INFORMATYKA"));
+       // System.out.println(isAnyQuestionLeftInCategory("HISTORIA"));
+       // System.out.println(isAnyQuestionLeftInCategory("INFORMATYKA"));
     }
 
 

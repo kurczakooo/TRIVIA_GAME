@@ -74,7 +74,7 @@ public class TablesManagement {
 
 
                         // Dodajemy wylosowane dane Pytania do HisTurTmp
-                        HisTurTmpHandler. setWybranaOdpowiedz(kategoria, IDGracza, drawPytanieID);
+                        //HisTurTmpHandler. setWybranaOdpowiedz(kategoria, IDGracza, drawPytanieID);
                         return drawPytanieID;
                     }
 

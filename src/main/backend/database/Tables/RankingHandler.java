@@ -26,14 +26,14 @@ public class RankingHandler {
     }
 
 
-    public static void addPlayerWithoutStats(){
+    public static void addPlayerWithoutStats(String nick){
         // ID jest auto increment ale i tak musze tutaj dac
         String sqlQuery = "INSERT INTO Ranking VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
 
             preparedStatement.setInt(1, getMaxId() +1);
-            preparedStatement.setString(2, null);
+            preparedStatement.setString(2, nick);
             preparedStatement.setDate(3, null);
             preparedStatement.setString(4, null);
             preparedStatement.setString(5, null);
@@ -43,7 +43,7 @@ public class RankingHandler {
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
-                System.out.println("\npomyslnie dodano Gracza (null) do rankingu");
+                System.out.println("\npomyslnie dodano Gracza "+ nick +" do rankingu");
             } else {
                 System.out.println("\nDodanie Gracza do rankingu nie powiodło się");
             }
@@ -88,8 +88,25 @@ public class RankingHandler {
 
     }
 
-    public static void main(String[] args) {
-         updatePlayer(1, "Antoni", 1, 0, 2, 140);
 
+    public static Integer getidgracza(String nick){
+        String sqlQuery = "SELECT IDgracza FROM Ranking WHERE nick = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            preparedStatement.setString(1, nick);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println("\nBlad! Mozliwe ze masz literowke\n");
+        return null;
     }
+
 }

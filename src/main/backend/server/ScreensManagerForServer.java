@@ -1,6 +1,8 @@
 package server;
 
+import database.Tables.HisTurFixedHandler;
 import database.Tables.HisTurTmpHandler;
+import database.Tables.TablesManagement;
 import frontend_package.CategoryChoiceScreen;
 import frontend_package.EndingScreen;
 import frontend_package.TriviaGameApp;
@@ -102,6 +104,8 @@ public class ScreensManagerForServer {
                             String guestPrize = TriviaGameApp.server.bufferedReader.readLine();
 
                             System.out.println("\nKOINIECGRRY HOST SCREEN\n" + TriviaGameApp.hostPlayer.Prize);
+
+                            TablesManagement.fetchFromHisTurTmp();
                             HisTurTmpHandler.deleteAllRows();
                             Platform.runLater(() -> {
                                 TriviaGameApp.guestPlayer.Prize = Integer.parseInt(guestPrize);
