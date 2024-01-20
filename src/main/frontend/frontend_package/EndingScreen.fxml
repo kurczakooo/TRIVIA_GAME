@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import frontend_package.components.PlayerInfo?>
 
@@ -13,5 +10,25 @@
         <Label styleClass="background-label" text="TRIVIA" />
         <PlayerInfo fx:id="playerInfo"/>
     </StackPane>
-    <Label text="KONIEC GRY SMIECIU"/>
+
+    <Label fx:id="verdictLabel" styleClass="main-label"/>
+
+    <VBox styleClass="outer-vbox">
+        <Label text="Twój wynik" styleClass="info-label"/>
+        <VBox styleClass="inner-vbox">
+            <Label fx:id="yourNick" styleClass="main-label"/>
+            <Label fx:id="yourPrize" styleClass="prize-label"/>
+        </VBox>
+    </VBox>
+
+
+    <VBox styleClass="outer-vbox">
+        <Label text="Wynik przeciwnika" styleClass="info-label"/>
+        <VBox styleClass="inner-vbox">
+            <Label fx:id="opponentNick" styleClass="main-label"/>
+            <Label fx:id="opponentPrize" styleClass="prize-label"/>
+        </VBox>
+    </VBox>
+
+
 </VBox>

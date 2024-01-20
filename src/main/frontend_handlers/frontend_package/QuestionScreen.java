@@ -228,11 +228,19 @@ public class QuestionScreen {
                        Platform.runLater(() -> {
                            TriviaGameApp.questionScreen.waitForHostEndSignal();
                         });
-                        System.out.println("\nTOBYLAOSTATNIARUNDACHUJU\n");
                     }
-                    else if(msg.equals("EndOfGame")){
+                    else if(msg.contains(";")){
+                        String[] info = msg.split(";");
                         timer.cancel();
                         Platform.runLater(() -> {
+                            TriviaGameApp.hostPlayer.Prize = Integer.parseInt(info[1]);
+                                try{
+                                    TriviaGameApp.guestPlayer.bufferedWriter.write(TriviaGameApp.guestPlayer.Prize + "\n");
+                                    TriviaGameApp.guestPlayer.bufferedWriter.flush();
+                                }catch (IOException e){
+                                    e.printStackTrace();
+                                }
+
                             System.out.println("\nKONIECGRY GOSC SCREEN\n" + TriviaGameApp.guestPlayer.Prize);
                             TriviaGameApp.endingScreen = new EndingScreen();
                             TriviaGameApp.endingScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
@@ -262,7 +270,7 @@ public class QuestionScreen {
     }
 
     private int calculatePrize(float answerTime){
-        float firststep = 1 - ((answerTime / 30000) /2);
+        float firststep = 1 - (answerTime / 30000);
         return (int) (firststep * 1000);
     }
 

@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -13,6 +14,18 @@ import java.time.Instant;
 public class EndingScreen {
     @FXML
     private PlayerInfo playerInfo;
+    @FXML
+    private Label verdictLabel;
+    @FXML
+    private Label yourNick;
+    @FXML
+    private Label yourPrize;
+    @FXML
+    private Label opponentNick;
+    @FXML
+    private Label opponentPrize;
+
+    private boolean isHost;
     @FXML
     private Stage primaryStage;
 
@@ -34,15 +47,60 @@ public class EndingScreen {
             TriviaGameApp.endingScreen = loader.getController();
             TriviaGameApp.endingScreen.setPrimaryStage(primaryStage);
 
+            TriviaGameApp.endingScreen.isHost = isHost;
+
             if(isHost) {
                 TriviaGameApp.endingScreen.setPlayerInfoHost();
             }
             else TriviaGameApp.endingScreen.setPlayerInfoGuest();
 
-        } catch (IOException e){
+            TriviaGameApp.endingScreen.setPodiumLabels(isHost);
+
+        } catch (Exception e){
             e.printStackTrace();
         }
     }
+
+    private void setPodiumLabels(boolean isHost) throws Exception{
+        if(TriviaGameApp.hostPlayer.Prize > TriviaGameApp.guestPlayer.Prize){
+            if(isHost) {
+                verdictLabel.setText("WYGRAŁEŚ!");
+                TriviaGameApp.endingScreen.setLabelsIfYouAreHost();
+            }
+            else{
+                verdictLabel.setText("PRZEGRAŁEŚ!");
+                TriviaGameApp.endingScreen.seLabelsIfYouAreGuest();
+            }
+        }
+        else if(TriviaGameApp.hostPlayer.Prize < TriviaGameApp.guestPlayer.Prize){
+            if(isHost) {
+                verdictLabel.setText("PRZEGRAŁEŚ!");
+                TriviaGameApp.endingScreen.setLabelsIfYouAreHost();
+            }
+            else{
+                verdictLabel.setText("WYGRAŁEŚ!");
+                TriviaGameApp.endingScreen.seLabelsIfYouAreGuest();
+            }
+        }
+        else throw new Exception("REMIS JAK ??????? XDDDDDDDDDDD");
+    }
+
+    private void setLabelsIfYouAreHost(){
+        yourNick.setText(TriviaGameApp.hostPlayer.nickname);
+        yourPrize.setText(Integer.toString(TriviaGameApp.hostPlayer.Prize) + "$");
+
+        opponentNick.setText(TriviaGameApp.guestPlayer.nickname);
+        opponentPrize.setText(Integer.toString(TriviaGameApp.guestPlayer.Prize) + "$");
+    }
+
+    private void seLabelsIfYouAreGuest(){
+        yourNick.setText(TriviaGameApp.guestPlayer.nickname);
+        yourPrize.setText(Integer.toString(TriviaGameApp.guestPlayer.Prize) + "$");
+
+        opponentNick.setText(TriviaGameApp.hostPlayer.nickname);
+        opponentPrize.setText(Integer.toString(TriviaGameApp.hostPlayer.Prize) + "$");
+    }
+
 
     public void setPlayerInfoHost(){
         TriviaGameApp.endingScreen.playerInfo.setPlayerNick(TriviaGameApp.hostPlayer.nickname);

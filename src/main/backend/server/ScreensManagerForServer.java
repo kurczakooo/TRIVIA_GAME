@@ -95,13 +95,16 @@ public class ScreensManagerForServer {
                     else if(msgFromHost.equals("EndOfGame")){
                         timer.cancel();
                         try {
-                            TriviaGameApp.server.bufferedWriter.write("EndOfGame\n");
+                            TriviaGameApp.server.bufferedWriter.write("EndOfGame;" + TriviaGameApp.hostPlayer.Prize + "\n");
                             TriviaGameApp.server.bufferedWriter.flush();
                             System.out.println("wyslano wiadomosc konczaca gre do goscia");
 
+                            String guestPrize = TriviaGameApp.server.bufferedReader.readLine();
+
                             System.out.println("\nKOINIECGRRY HOST SCREEN\n" + TriviaGameApp.hostPlayer.Prize);
-                            //HisTurTmpHandler.deleteAllRows();
+                            HisTurTmpHandler.deleteAllRows();
                             Platform.runLater(() -> {
+                                TriviaGameApp.guestPlayer.Prize = Integer.parseInt(guestPrize);
                                 TriviaGameApp.endingScreen = new EndingScreen();
                                 TriviaGameApp.endingScreen.setPrimaryStage(TriviaGameApp.questionScreen.primaryStage);
                                 TriviaGameApp.endingScreen.renderEndingScreen("EndingScreen.fxml", "Styles.css", true);
