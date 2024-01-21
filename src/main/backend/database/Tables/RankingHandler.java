@@ -57,7 +57,7 @@ public class RankingHandler {
     public static void updatePlayer(Integer IDgracza, String Nick, Integer iloscGier,
                                     Integer iloscWygranychPodRzad, Integer NajszybszaOdp, Integer NajNagroda) {
 
-        String sqlQuery = "UPDATE Ranking SET Nick = ?, DataOstatniejGry = ?,  iloscGier = ?, iloscWygranychPodRzad = ?," +
+        String sqlQuery = "UPDATE Ranking SET Nick = ?, DataOstatniejGry = datetime(),  iloscGier = ?, iloscWygranychPodRzad = ?," +
                 "NajszybszaOdp = ?, NajNagroda = ? WHERE IDgracza = ?";
 
         // Dzisiejsza data
@@ -67,12 +67,12 @@ public class RankingHandler {
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, Nick);
-            preparedStatement.setDate(2, dzisiejszaSqlDate);
-            preparedStatement.setInt(3, iloscGier);
-            preparedStatement.setInt(4, iloscWygranychPodRzad);
-            preparedStatement.setInt(5, NajszybszaOdp);
-            preparedStatement.setInt(6, NajszybszaOdp);
-            preparedStatement.setInt(7, IDgracza);
+            //preparedStatement.setDate(2, dzisiejszaSqlDate);
+            preparedStatement.setInt(2, iloscGier);
+            preparedStatement.setInt(3, iloscWygranychPodRzad);
+            preparedStatement.setInt(4, NajszybszaOdp);
+            preparedStatement.setInt(5, NajNagroda);
+             preparedStatement.setInt(6, IDgracza);
 
             int rowsAffected = preparedStatement.executeUpdate();
 

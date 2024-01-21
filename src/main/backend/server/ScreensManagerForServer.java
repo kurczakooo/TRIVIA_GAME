@@ -2,6 +2,7 @@ package server;
 
 import database.Tables.HisTurFixedHandler;
 import database.Tables.HisTurTmpHandler;
+import database.Tables.RankingHandler;
 import database.Tables.TablesManagement;
 import frontend_package.CategoryChoiceScreen;
 import frontend_package.EndingScreen;
@@ -66,7 +67,6 @@ public class ScreensManagerForServer {
                     }
                     else{
                         timer.cancel();
-                        throw new RuntimeException();
                     }
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -107,6 +107,10 @@ public class ScreensManagerForServer {
 
                             TablesManagement.fetchFromHisTurTmp();
                             HisTurTmpHandler.deleteAllRows();
+                            int id = RankingHandler.getidgracza(TriviaGameApp.hostPlayer.nickname);
+                            RankingHandler.updatePlayer(id, TriviaGameApp.hostPlayer.nickname, 0, 0, TriviaGameApp.hostPlayer.FastestAnswer, TriviaGameApp.hostPlayer.biggestWin);
+                            System.out.println("STATY " + TriviaGameApp.hostPlayer.nickname + " najHajs:" + TriviaGameApp.hostPlayer.biggestWin + " najOdp:" + TriviaGameApp.hostPlayer.FastestAnswer);
+
                             Platform.runLater(() -> {
                                 TriviaGameApp.guestPlayer.Prize = Integer.parseInt(guestPrize);
                                 TriviaGameApp.endingScreen = new EndingScreen();

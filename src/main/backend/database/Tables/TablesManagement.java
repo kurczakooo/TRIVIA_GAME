@@ -95,7 +95,7 @@ public class TablesManagement {
         Connection connection = DataBaseHandler.connect();
 
 
-        // Wpierw czyscimy tabele HisTurFixed, zeby wielokrotnie dodawac
+        //Wpierw czyscimy tabele HisTurFixed, zeby wielokrotnie dodawac
         String truncateQuery = "DELETE FROM HisTurFixed";
         try (PreparedStatement truncateStatement = connection.prepareStatement(truncateQuery)) {
             truncateStatement.executeUpdate();
@@ -115,7 +115,7 @@ public class TablesManagement {
             try (PreparedStatement insertStatement = connection.prepareStatement(insertQuery)) {
                 while (resultSet.next()) {
                     // Ustaw wartości dla każdej kolumny
-                    insertStatement.setInt(1, resultSet.getInt("IDtury"));
+                    insertStatement.setInt(1, resultSet.getInt("IdTury"));
                     insertStatement.setString(2, resultSet.getString("WybranaOdpowiedz"));
                     insertStatement.setInt(3, resultSet.getInt("IDgracza"));
                     insertStatement.setInt(4, resultSet.getInt("IDpytania"));
@@ -139,7 +139,21 @@ public class TablesManagement {
         }
     }
 
+    public static Integer getMaxId(Connection connection) {
 
+        String sqlQuestion = "SELECT MAX(IDtury) FROM HisTurFixed";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuestion)){
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){       // numer kolumny
+                return resultSet.getInt(1);
+            }
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     public static void main(String[] args) throws SQLException {
         fetchFromHisTurTmp();

@@ -1,10 +1,12 @@
 package frontend_package;
 
 import frontend_package.components.PlayerInfo;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -24,6 +26,8 @@ public class EndingScreen {
     private Label opponentNick;
     @FXML
     private Label opponentPrize;
+    @FXML
+    private Button exitButton;
 
     private boolean isHost;
     @FXML
@@ -83,6 +87,17 @@ public class EndingScreen {
             }
         }
         else throw new Exception("REMIS JAK ??????? XDDDDDDDDDDD");
+    }
+
+    public void onExitGameButtonClick(ActionEvent actionEvent){
+        if (isHost){
+            TriviaGameApp.hostPlayer.disconnectPlayer();
+            TriviaGameApp.server.closeServer();
+        }
+        else TriviaGameApp.guestPlayer.disconnectPlayer();
+
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     private void setLabelsIfYouAreHost(){

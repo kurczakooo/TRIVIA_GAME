@@ -69,10 +69,6 @@ public class MenuScreen{
                 //TriviaGameApp.server.shareInfo();
 
                 TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
-                TriviaGameApp.hostScreen.setPlayerInfoHost();
-                TriviaGameApp.hostScreen.guestButton.setDisable(true);
-
-                RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
             } catch (IOException e){
                 e.printStackTrace();
             }
