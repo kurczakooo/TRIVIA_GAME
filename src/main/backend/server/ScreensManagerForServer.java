@@ -107,8 +107,6 @@ public class ScreensManagerForServer {
 
                             TablesManagement.fetchFromHisTurTmp();
                             HisTurTmpHandler.deleteAllRows();
-                            int id = RankingHandler.getidgracza(TriviaGameApp.hostPlayer.nickname);
-                            RankingHandler.updatePlayer(id, TriviaGameApp.hostPlayer.nickname, 0, 0, TriviaGameApp.hostPlayer.FastestAnswer, TriviaGameApp.hostPlayer.biggestWin);
                             System.out.println("STATY " + TriviaGameApp.hostPlayer.nickname + " najHajs:" + TriviaGameApp.hostPlayer.biggestWin + " najOdp:" + TriviaGameApp.hostPlayer.FastestAnswer);
 
                             Platform.runLater(() -> {
