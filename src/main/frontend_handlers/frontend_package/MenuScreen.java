@@ -68,7 +68,7 @@ public class MenuScreen{
                 TriviaGameApp.server.setHostPlayer(TriviaGameApp.hostPlayer);
                 //TriviaGameApp.server.shareInfo();
 
-                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css", true);
             } catch (IOException e){
                 e.printStackTrace();
             }

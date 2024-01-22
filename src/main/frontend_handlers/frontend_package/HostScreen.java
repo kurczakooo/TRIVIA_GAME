@@ -60,7 +60,7 @@ public class HostScreen {
 
     }
 
-    public void renderHostScreen(String fxmlFile, String cssFile) throws IOException {
+    public void renderHostScreen(String fxmlFile, String cssFile, boolean isHost) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -82,10 +82,11 @@ public class HostScreen {
 
        // primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
 
-        TriviaGameApp.hostScreen.setPlayerInfoHost();
-        TriviaGameApp.hostScreen.guestButton.setDisable(true);
-
-        RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
+        if(isHost){
+            TriviaGameApp.hostScreen.setPlayerInfoHost();
+            TriviaGameApp.hostScreen.guestButton.setDisable(true);
+            RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
+        }
     }
 
     public void setPlayerInfoHost(){
