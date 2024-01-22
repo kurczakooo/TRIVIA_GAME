@@ -60,11 +60,6 @@ public class RankingHandler {
         String sqlQuery = "UPDATE Ranking SET Nick = ?, DataOstatniejGry = datetime(),  iloscGier = ?, iloscWygranychPodRzad = ?," +
                 "NajszybszaOdp = ?, NajNagroda = ? WHERE IDgracza = ?";
 
-        // Dzisiejsza data
-        LocalDate dzisiejszaData = LocalDate.now();
-
-        Date dzisiejszaSqlDate = Date.valueOf(dzisiejszaData);
-
         try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
             preparedStatement.setString(1, Nick);
             //preparedStatement.setDate(2, dzisiejszaSqlDate);
@@ -109,4 +104,88 @@ public class RankingHandler {
         return null;
     }
 
+    public static boolean czyGraczJuzIstnieje(String nick){
+        String sqlQuery = "SELECT COUNT(*) FROM Ranking WHERE nick = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            preparedStatement.setString(1, nick);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                int count = resultSet.getInt(1);
+                System.out.println("Znaleziono Gracza w Bazie!");
+                return count > 0;
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public static Integer getIloscGierGracza(String nick){
+        String sqlQuery = "SELECT iloscGier FROM Ranking WHERE nick = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            preparedStatement.setString(1, nick);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println("\nBlad! Mozliwe ze masz literowke\n");
+        return null;
+    }
+
+    public static Integer getIloscWygranychGracza(String nick){
+        String sqlQuery = "SELECT IloscWygranychPodRzad FROM Ranking WHERE nick = ?";
+
+        try(PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)){
+
+            preparedStatement.setString(1, nick);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if(resultSet.next()){
+                return resultSet.getInt(1);
+            }
+
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        System.out.println("\nBlad! Mozliwe ze masz literowke\n");
+        return null;
+    }
+
+    public static void updatePlayerGamesAmount(Integer IDgracza, String Nick, Integer iloscGier) {
+
+        String sqlQuery = "UPDATE Ranking SET Nick = ?, DataOstatniejGry = datetime(),  iloscGier = ? WHERE IDgracza = ?";
+
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+            preparedStatement.setString(1, Nick);
+            preparedStatement.setInt(2, iloscGier);
+            preparedStatement.setInt(3, IDgracza);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("\nSuccessfully updated player stats for ID: " + IDgracza);
+            } else {
+                System.out.println("\nPlayer with ID: " + IDgracza + " not found or update failed");
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+
+    }
 }

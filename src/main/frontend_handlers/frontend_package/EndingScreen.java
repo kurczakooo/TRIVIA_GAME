@@ -1,5 +1,6 @@
 package frontend_package;
 
+import database.Tables.RankingHandler;
 import frontend_package.components.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -70,20 +71,44 @@ public class EndingScreen {
             if(isHost) {
                 verdictLabel.setText("WYGRAŁEŚ!");
                 TriviaGameApp.endingScreen.setLabelsIfYouAreHost();
+
+                int id = RankingHandler.getidgracza(TriviaGameApp.hostPlayer.nickname);
+                int iloscGier = RankingHandler.getIloscGierGracza(TriviaGameApp.hostPlayer.nickname);
+                int consecutiveWinAmount = RankingHandler.getIloscWygranychGracza(TriviaGameApp.hostPlayer.nickname);
+                System.out.println("ilosc gier: " + iloscGier + " ile wygral;" + consecutiveWinAmount);
+                RankingHandler.updatePlayer(id, TriviaGameApp.hostPlayer.nickname, iloscGier + 1, consecutiveWinAmount + 1, TriviaGameApp.hostPlayer.FastestAnswer, TriviaGameApp.hostPlayer.biggestWin);
             }
             else{
                 verdictLabel.setText("PRZEGRAŁEŚ!");
                 TriviaGameApp.endingScreen.seLabelsIfYouAreGuest();
+
+                int id = RankingHandler.getidgracza(TriviaGameApp.guestPlayer.nickname);
+                int iloscGier = RankingHandler.getIloscGierGracza(TriviaGameApp.guestPlayer.nickname);
+                int consecutiveWinAmount = RankingHandler.getIloscWygranychGracza(TriviaGameApp.guestPlayer.nickname);
+                System.out.println("ilosc gier: " + iloscGier + " ile wygral;" + consecutiveWinAmount);
+                RankingHandler.updatePlayer(id, TriviaGameApp.guestPlayer.nickname, iloscGier + 1, consecutiveWinAmount, TriviaGameApp.guestPlayer.FastestAnswer, TriviaGameApp.guestPlayer.biggestWin);
             }
         }
         else if(TriviaGameApp.hostPlayer.Prize < TriviaGameApp.guestPlayer.Prize){
             if(isHost) {
                 verdictLabel.setText("PRZEGRAŁEŚ!");
                 TriviaGameApp.endingScreen.setLabelsIfYouAreHost();
+
+                int id = RankingHandler.getidgracza(TriviaGameApp.hostPlayer.nickname);
+                int iloscGier = RankingHandler.getIloscGierGracza(TriviaGameApp.hostPlayer.nickname);
+                int consecutiveWinAmount = RankingHandler.getIloscWygranychGracza(TriviaGameApp.hostPlayer.nickname);
+                System.out.println("ilosc gier: " + iloscGier + " ile wygral;" + consecutiveWinAmount);
+                RankingHandler.updatePlayer(id, TriviaGameApp.hostPlayer.nickname, iloscGier + 1, consecutiveWinAmount, TriviaGameApp.hostPlayer.FastestAnswer, TriviaGameApp.hostPlayer.biggestWin);
             }
             else{
                 verdictLabel.setText("WYGRAŁEŚ!");
                 TriviaGameApp.endingScreen.seLabelsIfYouAreGuest();
+
+                int id = RankingHandler.getidgracza(TriviaGameApp.guestPlayer.nickname);
+                int iloscGier = RankingHandler.getIloscGierGracza(TriviaGameApp.guestPlayer.nickname);
+                int consecutiveWinAmount = RankingHandler.getIloscWygranychGracza(TriviaGameApp.guestPlayer.nickname);
+                System.out.println("ilosc gier: " + iloscGier + " ile wygral;" + consecutiveWinAmount);
+                RankingHandler.updatePlayer(id, TriviaGameApp.guestPlayer.nickname, iloscGier + 1, consecutiveWinAmount + 1, TriviaGameApp.guestPlayer.FastestAnswer, TriviaGameApp.guestPlayer.biggestWin);
             }
         }
         else throw new Exception("REMIS JAK ??????? XDDDDDDDDDDD");

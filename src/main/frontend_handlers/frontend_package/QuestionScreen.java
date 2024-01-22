@@ -171,10 +171,11 @@ public class QuestionScreen {
                     TriviaGameApp.hostPlayer.bufferedWriter.write("EndOfGame\n");
                     TriviaGameApp.hostPlayer.bufferedWriter.flush();
                 }
-                TriviaGameApp.hostPlayer.bufferedWriter.write("guestTurn\n");
-                TriviaGameApp.hostPlayer.bufferedWriter.flush();
-
-                ScreensManagerForServer.setWaitScreen();
+                else {
+                    TriviaGameApp.hostPlayer.bufferedWriter.write("guestTurn\n");
+                    TriviaGameApp.hostPlayer.bufferedWriter.flush();
+                    ScreensManagerForServer.setWaitScreen();
+                }
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
@@ -242,8 +243,6 @@ public class QuestionScreen {
                                     e.printStackTrace();
                                 }
 
-                            int id = RankingHandler.getidgracza(TriviaGameApp.guestPlayer.nickname);
-                            RankingHandler.updatePlayer(id, TriviaGameApp.guestPlayer.nickname, 0, 0, TriviaGameApp.guestPlayer.FastestAnswer, TriviaGameApp.guestPlayer.biggestWin);
                             System.out.println("STATY " + TriviaGameApp.guestPlayer.nickname + " najHajs:" + TriviaGameApp.guestPlayer.biggestWin + " najOdp:" + TriviaGameApp.guestPlayer.FastestAnswer);
 
                             System.out.println("\nKONIECGRY GOSC SCREEN\n" + TriviaGameApp.guestPlayer.Prize);

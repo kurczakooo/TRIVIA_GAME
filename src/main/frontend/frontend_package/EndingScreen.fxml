@@ -10,7 +10,9 @@
     <StackPane>
         <Label styleClass="background-label" text="TRIVIA" />
         <PlayerInfo fx:id="playerInfo"/>
-        <Button styleClass="exit-game-button" fx:id="exitButton" text="Wyjdź z gry" onAction="#onExitGameButtonClick"/>
+        <VBox styleClass="exit-button-vbox">
+            <Button styleClass="exit-game-button" fx:id="exitButton" text="Wyjdź z gry" onAction="#onExitGameButtonClick"/>
+        </VBox>
     </StackPane>
 
     <Label fx:id="verdictLabel" styleClass="main-label"/>

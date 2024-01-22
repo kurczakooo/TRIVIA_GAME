@@ -85,7 +85,10 @@ public class HostScreen {
         if(isHost){
             TriviaGameApp.hostScreen.setPlayerInfoHost();
             TriviaGameApp.hostScreen.guestButton.setDisable(true);
-            RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
+
+            if(!RankingHandler.czyGraczJuzIstnieje(TriviaGameApp.hostPlayer.nickname)){
+                RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
+            }
         }
     }
 

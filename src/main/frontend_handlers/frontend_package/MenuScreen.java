@@ -94,7 +94,10 @@ public class MenuScreen{
 
                 TriviaGameApp.joinScreen.renderJoinScreen("JoinScreen.fxml", "Styles.css");
 
-                RankingHandler.addPlayerWithoutStats(TriviaGameApp.guestPlayer.nickname);
+                if(!RankingHandler.czyGraczJuzIstnieje(TriviaGameApp.guestPlayer.nickname)){
+                    RankingHandler.addPlayerWithoutStats(TriviaGameApp.guestPlayer.nickname);
+                }
+
             } catch (IOException e){
                 e.printStackTrace();
             }
