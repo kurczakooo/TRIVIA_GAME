@@ -5,10 +5,14 @@
 <?import javafx.scene.layout.StackPane?>
 <?import frontend_package.components.PlayerInfo?>
 
+<?import javafx.scene.control.Button?>
 <VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.EndingScreen">
     <StackPane>
         <Label styleClass="background-label" text="TRIVIA" />
         <PlayerInfo fx:id="playerInfo"/>
+        <VBox styleClass="exit-button-vbox">
+            <Button styleClass="exit-game-button" fx:id="exitButton" text="Wyjdź z gry" onAction="#onExitGameButtonClick"/>
+        </VBox>
     </StackPane>
 
     <Label fx:id="verdictLabel" styleClass="main-label"/>

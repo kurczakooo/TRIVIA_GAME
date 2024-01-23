@@ -1,5 +1,6 @@
 package frontend_package;
 
+import database_package.Tables.RankingHandler;
 import frontend_package.components.PlayerInfo;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import server.ScreensManagerForServer;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -42,24 +42,24 @@ public class HostScreen {
 
     public void setLabels() {
         this.hostPlayerLabel.setText(TriviaGameApp.hostPlayer.nickname);
-        if (this.CzyGraczDrugiPolaczony) {
-            this.guestPlayerLabel.setText(TriviaGameApp.guestPlayer.nickname);
-            this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
+        if (TriviaGameApp.hostScreen.CzyGraczDrugiPolaczony) {
+            TriviaGameApp.hostScreen.guestPlayerLabel.setText(TriviaGameApp.guestPlayer.nickname);
+            TriviaGameApp.hostScreen.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
         }
         else {
-            this.guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
+            TriviaGameApp.hostScreen.guestPlayerLabel.setText("Oczekiwanie na gracza 2...");
         }
     }
 
     public void setLabelsWithServers(String hostname, String guestname){
-        this.hostPlayerLabel.setText(hostname);
-        this.guestPlayerLabel.setText(guestname);
-        this.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
-        this.hostPlayerLabel.setTextFill(Paint.valueOf("green"));
+        TriviaGameApp.hostScreen.hostPlayerLabel.setText(hostname);
+        TriviaGameApp.hostScreen.guestPlayerLabel.setText(guestname);
+        TriviaGameApp.hostScreen.guestPlayerLabel.setTextFill(Paint.valueOf("green"));
+        TriviaGameApp.hostScreen.hostPlayerLabel.setTextFill(Paint.valueOf("green"));
 
     }
 
-    public void renderHostScreen(String fxmlFile, String cssFile) throws IOException {
+    public void renderHostScreen(String fxmlFile, String cssFile, boolean isHost) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlFile));
         Parent root = loader.load();
 
@@ -80,6 +80,15 @@ public class HostScreen {
         TriviaGameApp.hostScreen.hostButton.setDisable(true);
 
        // primaryStage.setOnCloseRequest(e-> TriviaGameApp.server.closeServer());
+
+        if(isHost){
+            TriviaGameApp.hostScreen.setPlayerInfoHost();
+            TriviaGameApp.hostScreen.guestButton.setDisable(true);
+
+            if(!RankingHandler.czyGraczJuzIstnieje(TriviaGameApp.hostPlayer.nickname)){
+                RankingHandler.addPlayerWithoutStats(TriviaGameApp.hostPlayer.nickname);
+            }
+        }
     }
 
     public void setPlayerInfoHost(){

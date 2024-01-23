@@ -2,6 +2,7 @@ package server;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.Serializable;
 import java.net.Socket;
 
@@ -12,6 +13,7 @@ public class Player implements Serializable {
     public BufferedWriter bufferedWriter;
     public String nickname;
     public int FastestAnswer;
+    public int biggestWin;
     public int Prize;
 
     public Player(){
@@ -46,5 +48,13 @@ public class Player implements Serializable {
 
     public void setPrize(int prize){
         this.Prize = prize;
+    }
+
+    public void disconnectPlayer(){
+        try {
+            this.socket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

@@ -89,7 +89,7 @@ public class JoinScreen {
                 TriviaGameApp.hostScreen.setPrimaryStage(primaryStage);
                 //trzeba zrobi w serverze objectinputbuffer, i przeslac mu obiekt goscia. tutaj tylko odczyttaj
                 //nick hosta zeby go wysweitlic
-                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css");
+                TriviaGameApp.hostScreen.renderHostScreen("HostScreen.fxml", "Styles.css", false);
                 TriviaGameApp.hostScreen.setLabelsWithServers(serverInfo.hostNick.getText(), TriviaGameApp.guestPlayer.nickname);
                 TriviaGameApp.hostScreen.setPlayerInfoGuest();
             }

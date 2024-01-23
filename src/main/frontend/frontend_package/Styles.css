@@ -225,3 +225,16 @@
     -fx-background-color: #d3d3d3;
     -fx-alignment: center;
 }
+
+.exit-button-vbox {
+    -fx-pref-width: 1200;
+    -fx-alignment: bottom-right;
+}
+
+.exit-game-button {
+    -fx-border-color: #04316D;
+    -fx-border-width: 5;
+    -fx-font-family: "Century Gothic Bold";
+    -fx-font-weight: Bold;
+    -fx-font-size: 32px;
+}

@@ -11,7 +11,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<junit.version>5.9.2</junit.version>  </properties>
+    <junit.version>5.9.2</junit.version>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -43,7 +44,6 @@
       <artifactId>sqlite-jdbc</artifactId>
       <version>3.43.0.0</version>
     </dependency>
-
   </dependencies>
 
 
@@ -58,6 +58,7 @@
           <target>21</target>
         </configuration>
       </plugin>
+
       <plugin>
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
@@ -67,7 +68,7 @@
             <!-- Default configuration for running with: mvn clean javafx:run -->
             <id>default-cli</id>
             <configuration>
-              <mainClass>frontend_package.trivia_game/frontend_package.trivia_game.TriviaGameApp</mainClass>
+              <mainClass>frontend_package.TriviaGameApp</mainClass>
               <launcher>app</launcher>
               <jlinkZipName>app</jlinkZipName>
               <jlinkImageName>app</jlinkImageName>
@@ -77,14 +78,6 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.6.3</version>
-        <configuration>
-          <outputDirectory>target/site/apidocs</outputDirectory>
-        </configuration>
       </plugin>
     </plugins>
   </build>
