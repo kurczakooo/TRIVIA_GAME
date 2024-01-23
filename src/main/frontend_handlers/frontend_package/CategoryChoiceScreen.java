@@ -1,7 +1,7 @@
 package frontend_package;
 
-import database.DataBaseHandler;
-import database.Tables.TablesManagement;
+import database_package.DataBaseHandler;
+import database_package.Tables.TablesManagement;
 import frontend_package.components.PlayerInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -13,11 +13,8 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.Statement;
 
 
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Objects;
 

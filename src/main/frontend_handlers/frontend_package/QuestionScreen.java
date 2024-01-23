@@ -1,7 +1,6 @@
 package frontend_package;
 
-import database.DataBaseHandler;
-import database.Tables.*;
+import database_package.Tables.*;
 import frontend_package.components.PlayerInfo;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
@@ -12,15 +11,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import server.ScreensManagerForServer;
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;

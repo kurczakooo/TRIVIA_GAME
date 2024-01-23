@@ -1,11 +1,9 @@
-package database.Tables;
+package database_package.Tables;
 
 
-import database.DataBaseHandler;
+import database_package.DataBaseHandler;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class RankingHandler {
     private static final Connection connection = DataBaseHandler.connect();

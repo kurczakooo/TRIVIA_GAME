@@ -1,6 +1,6 @@
 package frontend_package;
 
-import database.Tables.RankingHandler;
+import database_package.Tables.RankingHandler;
 import frontend_package.components.PlayerInfo;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -13,7 +13,6 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.paint.Paint;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import server.ScreensManagerForServer;
 
 import java.io.IOException;
 import java.util.Objects;

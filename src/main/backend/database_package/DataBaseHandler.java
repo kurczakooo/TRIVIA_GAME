@@ -1,4 +1,4 @@
-package database;
+package database_package;
 import java.sql.*;
 
 public class DataBaseHandler {
