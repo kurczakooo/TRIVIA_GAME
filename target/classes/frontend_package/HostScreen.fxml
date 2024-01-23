@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import frontend_package.components.PlayerInfo?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ToggleButton?>
+
+<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.HostScreen">
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <PlayerInfo fx:id="playerInfo"/>
+    </StackPane>
+    <HBox>
+        <VBox styleClass="grid-host-screen">
+            <Label styleClass="waiting-for-player-label" text="HOST:"/>
+            <Label styleClass="waiting-for-player-label"  fx:id="hostPlayerLabel" text="$hostPlayerLabel"/>
+            <ToggleButton fx:id="hostButton" styleClass="toggle-button" text="GOTOWY"/>
+        </VBox>
+        <VBox styleClass="grid-host-screen">
+            <Label styleClass="waiting-for-player-label" text="GOŚĆ:"/>
+            <Label styleClass="waiting-for-player-label"  fx:id="guestPlayerLabel" text="$guestPlayerLabel"/>
+            <ToggleButton onAction="#guestButtonSelect" fx:id="guestButton" styleClass="toggle-button" text="GOTOWY"/>
+        </VBox>
+    </HBox>
+</VBox>

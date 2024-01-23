@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import frontend_package.components.PlayerInfo?>
+
+<VBox xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="frontend_package.WaitForPlayerTurnScreen">
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <PlayerInfo fx:id="playerInfo"/>
+    </StackPane>
+    <VBox alignment="CENTER">
+        <Label fx:id="waitText" styleClass="waiting-label"/>
+    </VBox>
+</VBox>

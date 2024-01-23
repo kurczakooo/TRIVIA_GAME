@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import frontend_package.components.PlayerInfo?>
+
+<VBox styleClass="vbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="frontend_package.QuestionScreen">
+    <StackPane>
+        <Label styleClass="background-label" text="TRIVIA" />
+        <PlayerInfo fx:id="playerInfo"/>
+        <Label fx:id="counter" styleClass="question-screen-counter" text="30"/>
+    </StackPane>
+    <Label styleClass="question-label" fx:id="question_label" />
+    <GridPane styleClass="answers-grid">
+        <Button onAction="#answerHandler" styleClass="answer-button" fx:id="button1"  GridPane.columnIndex="0" GridPane.rowIndex="0" />
+        <Button onAction="#answerHandler" styleClass="answer-button" fx:id="button2" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+        <Button onAction="#answerHandler" styleClass="answer-button" fx:id="button3" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+        <Button onAction="#answerHandler" styleClass="answer-button" fx:id="button4" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+    </GridPane>
+</VBox>

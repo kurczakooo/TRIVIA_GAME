@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root type="HBox" styleClass="server-info-hbox" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+    <VBox styleClass="server-info-vbox">
+        <Label fx:id="hostNick" styleClass="server-info-host-label" text="$hostNick"/>
+        <Label fx:id="portNumber" styleClass="server-info-port-number" text="$portNumber"/>
+    </VBox>
+    <Button fx:id="joinGameButton" styleClass="server-info-join-button" text="$joinGameButton"/>
+</fx:root>
