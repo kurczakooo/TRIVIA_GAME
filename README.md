@@ -1,9 +1,9 @@
 # TRIVIA GAME
 ## Opis
-Gra polegająca na odpowiadaniu na pytania z wiedzy ogólnej, oraz uzyskaniu lepszego wyniku od przeciwnika. 
-Gracze na zmianę wybierają sobie kategorie pytania, i próbują jak najszybciej na nie odpowiedzieć. Jest na to 30 
-sekund, i w zależności od szybkości odpowiedzi dostajemy punkty oznaczone '$'. Dla każdego gracza jest 5 rund, 
-pytania się nie powtarzają. GRA DZIAŁA TYLKO NA MASZYNIE LOKALNEJ!
+Gra polegająca na rywalizacji w odpowiadaniu na pytania z wiedzy ogólnej, aby uzyskać lepszy wynik od przeciwnika. 
+Gracze na zmianę wybierają kategorie pytania, i starają się udzielić jak najszybszej odpowiedzi. Jest na to 30 
+sekund, i w zależności od szybkości odpowiedzi dostajemy punkty oznaczone '$'. Każdy gracz przechodzi przez 5 rund, 
+pytania są unikalne w każdej z nich. GRA DZIAŁA TYLKO NA MASZYNIE LOKALNEJ!
 
 ---
 
@@ -59,7 +59,5 @@ co robimy poprzez pobranie JavyFX i wskazanie na nią w komendzie uruchamiające
 ---
 
 ##  Dodatkowe informacje o grze
-Gra korzysta z bazy danych *sqlite* i zapisuje w niej statystyki dotyczące rozgrywki. Jeśli po skończonej grze uruchomimy ją jeszcze raz i wpiszemy nick który był już używany
-wcześniej, to gra zamiast tworzyć nowego gracza, będzie aktualizować statystyki istniejącego. Gra korzysta z protokołu TCP i wielowątkowości, więc jeśli jeden z graczy zamknie ją 
-przed skończeniem, to poskutkuje błędem i nie możnością kontynuowania rozgrywki dla obu graczy. Należy wtedy uruchomić grę od nowa. 
-W grze gramy 1 vs 1, ale na raz możemy uruchomić więcej instancji, pamiętając tylko o tym aby za każdym razem najpierw dołączać do gry graczem hostującym a potem dopiero gościem.
+Gra wykorzystuje bazę danych *sqlite* do przechowywania w niej statystyk dotyczących rozgrywki. Jeśli po skończonej grze uruchomimy ją jeszcze raz i wpiszemy nick który był już używany
+wcześniej, skutkuje to aktualizacją statystyk istniejącego gracza, zamiast stworzeniem nowego. Gra korzysta z protokołu TCP i wielowątkowości, więc jeśli jeden z graczy zamknie ją przed skończeniem, to poskutkuje błędem i nie możnością kontynuowania rozgrywki dla obu graczy. Należy wtedy uruchomić grę od nowa. Mimo że gra odbywa się w formie 1 vs 1, możemy uruchomić więcej instancji w jednym momencie, pamiętając tylko o tym aby zawsze najpierw dołączać do gry graczem hostującym a potem dopiero gościem.
