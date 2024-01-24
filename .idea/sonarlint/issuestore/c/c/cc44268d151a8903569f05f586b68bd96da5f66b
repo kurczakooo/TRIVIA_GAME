@@ -1,0 +1,25 @@
+
+j
+java:S1192!"ODefine a constant instead of duplicating this literal "Wystapil blad!" 6 times.(Γυνσωÿÿÿÿ
+l
+java:S1104"VMake connection a static final constant or non-public and provide accessors if needed.(Σ£—®
+F
+java:S1444"0Make this "public static connection" field final(Σ£—®
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¦ΰΆ
+E	java:S106!"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+E	java:S1066"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+E	java:S106K"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+E	java:S106`"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+E	java:S106u"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+F	java:S106"+Replace this use of System.out by a logger.(Γυνσωÿÿÿÿ
+A	java:S106"+Replace this use of System.out by a logger.(²£…
+F	java:S106"+Replace this use of System.out by a logger.(Ά―‘ώόÿÿÿÿ
+A	java:S106―"+Replace this use of System.out by a logger.(®΄ί
+F	java:S106±"+Replace this use of System.out by a logger.(χΊ¦ƒωÿÿÿÿ
+F	java:S106Λ"+Replace this use of System.out by a logger.(®ÒΥ®όÿÿÿÿ
+F	java:S106Μ"+Replace this use of System.out by a logger.(¬®χ½ÿÿÿÿÿ
+F	java:S106Ο"+Replace this use of System.out by a logger.(Ύωτωÿÿÿÿ
+A	java:S106Σ"+Replace this use of System.out by a logger.(‰ξΣ
+W	java:S125Ρ"<This block of commented-out lines of code should be removed.(°‘δσÿÿÿÿÿ
+^	java:S125Τ"<This block of commented-out lines of code should be removed.(°δϋ“ύÿÿÿÿ8λβ¤ΑΙ1
+W	java:S125Φ"<This block of commented-out lines of code should be removed.(ηϋ•‰ϋÿÿÿÿ
