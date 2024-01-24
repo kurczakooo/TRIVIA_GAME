@@ -1,7 +1,9 @@
 package server;
 
-import database_package.Tables.HisTurTmpHandler;
-import database_package.Tables.TablesManagement;
+import database.Tables.HisTurFixedHandler;
+import database.Tables.HisTurTmpHandler;
+import database.Tables.RankingHandler;
+import database.Tables.TablesManagement;
 import frontend_package.CategoryChoiceScreen;
 import frontend_package.EndingScreen;
 import frontend_package.TriviaGameApp;
