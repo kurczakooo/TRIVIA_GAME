@@ -1,6 +1,6 @@
 package frontend_package;
 
-import database.Tables.RankingHandler;
+import database_package.Tables.RankingHandler;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

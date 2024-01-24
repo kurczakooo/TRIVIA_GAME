@@ -9,8 +9,8 @@ module main {
     exports frontend_package;
     exports server;
     opens server to javafx.fxml;
-    exports database;
-    opens database to javafx.fxml;
+    exports database_package;
+    opens database_package to javafx.fxml;
     exports frontend_package.components;
     opens frontend_package.components to javafx.fxml;
 }

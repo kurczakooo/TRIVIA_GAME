@@ -1,6 +1,6 @@
-package database.Tables;
+package database_package.Tables;
 
-import database.DataBaseHandler;
+import database_package.DataBaseHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

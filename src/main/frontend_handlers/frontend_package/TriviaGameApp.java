@@ -1,15 +1,12 @@
 package frontend_package;
 
-import database.DataBaseHandler;
-import frontend_package.components.PlayerInfo;
-import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.application.Application;
 import server.*;
 import java.io.IOException;
-import java.net.ServerSocket;
-import java.sql.Connection;
 import java.util.Date;
+
+//java --module-path "C:\Users\damia\Downloads\openjfx-21.0.2_windows-x64_bin-sdk\javafx-sdk-21.0.2\lib" --add-modules javafx.controls,javafx.fxml -jar Trivia_Game.jar
 
 public class TriviaGameApp extends Application {
     public static Server server;
