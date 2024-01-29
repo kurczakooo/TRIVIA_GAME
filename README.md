@@ -1,63 +1,61 @@
+
 # TRIVIA GAME
-## Opis
-Gra polegająca na rywalizacji w odpowiadaniu na pytania z wiedzy ogólnej, aby uzyskać lepszy wynik od przeciwnika. 
-Gracze na zmianę wybierają kategorie pytania, i starają się udzielić jak najszybszej odpowiedzi. Jest na to 30 
-sekund, i w zależności od szybkości odpowiedzi dostajemy punkty oznaczone '$'. Każdy gracz przechodzi przez 5 rund, 
-pytania są unikalne w każdej z nich. GRA DZIAŁA TYLKO NA MASZYNIE LOKALNEJ!
+## Description
+A game that involves competing to answer general knowledge questions to achieve a better score than the opponent. Players take turns selecting question categories and try to provide the quickest answers. There is a 30-second time limit, and points denoted by '$' are awarded based on the speed of the response. Each player goes through 5 rounds, and the questions are unique in each round. THE GAME WORKS ONLY ON A LOCAL MACHINE!
 
 ---
 
-## Użyta technologia:
+## Technologies Used:
 - Java (Oracle OpenJDK version 21.02.2)
 - JavaFX (javafx: 21-ea-24)
 - sqlite-jdbc-3.40.1.0
-- do spakowania projektu użyliśmy Maven
-- i dostępnych pluginów i zależności opisanych w pliku "pom.xml"
-
-  
----
-
-
-## Instrukcja użytkowania programu:
-### Grę można uruchomić na dwa sposoby, jednak do obu potrzebujemy mieć zainstalowaną Jave wersję min. 21
-Link do pobrania instalatora javy: https://www.oracle.com/pl/java/technologies/downloads/
-
-Instalator pozwala na to że Java automatycznie zostanie dodana do zmiennych środowiskowych naszego komputera.
-
-Po zainstalowaniu otworzymy cmd i wpisujemy *'java --version'*. Jeśli uzyskamy komunikat o wersji zainstalowanej Javy to możemy przejść dalej.
-
-----
-
-### Sposób używając samej Javy
-1.  Wchodzimy w projekcie w folder **target->app->bin**
-2. w miejscu gdzie podana jest ścieżka folderu u góry wpisujemy *'cmd'*
-3. Gdy otworzy nam się konsola wpisujemy *'app.bat'* i gra powinna się uruchomić.
-4. Wpisujemy nick i wybieramy opcje Hostuj.
-5. Powtarzamy kroki 2, 3 i 4, ale tym razem po wpisaniu nicku wybieramy opcje Gość.
-6. Na ekranie Gościa powinna pokazać się informacja o serwerze stworzonym przez Hosta i przycisk *dołącz*. Po dołączeniu rozpoczynamy grę.
-
-**6. Zamiast punktu 2 możemy w folderze manualnie znaleźć plik 'app.bat' i kliknąć na niego dwa razy.**
-
-Ta metoda jest możliwa dzięki wygenerowaniu lokalnego środowiska JavyFX, przy użyciu Maven z pluginem Jlink. Dzięki niej nie musimy instalować JavyFX na swój komputer.
-
-----
-
-### Sposób używając Javy i JavyFX
-1. Po pobraniu Javy pobieramy JavaFX wersje min. 21 z tego linku: https://gluonhq.com/products/javafx/ , wybierając poprawną wersję dla naszego systemu operacyjnego, oraz *TYP SDK*.
-2. Wypakowujemy plik zip do wybranego folderu.
-3. Wchodzimy do **javafx-sdk-21.0.2->lib** i kopiujemy ścieżkę do tego folderu.
-4. W plikach projektu wchodzimy do **out->artifacts->Trivia_Game_jar**.
-5. w miejscu gdzie podana jest ścieżka folderu u góry wpisujemy *'cmd'*
-6. wpisujemy tą komende *'java --module-path "<ścieżka do skopiowanego wczesniej folderu lib>" --add-modules javafx.controls,javafx.fxml -jar Trivia_Game.jar'*
-7. Gra powinna się uruchomić. Wpisujemy nick i wybieramy opcje Hostuj.
-8. Powtarzamy kroki 5 i 6, ale po wpisaniu nicku wybieramy opcje Gość.
-9. Na ekranie Gościa powinna pokazać się informacja o serwerze stworzonym przez Hosta i przycisk *dołącz*. Po dołączeniu rozpoczynamy grę.
-
-W tej metodzie korzytamy z artefaktu projektu stworzonego przez Maven, ale bez użycia pluginu Jlink, więc środowisko do uruchomienia klas JavyFX musimy zapewnić aplikacji sami, 
-co robimy poprzez pobranie JavyFX i wskazanie na nią w komendzie uruchamiającej grę.
+- Maven for project packaging
+- And the plugins and dependencies specified in the "pom.xml" file
 
 ---
 
-##  Dodatkowe informacje o grze
-Gra wykorzystuje bazę danych *sqlite* do przechowywania w niej statystyk dotyczących rozgrywki. Jeśli po skończonej grze uruchomimy ją jeszcze raz i wpiszemy nick który był już używany
-wcześniej, skutkuje to aktualizacją statystyk istniejącego gracza, zamiast stworzeniem nowego. Gra korzysta z protokołu TCP i wielowątkowości, więc jeśli jeden z graczy zamknie ją przed skończeniem, to poskutkuje błędem i nie możnością kontynuowania rozgrywki dla obu graczy. Należy wtedy uruchomić grę od nowa. Mimo że gra odbywa się w formie 1 vs 1, możemy uruchomić więcej instancji w jednym momencie, pamiętając tylko o tym aby zawsze najpierw dołączać do gry graczem hostującym a potem dopiero gościem.
+## User Guide:
+### The game can be launched in two ways, but both require having Java installed with a minimum version of 21.
+Link to download Java installer: https://www.oracle.com/java/technologies/downloads/
+
+After installation, open the command prompt (cmd) and type 'java --version'. If you receive a message about the installed Java version, you can proceed.
+
+--
+
+### Using Java Only
+1. Navigate to the project's target->app->bin folder.
+2. In the address bar, replace the current path with 'cmd'.
+3. When the console opens, type 'app.bat' to launch the game.
+4. Enter a nickname and choose the "Host" option.
+5. Repeat steps 2, 3, and 4, but this time, after entering the nickname, choose the "Guest" option.
+6. On the Guest's screen, information about the server created by the Host should be displayed, along with a "Join" button. After joining, start the game.
+
+**Instead of step 2, you can manually find the 'app.bat' file in the folder and double-click on it.**
+
+This method is possible thanks to the generation of a local JavaFX environment using Maven with the Jlink plugin. This eliminates the need to install JavaFX on your computer.
+
+---
+
+### Using Java and JavaFX
+1. After downloading Java, download JavaFX version 21 from this link: https://gluonhq.com/products/javafx/. Choose the correct version for your operating system and the "SDK" type.
+2. Extract the zip file to a chosen folder.
+3. Navigate to javafx-sdk-21.0.2->lib and copy the path to this folder.
+4. In the project files, go to out->artifacts->Trivia_Game_jar.
+5. In the address bar, replace the current path with 'cmd'.
+6. Type the following command: 'java --module-path "<path to the copied lib folder>" --add-modules javafx.controls,javafx.fxml -jar Trivia_Game.jar'.
+7. The game should start. Enter a nickname and choose the "Host" option.
+8. Repeat steps 5 and 6, but after entering the nickname, choose the "Guest" option.
+9. On the Guest's screen, information about the server created by the Host should be displayed, along with a "Join" button. After joining, start the game.
+
+In this method, we use the project artifact created by Maven but without the Jlink plugin. Therefore, we need to provide the JavaFX environment to run JavaFX classes, which is done by downloading JavaFX and specifying it in the command that launches the game.
+
+---
+
+## Additional Game Information
+The game uses an SQLite database to store statistics related to gameplay. If the game is restarted, and a nickname that has been used before is entered, it updates the statistics for the existing player instead of creating a new one. The game uses TCP protocol and multithreading, so if one player closes it before finishing, it results in an error and the inability to continue the game for both players. In that case, the game needs to be restarted. Although the game is played in a 1 vs. 1 format, multiple instances can be launched simultaneously, remembering to always join the game as the host first and then as the guest.
+
+---
+
+## Preview
+https://github.com/kurczakooo/Trivia_Game/assets/121618421/83e55f8e-4fd1-420b-bf89-4ebccdfce69c
+
